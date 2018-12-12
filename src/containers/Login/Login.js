@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 class Login extends Component {
   state = {
-    isUser: false
+    isUser: true
   };
 
   switchToLoginHandler = e => {
@@ -76,7 +76,7 @@ class Login extends Component {
           </h4>
 
           <Input s={12} label="Username" validate required>
-            <Icon>how_to_reg</Icon>
+            <Icon>account_circle</Icon>
           </Input>
           <Input s={12} label="Password" type="password" validate required>
             <Icon>lock</Icon>
