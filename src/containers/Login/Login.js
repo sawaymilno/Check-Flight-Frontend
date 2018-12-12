@@ -1,15 +1,21 @@
 import React, { Component } from "react";
 
-import { Button, Card, Row, Input, Icon } from "react-materialize";
+import { Button, Card, Row, Input, Icon, Col } from "react-materialize";
 import { Link } from "react-router-dom";
+
+import Pilot from "./Pilot";
+import Examiner from "./Examiner";
+import LoginForm from "./LoginForm";
 
 class Login extends Component {
   state = {
-    isUser: true
+    isUser: true,
+    isPilot: false
   };
 
   switchToLoginHandler = e => {
     e.preventDefault();
+    console.log(e.target.value);
     this.setState({
       isUser: true
     });
@@ -22,76 +28,50 @@ class Login extends Component {
     });
   };
 
+  //Click handler to render pilot sign up form
+  showPilotFormHandler = e => {
+    e.preventDefault();
+    this.setState({
+      isPilot: true,
+      isExaminer: false,
+      isUser: false
+    });
+  };
+
+  //Click handler to render Examiner sign up form
+  showExaminerFormHandler = e => {
+    e.preventDefault();
+    this.setState({
+      isExaminer: true,
+      isPilot: false,
+      isUser: false
+    });
+  };
+
   render() {
     return !this.state.isUser ? (
       <Row>
-        <Card>
-          <h4 style={{ textAlign: "center" }}>
-            {" "}
-            <Icon large>account_circle</Icon>
-            <br />
-            SIGN UP
-          </h4>
-
-          <Input s={6} label="First Name" validate required />
-          <Input s={6} label="Last Name" validate required />
-          <Input s={12} label="Telephone" validate type="tel">
-            <Icon>phone</Icon>
-          </Input>
-          <Input type="email" label="Email" s={12} validate required>
-            <Icon>email</Icon>
-          </Input>
-          <Input s={12} label="Username" validate required>
-            <Icon>account_circle</Icon>
-          </Input>
-          <Input s={6} label="Password" type="password" validate required>
-            <Icon>lock</Icon>
-          </Input>
-          <Input
-            s={6}
-            label="Confirm Password"
-            type="password"
-            validate
-            required
-          />
-          <Button type="submit" style={{ width: "100%" }} waves="light">
-            CREATE ACCOUNT
-          </Button>
-          <br />
-          <br />
-
-          <Link onClick={this.switchToLoginHandler} to="/Login">
-            Already have an account? Click to login
-          </Link>
-        </Card>
+        <Button onClick={this.showPilotFormHandler} style={{ width: "100%" }}>
+          REGISTER AS PILOT
+        </Button>
+        {this.state.isPilot ? (
+          <Pilot clicked={this.switchToLoginHandler} />
+        ) : null}
+        <br />
+        <br />
+        <Button
+          onClick={this.showExaminerFormHandler}
+          style={{ width: "100%" }}
+        >
+          REGISTER AS EXAMINER
+        </Button>
+        {this.state.isExaminer ? (
+          <Examiner clicked={this.switchToLoginHandler} />
+        ) : null}
+        <br />
       </Row>
     ) : (
-      <Row>
-        <Card>
-          <h4 style={{ textAlign: "center" }}>
-            {" "}
-            <Icon large>account_circle</Icon>
-            <br />
-            Login
-          </h4>
-
-          <Input s={12} label="Username" validate required>
-            <Icon>account_circle</Icon>
-          </Input>
-          <Input s={12} label="Password" type="password" validate required>
-            <Icon>lock</Icon>
-          </Input>
-          <Button type="submit" style={{ width: "100%" }} waves="light">
-            LOGIN
-          </Button>
-          <br />
-          <br />
-
-          <Link onClick={this.switchToSigninHandler} to="/Register">
-            Need to sign up? Click here
-          </Link>
-        </Card>
-      </Row>
+      <LoginForm clicked={this.switchToSigninHandler} />
     );
   }
 }
