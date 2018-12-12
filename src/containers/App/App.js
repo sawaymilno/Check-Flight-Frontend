@@ -7,7 +7,7 @@ import Login from "../Login/Login";
 class App extends Component {
   render() {
     return (
-      <div>
+      <div className="container">
         <Navigation />
         <Login />
       </div>
