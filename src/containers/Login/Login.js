@@ -76,7 +76,7 @@ class Login extends Component {
           </h4>
 
           <Input s={12} label="Username" validate required>
-            <Icon>account_circle</Icon>
+            <Icon>how_to_reg</Icon>
           </Input>
           <Input s={12} label="Password" type="password" validate required>
             <Icon>lock</Icon>
