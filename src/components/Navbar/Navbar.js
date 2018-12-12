@@ -8,9 +8,9 @@ import "../../containers/App/App.css";
 const Navigation = () => (
   <Row>
     <Navbar className="indigo darken-3" brand="Check Flight" right>
-      <NavItem href="/">
-        <Icon>search</Icon>
-      </NavItem>
+      <Link to="/login">
+        <Icon large>account_circle</Icon>
+      </Link>
     </Navbar>
   </Row>
 );
