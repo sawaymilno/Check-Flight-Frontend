@@ -7,15 +7,18 @@ import Login from "../Login/Login"
 import Foot from "../../components/Footer/Footer";
 // import PilotProfile from '../../components/Profile/PilotProfile'
 
+
 class App extends Component {
   render() {
     return (
-      <div className="container">
+      <Row className='container'>
         <Navigation />
+        <Intro />
+        <Login />
         {/* <PilotProfile /> */}
         <Login />
         <Foot />
-      </div>
+      </Row>
     );
   }
 }
