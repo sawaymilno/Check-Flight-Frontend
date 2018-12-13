@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Row, Navbar, NavItem, Icon, Card, CardTitle } from "react-materialize";
+//import { Link } from "react-router-dom";
+import { Card, CardTitle } from "react-materialize";
 
 import "./Intro.css";
 import "../../containers/App/App.css";

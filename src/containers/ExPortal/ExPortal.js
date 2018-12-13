@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button } from "react-materialize";
+//import { Button } from "react-materialize";
 
 import Navigation from "../../components/Navbar/Navbar"
 import Foot from "../../components/Footer/Footer"

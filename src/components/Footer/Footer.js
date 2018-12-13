@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Footer, Row } from "react-materialize";
+import { Footer } from "react-materialize";
 
 const Foot = () => (
   <div>

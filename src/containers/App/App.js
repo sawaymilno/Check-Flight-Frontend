@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row } from "react-materialize";
+//import { Row } from "react-materialize";
 import './App.css';
 
 /************ COMPONENT IMPORTS ******************/
@@ -24,6 +24,7 @@ class App extends Component {
         <Navigation />
         <Intro />
         {/* <PilotProfile /> */}
+
         <Login />
         <Foot />
       </div>
