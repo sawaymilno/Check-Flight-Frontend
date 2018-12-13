@@ -6,11 +6,11 @@ import "./Navbar.css";
 import "../../containers/App/App.css";
 
 const Navigation = () => (
-  <Row>
+  <div>
     <Navbar className="indigo darken-3" brand="Check Flight" right>
             <NavItem href='get-started.html'><Icon>search</Icon></NavItem>
     </Navbar>
-  </Row>
+  </div>
 );
 
 export default Navigation;

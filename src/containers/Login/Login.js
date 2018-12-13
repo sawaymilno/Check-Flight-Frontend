@@ -4,8 +4,9 @@ import { Button, Card, Row, Input, Icon } from "react-materialize";
 import { Link } from "react-router-dom";
 
 class Login extends Component {
+
   state = {
-    isUser: false
+    isUser: true
   };
 
   switchToLoginHandler = e => {
@@ -24,7 +25,7 @@ class Login extends Component {
 
   render() {
     return !this.state.isUser ? (
-      <Row>
+      <div>
         <Card>
           <h4 style={{ textAlign: "center" }}>
             {" "}
@@ -64,9 +65,9 @@ class Login extends Component {
             Already have an account? Click to login
           </Link>
         </Card>
-      </Row>
+      </div>
     ) : (
-      <Row>
+      <div>
         <Card>
           <h4 style={{ textAlign: "center" }}>
             {" "}
@@ -91,7 +92,7 @@ class Login extends Component {
             Need to sign up? Click here
           </Link>
         </Card>
-      </Row>
+      </div>
     );
   }
 }
