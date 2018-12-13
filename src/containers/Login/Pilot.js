@@ -1,10 +1,10 @@
 import React from "react";
-import { Button, Card, Row, Input, Icon } from "react-materialize";
+import { Button, Card, Input, Icon } from "react-materialize";
 import { Link } from "react-router-dom";
 
 const Pilot = props => {
   return (
-      
+
     <Card>
       <h4 style={{ textAlign: "center" }}>
         {" "}
