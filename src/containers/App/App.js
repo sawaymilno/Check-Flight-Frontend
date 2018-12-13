@@ -1,24 +1,25 @@
 import React, { Component } from "react";
+import { Row } from "react-materialize";
 import './App.css';
 
 /************ COMPONENT IMPORTS ******************/
 import Navigation from "../../components/Navbar/Navbar";
 import Login from "../Login/Login"
 import Foot from "../../components/Footer/Footer";
+import Intro from "../../components/Intro/Intro";
 // import PilotProfile from '../../components/Profile/PilotProfile'
 
 
 class App extends Component {
   render() {
     return (
-      <Row className='container'>
+      <div className='container'>
         <Navigation />
         <Intro />
-        <Login />
         {/* <PilotProfile /> */}
         <Login />
         <Foot />
-      </Row>
+      </div>
     );
   }
 }
