@@ -4,7 +4,7 @@ import PilotSearchResults from "./PilotSearchResults";
 import { Card, Icon, Button } from "react-materialize";
 import PilotSearchForm from "./PilotSearchForm";
 
-const PilotProfile = () => (
+const PilotProfile = (props) => (
   <Card style={{ textAlign: "center" }}>
     <Icon large>account_circle</Icon>
     <h4 style={{ textAlign: "center" }}>Brett Bloxom</h4>
@@ -15,7 +15,7 @@ const PilotProfile = () => (
     <br />
     <br />
     <h5>Find Check Rides</h5>
-    <PilotSearchForm />
+    <PilotSearchForm searched={props.searched} />
     <br />
     <h5 style={{ textAlign: "left" }}>Search Results:</h5>
 

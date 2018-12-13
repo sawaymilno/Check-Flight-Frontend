@@ -2,7 +2,7 @@ import React from "react";
 
 import { Input, Icon, Button, Row } from "react-materialize";
 
-const PilotSearchForm = () => (
+const PilotSearchForm = props => (
   <Row style={{ textAlign: "left" }}>
     <Input s={12} label="Search Airports">
       <Icon>local_airport</Icon>
@@ -11,7 +11,12 @@ const PilotSearchForm = () => (
       <Icon>how_to_reg</Icon>
     </Input>
     <div className="center-align">
-      <Button style={{ width: "70%" }} className="green accent-3" type="submit">
+      <Button
+        style={{ width: "70%" }}
+        className="green accent-3"
+        type="submit"
+        onClick={props.searched}
+      >
         Search
       </Button>
     </div>
