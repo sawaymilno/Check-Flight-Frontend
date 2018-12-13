@@ -10,9 +10,13 @@ import LoginForm from "./LoginForm";
 class Login extends Component {
   state = {
     isUser: true,
-    isPilot: false
+    isPilot: false,
+    isExaminer: false
   };
 
+  /**************************************************************************
+   * event handler for link at bottom of sign up form to switch to login form *
+   **************************************************************************/
   switchToLoginHandler = e => {
     e.preventDefault();
     console.log(e.target.value);
@@ -21,6 +25,9 @@ class Login extends Component {
     });
   };
 
+  /**************************************************************************
+   * event handler for link at bottom of Login form to switch to sign up form *
+   **************************************************************************/
   switchToSigninHandler = e => {
     e.preventDefault();
     this.setState({
@@ -28,7 +35,9 @@ class Login extends Component {
     });
   };
 
-  //Click handler to render pilot sign up form
+  /**************************************************************************
+   * click handler on pilot button to render pilot registration form *
+   **************************************************************************/
   showPilotFormHandler = e => {
     e.preventDefault();
     this.setState({
@@ -38,7 +47,9 @@ class Login extends Component {
     });
   };
 
-  //Click handler to render Examiner sign up form
+  /**************************************************************************
+   * click handler on examiner button to render examiner registration form *
+   **************************************************************************/
   showExaminerFormHandler = e => {
     e.preventDefault();
     this.setState({
@@ -51,7 +62,11 @@ class Login extends Component {
   render() {
     return !this.state.isUser ? (
       <Row>
-        <Button onClick={this.showPilotFormHandler} style={{ width: "100%" }}>
+        <Button
+          onClick={this.showPilotFormHandler}
+          className="green accent-3"
+          style={{ width: "100%" }}
+        >
           REGISTER AS PILOT
         </Button>
         {this.state.isPilot ? (
@@ -60,6 +75,7 @@ class Login extends Component {
         <br />
         <br />
         <Button
+          className="green accent-3"
           onClick={this.showExaminerFormHandler}
           style={{ width: "100%" }}
         >
