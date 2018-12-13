@@ -31,7 +31,9 @@ class Login extends Component {
   switchToSigninHandler = e => {
     e.preventDefault();
     this.setState({
-      isUser: false
+      isUser: false,
+      isPilot: false,
+      isExaminer: false
     });
   };
 
@@ -63,24 +65,27 @@ class Login extends Component {
     return !this.state.isUser ? (
       <Row>
         <Button
+          large
           onClick={this.showPilotFormHandler}
           className="green accent-3"
           style={{ width: "100%" }}
         >
           REGISTER AS PILOT
         </Button>
-        {this.state.isPilot ? (
-          <Pilot clicked={this.switchToLoginHandler} />
-        ) : null}
+
         <br />
         <br />
         <Button
+          large
           className="green accent-3"
           onClick={this.showExaminerFormHandler}
           style={{ width: "100%" }}
         >
           REGISTER AS EXAMINER
         </Button>
+        {this.state.isPilot ? (
+          <Pilot clicked={this.switchToLoginHandler} />
+        ) : null}
         {this.state.isExaminer ? (
           <Examiner clicked={this.switchToLoginHandler} />
         ) : null}
