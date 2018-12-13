@@ -64,9 +64,9 @@ class Login extends Component {
 
   render() {
     return !this.state.isUser ? (
-      
+
 //shawn's branch
-      
+
 //       <div>
 //         <Card>
 //           <h4 style={{ textAlign: "center" }}>
@@ -136,34 +136,41 @@ class Login extends Component {
 //         </Card>
 //       </div>
 //End Shawn's Branch
-      <Row>
-        <Button
-          large
-          onClick={this.showPilotFormHandler}
-          className="green accent-3"
-          style={{ width: "100%" }}
-        >
-          REGISTER AS PILOT
-        </Button>
+      <div className="row">
+        <div>
+          <Button
 
-        <br />
-        <br />
-        <Button
-          large
-          className="green accent-3"
-          onClick={this.showExaminerFormHandler}
-          style={{ width: "100%" }}
-        >
-          REGISTER AS EXAMINER
-        </Button>
-        {this.state.isPilot ? (
-          <Pilot clicked={this.switchToLoginHandler} />
-        ) : null}
-        {this.state.isExaminer ? (
-          <Examiner clicked={this.switchToLoginHandler} />
-        ) : null}
-        <br />
-      </Row>
+            large
+            onClick={this.showPilotFormHandler}
+            className="green accent-3"
+            style={{ width: "100%" }}>
+
+            REGISTER AS PILOT
+
+          </Button>
+        </div>
+
+      <br />
+      <br />
+
+        <div>
+          <Button
+            large
+            className="green accent-3"
+            onClick={this.showExaminerFormHandler}
+            style={{ width: "100%" }}
+          >
+            REGISTER AS EXAMINER
+          </Button>
+          {this.state.isPilot ? (
+            <Pilot clicked={this.switchToLoginHandler} />
+          ) : null}
+          {this.state.isExaminer ? (
+            <Examiner clicked={this.switchToLoginHandler} />
+          ) : null}
+          <br />
+        </div>
+      </div>
     ) : (
       <LoginForm clicked={this.switchToSigninHandler} />
     );

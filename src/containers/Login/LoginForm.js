@@ -3,7 +3,7 @@ import { Button, Card, Row, Input, Icon } from "react-materialize";
 import { Link } from "react-router-dom";
 
 const LoginForm = props => (
-  <Row>
+  <div>
     <Card>
       <h4 style={{ textAlign: "center" }}>
         {" "}
@@ -32,7 +32,7 @@ const LoginForm = props => (
         Need to sign up? Click here
       </Link>
     </Card>
-  </Row>
+  </div>
 );
 
 export default LoginForm;
