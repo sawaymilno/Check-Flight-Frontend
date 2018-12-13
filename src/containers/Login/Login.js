@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { Button, Row } from "react-materialize";
+import { Button } from "react-materialize";
 // import { Link } from "react-router-dom";
 
 import Pilot from "./Pilot";
