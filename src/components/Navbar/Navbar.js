@@ -7,7 +7,7 @@ import "../../containers/App/App.css";
 
 const Navigation = () => (
   <Row>
-    <Navbar className="indigo darken-3" brand="Check Flight" right>
+    <Navbar className="teal darken-3" brand="Check Flight" right>
       <NavItem href="/About">About</NavItem>
       <NavItem href="/Login">Login</NavItem>
     </Navbar>

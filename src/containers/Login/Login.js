@@ -69,9 +69,7 @@ class Login extends Component {
         >
           REGISTER AS PILOT
         </Button>
-        {this.state.isPilot ? (
-          <Pilot clicked={this.switchToLoginHandler} />
-        ) : null}
+
         <br />
         <br />
         <Button
@@ -81,6 +79,9 @@ class Login extends Component {
         >
           REGISTER AS EXAMINER
         </Button>
+        {this.state.isPilot ? (
+          <Pilot clicked={this.switchToLoginHandler} />
+        ) : null}
         {this.state.isExaminer ? (
           <Examiner clicked={this.switchToLoginHandler} />
         ) : null}
