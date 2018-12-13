@@ -9,7 +9,7 @@ const PilotProfile = () => (
     <Icon large>account_circle</Icon>
     <h4 style={{ textAlign: "center" }}>Brett Bloxom</h4>
     <h5>Boulder, CO</h5>
-    <Button style={{ width: "70%" }} className="green accent-3">
+    <Button style={{ width: "70%" }} className="green accent-3" >
       Edit Profile
     </Button>
     <br />
