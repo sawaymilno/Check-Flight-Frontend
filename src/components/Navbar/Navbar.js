@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import { Row, Navbar, NavItem, Icon } from "react-materialize";
 
 import "./Navbar.css";
