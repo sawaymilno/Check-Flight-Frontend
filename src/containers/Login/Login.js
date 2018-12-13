@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import { Button, Card, Row, Input, Icon, Col } from "react-materialize";
-import { Link } from "react-router-dom";
+import { Button, Row } from "react-materialize";
+// import { Link } from "react-router-dom";
 
 import Pilot from "./Pilot";
 import Examiner from "./Examiner";

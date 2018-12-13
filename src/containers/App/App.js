@@ -5,7 +5,7 @@ import './App.css';
 import Navigation from "../../components/Navbar/Navbar";
 import Login from "../Login/Login"
 import Foot from "../../components/Footer/Footer";
-import PilotProfile from '../../components/Profile/PilotProfile'
+// import PilotProfile from '../../components/Profile/PilotProfile'
 
 class App extends Component {
   render() {

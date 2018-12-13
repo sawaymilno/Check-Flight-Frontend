@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Card, Row, Input, Icon, Col } from "react-materialize";
+import { Button, Card, Row, Input, Icon } from "react-materialize";
 import { Link } from "react-router-dom";
 
 const LoginForm = props => (
