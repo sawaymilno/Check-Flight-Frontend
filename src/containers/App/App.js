@@ -7,12 +7,19 @@ import Navigation from "../../components/Navbar/Navbar";
 import Login from "../Login/Login"
 import Foot from "../../components/Footer/Footer";
 import Intro from "../../components/Intro/Intro";
+import ExPortal from "../../containers/ExPortal/ExPortal";
+import PiPortal from "../../containers/PiPortal/PiPortal";
 // import PilotProfile from '../../components/Profile/PilotProfile'
 
 
 class App extends Component {
+
+  state = {
+    exLoggedIn: false,
+    piLoggedIn: false,
+  }
   render() {
-    return (
+    return (!this.state.exLoggedIn && !this.state.piLoggedIn) ? (
       <div className='container'>
         <Navigation />
         <Intro />
@@ -20,7 +27,12 @@ class App extends Component {
         <Login />
         <Foot />
       </div>
-    );
+    )
+    :
+    (<div className='container'>
+      {this.state.exLoggedIn ? <ExPortal /> : <PiPortal />}
+     </div>
+   );
   }
 }
 
