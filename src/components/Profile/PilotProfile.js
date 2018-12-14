@@ -1,5 +1,4 @@
 import React from "react";
-
 import PilotSearchResults from "./PilotSearchResults";
 import { Card, Icon, Button } from "react-materialize";
 import PilotSearchForm from "./PilotSearchForm";

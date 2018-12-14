@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-
-
 import "./App.css";
-
 
 /************ COMPONENT IMPORTS ******************/
 import Navigation from "../../components/Navbar/Navbar";
@@ -23,12 +20,13 @@ class App extends Component {
       <div className="container">
         <Navigation />
         <Intro />
+        {/* <PilotProfile /> */}
         <Login />
         <PiPortal />
         <Foot />
       </div>
     ) : (
-      <div className="container">
+      <div >
         {this.state.exLoggedIn ? <ExPortal /> : <PiPortal />}
       </div>
     );
