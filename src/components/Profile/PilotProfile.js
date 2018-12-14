@@ -14,8 +14,7 @@ const PilotProfile = props => (
     </Button>
     <br />
     <br />
-    <h5>Find Check Rides</h5>
-    <PilotSearchForm searched={props.searched} airports={props.airports} />
+    <PilotSearchForm searched={props.searched} airports={props.airports} checked={props.checked} />
     <br />
     <h5 style={{ textAlign: "left" }}>Search Results:</h5>
 

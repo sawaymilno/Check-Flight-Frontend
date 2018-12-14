@@ -8,7 +8,6 @@ import Foot from "../../components/Footer/Footer";
 import Intro from "../../components/Intro/Intro";
 import ExPortal from "../../containers/ExPortal/ExPortal";
 import PiPortal from "../../containers/PiPortal/PiPortal";
-import PilotProfile from "../../components/Profile/PilotSearchResults";
 
 class App extends Component {
   state = {

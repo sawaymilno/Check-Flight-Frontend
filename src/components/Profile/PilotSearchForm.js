@@ -13,13 +13,12 @@ const PilotSearchForm = props => {
       type="checkbox"
       value={el.name}
       label={el.name}
-      defaultValue="checked"
-      onChange={props.checkedAirport}
+      // defaultChecked
+      onChange={props.checked}
     />
   ));
-  return (
-    <Row style={{ textAlign: "left" }}>
-      <h6>Airports</h6>
+  return <Row style={{ textAlign: "left" }}>
+      <h6>Select Airports</h6>
       {airportList}
       <Input s={12} label="Location: City, State">
         {/* <Icon>location_on</Icon> */}
@@ -28,17 +27,11 @@ const PilotSearchForm = props => {
         {/* <Icon>location_searching</Icon> */}
       </Input>
       <div className="center-align">
-        <Button
-          style={{ width: "70%" }}
-          className="green accent-3"
-          type="submit"
-          onClick={props.searched}
-        >
+        <Button style={{ width: "70%" }} className="green accent-3" type="submit" onClick={props.searched}>
           Search
         </Button>
       </div>
-    </Row>
-  );
+    </Row>;
 };
 
 export default PilotSearchForm;
