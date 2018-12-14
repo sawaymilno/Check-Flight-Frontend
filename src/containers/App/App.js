@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import { Row } from "react-materialize";
+//import { Parallax } from "react-materialize";
 import './App.css';
 
 /************ COMPONENT IMPORTS ******************/
@@ -15,7 +15,7 @@ import PiPortal from "../../containers/PiPortal/PiPortal";
 class App extends Component {
 
   state = {
-    exLoggedIn: false,
+    exLoggedIn: true,
     piLoggedIn: false,
   }
   render() {
@@ -24,13 +24,12 @@ class App extends Component {
         <Navigation />
         <Intro />
         {/* <PilotProfile /> */}
-
         <Login />
         <Foot />
       </div>
     )
     :
-    (<div className='container'>
+    (<div >
       {this.state.exLoggedIn ? <ExPortal /> : <PiPortal />}
      </div>
    );
