@@ -8,8 +8,29 @@ class PiPortal extends Component {
   state = {
     airports: [],
     isChecked: false,
-    checkedAirports: []
+    // checkedAirports: new Set()
   };
+
+  // addItem(item) {
+  //   this.setState(({ checkedAirports }) => ({
+  //     checkedAirports: new Set(checkedAirports.add(item))
+  //   }));
+  // }
+
+  // removeItem(item) {
+  //   this.setState(({ checkedAirports }) => {
+  //     const newChecked = new Set(checkedAirports);
+  //     newChecked.delete(item);
+
+  //     return {
+  //       checkedAirports: newChecked
+  //     };
+  //   });
+  // }
+
+  // getItemCheckedStatus(item) {
+  //   return this.state.checkedAirports.has(item);
+  // }
 
   /********************************************
    **** Fetch Airport Data ********************
@@ -24,21 +45,18 @@ class PiPortal extends Component {
   }
 
   airportCheckboxHandler = e => {
-    console.log(e.target);
-    this.setState({
-      ...this.state,
-      isChecked: true,
-      checkedAirports: e.target.value
-    })
-  };
+    console.log(e.target)
+    
+    }
+  
 
   /********************************************
    **** Search Button Submit Handler **********
    ********************************************/
   onSearchSubmit = e => {
     e.preventDefault();
-    console.log(e.target);
-  };
+    console.log(e);
+  }
 
   render() {
     return (
@@ -48,6 +66,7 @@ class PiPortal extends Component {
           searched={this.onSearchSubmit}
           airports={this.state.airports}
           checked={this.airportCheckboxHandler}
+          isChecked={this.state.isChecked}
         />
         <Foot />
       </>
