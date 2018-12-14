@@ -8,29 +8,8 @@ class PiPortal extends Component {
   state = {
     airports: [],
     isChecked: false,
-    // checkedAirports: new Set()
+    editing: false
   };
-
-  // addItem(item) {
-  //   this.setState(({ checkedAirports }) => ({
-  //     checkedAirports: new Set(checkedAirports.add(item))
-  //   }));
-  // }
-
-  // removeItem(item) {
-  //   this.setState(({ checkedAirports }) => {
-  //     const newChecked = new Set(checkedAirports);
-  //     newChecked.delete(item);
-
-  //     return {
-  //       checkedAirports: newChecked
-  //     };
-  //   });
-  // }
-
-  // getItemCheckedStatus(item) {
-  //   return this.state.checkedAirports.has(item);
-  // }
 
   /********************************************
    **** Fetch Airport Data ********************
@@ -44,19 +23,44 @@ class PiPortal extends Component {
     this.setState({ airports: json });
   }
 
+  /**************************************************
+   *****  Check Boxes Click Handler *******************
+   **************************************************/
+
   airportCheckboxHandler = e => {
-    console.log(e.target)
-    
-    }
-  
+    console.log(e.target.checked);
+    !this.state.isChecked
+      ? this.setState({
+          isChecked: true
+        })
+      : this.setState({
+          isChecked: false
+        });
+  };
 
   /********************************************
    **** Search Button Submit Handler **********
    ********************************************/
   onSearchSubmit = e => {
     e.preventDefault();
-    console.log(e);
-  }
+    console.log(e.target);
+  };
+
+  /*********************************************
+   **** Profile Edit Button Click Handler ******
+   *********************************************/
+
+  onEditClick = e => {
+    e.preventDefault();
+    console.log(e.target);
+    !this.state.isEditing
+      ? this.setState({
+          isEditing: true
+        })
+      : this.setState({
+          isEditing: false
+        });
+  };
 
   render() {
     return (
@@ -67,6 +71,8 @@ class PiPortal extends Component {
           airports={this.state.airports}
           checked={this.airportCheckboxHandler}
           isChecked={this.state.isChecked}
+          isEditing={this.onEditClick}
+          isEditingState={this.state.isEditing}
         />
         <Foot />
       </>
