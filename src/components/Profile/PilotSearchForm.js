@@ -14,6 +14,7 @@ const PilotSearchForm = props => {
       value={el.name}
       label={el.name}
       onChange={props.checked}
+      defaultValue={props.isChecked}
     />
   ));
   return (
@@ -32,7 +33,6 @@ const PilotSearchForm = props => {
           className="green accent-3"
           type="submit"
           onClick={props.searched}
-          // isChecked={props.isChecked}
         >
           Search
         </Button>
