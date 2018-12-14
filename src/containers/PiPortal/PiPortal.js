@@ -6,7 +6,24 @@ import Foot from "../../components/Footer/Footer";
 import PilotProfile from "../../components/Profile/PilotProfile";
 
 class PiPortal extends Component {
-  state = {};
+  state = {
+    airports: []
+  };
+
+
+
+
+
+  /********************************************
+   **** Fetch Airport Data ********************
+   ********************************************/
+
+  async componentDidMount() {
+    const response = await fetch('http://localhost:3001/airports', {credentials: 'include'})
+    const json = await response.json()
+    this.setState({ airports: json })
+  }
+
 
   /********************************************
    **** Search Button Submit Handler **********
@@ -20,7 +37,7 @@ class PiPortal extends Component {
     return (
       <>
         <Navigation />
-        <PilotProfile searched={this.onSearchSubmit} />
+        <PilotProfile searched={this.onSearchSubmit} airports={this.state.airports} />
         <Foot />
       </>
     );
