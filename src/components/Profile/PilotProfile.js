@@ -1,15 +1,25 @@
 import React from "react";
-import { Input, Card, Button } from "react-materialize";
+import PilotSearchResults from "./PilotSearchResults";
+import { Card, Icon, Button } from "react-materialize";
+import PilotSearchForm from "./PilotSearchForm";
 
-const PilotProfile = props => (
-  <div>
-    <Card>
-      <h4>Pilot Profile</h4>
-      <Input s={12} label="location" />
-      <Input s={12} label="examiner" />
-      <Button className="green accent-3" type="submit">SEARCH</Button>
-    </Card>
-  </div>
+const PilotProfile = (props) => (
+  <Card style={{ textAlign: "center" }}>
+    <Icon large>account_circle</Icon>
+    <h4 style={{ textAlign: "center" }}>Brett Bloxom</h4>
+    <h5>Boulder, CO</h5>
+    <Button style={{ width: "70%" }} className="green accent-3" >
+      Edit Profile
+    </Button>
+    <br />
+    <br />
+    <h5>Find Check Rides</h5>
+    <PilotSearchForm searched={props.searched} />
+    <br />
+    <h5 style={{ textAlign: "left" }}>Search Results:</h5>
+
+    <PilotSearchResults />
+  </Card>
 );
 
 export default PilotProfile;

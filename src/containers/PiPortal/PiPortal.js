@@ -1,27 +1,30 @@
 import React, { Component } from "react";
 
-//import { Button } from "react-materialize";
 
-import Navigation from "../../components/Navbar/Navbar"
-import Foot from "../../components/Footer/Footer"
+import Navigation from "../../components/Navbar/Navbar";
+import Foot from "../../components/Footer/Footer";
+import PilotProfile from "../../components/Profile/PilotProfile";
 
 class PiPortal extends Component {
+  state = {};
 
-  state = {
-
+  /********************************************
+   **** Search Button Submit Handler **********
+   ********************************************/
+  onSearchSubmit = e => {
+    e.preventDefault();
+    console.log(e.target);
   };
 
-  render () {
+  render() {
     return (
-      <div className="container">
+      <>
         <Navigation />
-          Pilot Portal
+        <PilotProfile searched={this.onSearchSubmit} />
         <Foot />
-      </div>
+      </>
     );
-
-  };
-
-};
+  }
+}
 
 export default PiPortal;
