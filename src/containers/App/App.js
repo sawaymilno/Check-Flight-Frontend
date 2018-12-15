@@ -6,11 +6,10 @@ import { Row } from "react-materialize"
 import Navigation from "../../components/Navbar/Navbar";
 // import Login from "../Login/Login";
 import Foot from "../../components/Footer/Footer";
-// import Intro from "../../components/Intro/Intro";
-// import ExPortal from "../../containers/ExPortal/ExPortal";
-// import PiPortal from "../../containers/PiPortal/PiPortal";
-// import PilotProfile from "../../components/Profile/PilotSearchResults";
 import Calendar from "../../containers/Calendar/Calendar";
+import Intro from "../../components/Intro/Intro";
+import ExPortal from "../../containers/ExPortal/ExPortal";
+import PiPortal from "../../containers/PiPortal/PiPortal";
 
 class App extends Component {
   state = {

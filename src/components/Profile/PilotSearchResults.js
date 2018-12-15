@@ -1,49 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Card } from "react-materialize";
+import { Row, Collection, CollectionItem } from "react-materialize";
 
-let data = [
-  {
-    airport: "airportTitle",
-    examiners: ["jim ", "Larry ", "bob ", "rick "]
-  },
-  {
-    airport: "airportTitle",
-    examiners: ["jim ", "jim ", "jim ", "jim "]
-  },
-  {
-    airport: "airportTitle",
-    examiners: ["jim ", "jim ", "jim ", "jim "]
-  },
-  {
-    airport: "airportTitle",
-    examiners: ["jim ", "jim ", "jim ", "jim "]
-  },
-  {
-    airport: "airportTitle",
-    examiners: ["jim ", "jim ", "jim ", "jim "]
-  }
-];
+const examiners = ["bob", "tony", "rick", "jimmy"];
 
-// let ex = data.map(el => el.examiners);
-// console.log(ex.name);
+const PilotSearchResults = props => {
+  const ex = examiners.map((el, i) => (
+    <CollectionItem href={el} key={i}>
+      {el}
+    </CollectionItem>
+  ))
+  const airports = props.airports;
+  const airportSearchList = airports.map((el, i) => (
+    <Collection key={i} header={el.name}>
+      {ex}
+    </Collection>
+  ));
 
-const card = data.map((el, i) => (
-  <Card
-    key={i}
-    style={{ textAlign: "left" }}
-    title={el.airport}
-    actions={[
-      <Link key={i} to="/">
-        Examiners at this location
-      </Link>
-    ]}
-    // reveal={<Link to='/'>{el.examiners}</Link>}
-  >
-    Boulder, CO
-  </Card>
-));
+  return <Row>{airportSearchList}</Row>;
+};
 
-const PilotProfile = props => <>{card}</>;
-
-export default PilotProfile;
+export default PilotSearchResults;

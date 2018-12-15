@@ -1,6 +1,4 @@
 import React, { Component } from "react";
-
-
 import { Row } from "react-materialize";
 
 // import { Link } from "react-router-dom";
@@ -10,20 +8,19 @@ import Examiner from "./Examiner";
 import LoginForm from "./LoginForm";
 
 class Login extends Component {
-
   state = {
     isPilot: true,
-    isExaminer: true,
+    isExaminer: true
   };
   /**************************************************************************
    * click handler on pilot button to render pilot registration form *
    **************************************************************************/
   showPilotFormHandler = e => {
     e.preventDefault();
-    let value
-    this.state.isPilot ? (value = false) : (value = true)
+    let value;
+    this.state.isPilot ? (value = false) : (value = true);
     this.setState({
-      isPilot: value,
+      isPilot: value
     });
   };
   /**************************************************************************
@@ -31,23 +28,21 @@ class Login extends Component {
    **************************************************************************/
   showExaminerFormHandler = e => {
     e.preventDefault();
-    let value
-    this.state.isExaminer ? (value = false) : (value = true)
+    let value;
+    this.state.isExaminer ? (value = false) : (value = true);
     this.setState({
-      isExaminer: value,
+      isExaminer: value
     });
   };
 
   render() {
     return (
-
       <Row>
-
         <div className="col s12 m6 center">
           {!this.state.isPilot ? (
             <Pilot clicked={this.showPilotFormHandler} />
           ) : (
-             <LoginForm user="Pilot" clicked={this.showPilotFormHandler} />
+            <LoginForm user="Pilot" clicked={this.showPilotFormHandler} />
           )}
         </div>
 
@@ -58,7 +53,6 @@ class Login extends Component {
             <LoginForm user="Examiner" clicked={this.showExaminerFormHandler} />
           )}
         </div>
-
       </Row>
     );
   }
