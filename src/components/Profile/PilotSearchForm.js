@@ -2,6 +2,7 @@ import React from "react";
 
 import { Input, Icon, Button, Row } from "react-materialize";
 
+
 const PilotSearchForm = props => {
   const airports = props.airports;
   const airportList = airports.map((el, i) => (
