@@ -88,9 +88,11 @@ class PilotSearchForm extends Component {
     return (
       <>
         <Row style={{ textAlign: "left" }}>Filter Airports: {checkboxes}</Row>
-        <hr /><br/><br/>
+        <hr />
+        <br />
+        <br />
         <div>
-        <PilotSearchResults airports={this.state.airports} />
+          <PilotSearchResults airports={this.state.airports} />
         </div>
       </>
     );

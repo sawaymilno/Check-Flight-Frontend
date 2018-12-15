@@ -7,10 +7,11 @@ const PilotSearchResults = props => {
     .filter(el => el.isChecked)
     .map((el, i) => (
       <Card
+        key={i}
         title={el.name}
         actions={[
-          <Collection>
-            <CollectionItem>
+          <Collection key={i}>
+            <CollectionItem key={i}>
               <a href={el.name}>{el.name}</a>
             </CollectionItem>
             <CollectionItem>

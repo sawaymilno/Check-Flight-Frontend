@@ -19,15 +19,12 @@ class App extends Component {
       <div className="container">
         <Navigation />
         <Intro />
-        {/* <PilotProfile /> */}
         <Login />
         <PiPortal />
         <Foot />
       </div>
     ) : (
-      <div >
-        {this.state.exLoggedIn ? <ExPortal /> : <PiPortal />}
-      </div>
+      <div>{this.state.exLoggedIn ? <ExPortal /> : <PiPortal />}</div>
     );
   }
 }
