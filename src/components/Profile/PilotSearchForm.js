@@ -2,8 +2,7 @@ import React from "react";
 
 import { Input, Icon, Button, Row } from "react-materialize";
 
-let api =
-  "https://gist.githubusercontent.com/tdreyno/4278655/raw/7b0762c09b519f40397e4c3e100b097d861f5588/airports.json";
+// let api = "https://gist.githubusercontent.com/tdreyno/4278655/raw/7b0762c09b519f40397e4c3e100b097d861f5588/airports.json";
 
 const PilotSearchForm = props => (
   <Row style={{ textAlign: "left" }}>
