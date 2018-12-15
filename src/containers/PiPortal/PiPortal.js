@@ -7,7 +7,7 @@ import PilotProfile from "../../components/Profile/PilotProfile";
 class PiPortal extends Component {
   state = {
     airports: [],
-    isChecked: false,
+    users: [],
     editing: false
   };
 
@@ -20,30 +20,32 @@ class PiPortal extends Component {
       credentials: "include"
     });
     const json = await response.json();
-    this.setState({ airports: json });
+    this.setState({ ...this.state, airports: json });
+    this.getUsers();
   }
 
-  /**************************************************
-   *****  Check Boxes Click Handler *******************
-   **************************************************/
-
-  airportCheckboxHandler = e => {
-    console.log(e.target.checked);
-    !this.state.isChecked
-      ? this.setState({
-          isChecked: true
-        })
-      : this.setState({
-          isChecked: false
-        });
+  getUsers = async () => {
+    const response = await fetch("http://localhost:3001/users", {
+      credentials: "include"
+    });
+    const json = await response.json();
+    this.setState({
+      ...this.state,
+      users: json
+    });
   };
 
   /********************************************
    **** Search Button Submit Handler **********
    ********************************************/
+
   onSearchSubmit = e => {
     e.preventDefault();
     console.log(e.target);
+    this.setState({
+      ...this.state,
+      checkedAirports: e.target.name
+    });
   };
 
   /*********************************************
@@ -69,10 +71,9 @@ class PiPortal extends Component {
         <PilotProfile
           searched={this.onSearchSubmit}
           airports={this.state.airports}
-          checked={this.airportCheckboxHandler}
-          isChecked={this.state.isChecked}
           isEditing={this.onEditClick}
           isEditingState={this.state.isEditing}
+          users={this.state.users}
         />
         <Foot />
       </>

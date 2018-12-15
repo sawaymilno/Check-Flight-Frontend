@@ -1,23 +1,42 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Row, Collection, CollectionItem } from "react-materialize";
-
-const examiners = ["bob", "tony", "rick", "jimmy"];
+import { Row, Collection, CollectionItem, Card } from "react-materialize";
 
 const PilotSearchResults = props => {
-  const ex = examiners.map((el, i) => (
-    <CollectionItem href={el} key={i}>
-      {el}
-    </CollectionItem>
-  ))
-  const airports = props.airports;
-  const airportSearchList = airports.map((el, i) => (
-    <Collection key={i} header={el.name}>
-      {ex}
-    </Collection>
-  ));
+  const filteredAirports = props.airports
+    .filter(el => el.isChecked)
+    .map((el, i) => (
+      <Card
+        title={el.name}
+        actions={[
+          <Collection>
+            <CollectionItem>
+              <a href={el.name}>{el.name}</a>
+            </CollectionItem>
+            <CollectionItem>
+              <a href={el.name}>{el.name}</a>
+            </CollectionItem>
+            <CollectionItem>
+              <a href={el.name}>{el.name}</a>
+            </CollectionItem>
+            <CollectionItem>
+              <a href={el.name}>{el.name}</a>
+            </CollectionItem>
+            <CollectionItem>
+              <a href={el.name}>{el.name}</a>
+            </CollectionItem>
+            <CollectionItem>
+              <a href={el.name}>{el.name}</a>
+            </CollectionItem>
+            <CollectionItem>
+              <a href={el.name}>{el.name}</a>
+            </CollectionItem>
+          </Collection>
+        ]}
+      />
+    ));
 
-  return <Row>{airportSearchList}</Row>;
+  return <Row>{filteredAirports}</Row>;
 };
 
 export default PilotSearchResults;
