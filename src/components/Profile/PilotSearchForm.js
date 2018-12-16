@@ -44,6 +44,7 @@ class PilotSearchForm extends Component {
       ...this.state,
       users: json
     });
+    console.log(json);
   };
 
   /**************************************************
@@ -51,8 +52,8 @@ class PilotSearchForm extends Component {
    **************************************************/
 
   airportCheckboxHandler = e => {
-    console.log(e.target.id.slice(6) - 8);
-    const id = parseInt(e.target.id.slice(6)) - 8;
+    console.log(e.target.id.slice(6));
+    const id = parseInt(e.target.id.slice(6)) - 4;
 
     if (!this.state.airports[id].isChecked) {
       this.setState(prevState => ({
@@ -94,13 +95,20 @@ class PilotSearchForm extends Component {
     return (
       <>
         <Row style={{ textAlign: "left" }}>
-          <h5>Filter Airports: {checkboxes}</h5>
+          <h5>Find Examiners</h5>
+          <h6>
+            <b>Filter by Airport:</b>
+            <hr /> {checkboxes}
+          </h6>
         </Row>
         <hr />
         <br />
         <br />
         <div>
-          <PilotSearchResults airports={this.state.airports} />
+          <PilotSearchResults
+            examiners={this.state.users}
+            airports={this.state.airports}
+          />
         </div>
       </>
     );

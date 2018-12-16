@@ -9,9 +9,13 @@ import Foot from "../../components/Footer/Footer"
 class ExPortal extends Component {
 
   state = {
-    isDisabled: true
+    isDisabled: true,
 
   };
+
+
+
+  onChange = date => this.setState({ date })
 
   editToggle = () => {
     let isDisabled
@@ -27,7 +31,10 @@ class ExPortal extends Component {
     return (
       <div className="container">
         <Navigation />
-        <ExProfile editToggle={this.editToggle} isDisabled={this.state.isDisabled} />
+        <ExProfile
+          onChange={this.onChange} editToggle={this.editToggle} isDisabled={this.state.isDisabled}
+          date={this.state.date}
+         />
         <Foot />
       </div>
     );

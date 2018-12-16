@@ -59,7 +59,7 @@ const PiProfile = props => {
           disabled={props.isDisabled}
         />
       </Row>
-        <PilotSearchForm />
+      <PilotSearchForm />
     </Card>
   );
 };
