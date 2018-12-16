@@ -1,11 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Row, Collection, CollectionItem, Card } from "react-materialize";
+// import { Link } from "react-router-dom";
+import { Row, CollectionItem, Card } from "react-materialize";
 
 const examiners = ["bob", "tony", "rick", "jimmy"];
 
 const PilotSearchResults = props => {
-  const examiners = props.examiners
+  props.examiners
     .filter(el => el.isExaminer)
     .slice(0, 6)
     .map((el, i) => (

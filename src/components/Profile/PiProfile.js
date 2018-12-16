@@ -25,7 +25,6 @@ const PiProfile = props => {
       <div style={{ display: "flex", justifyContent: "center", margin: "1em" }}>
         <Button
           style={{ width: "50%" }}
-          onClick={toggle}
           className="green accent-3"
           type="submit"
           onClick={props.logout}
