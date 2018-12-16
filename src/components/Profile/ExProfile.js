@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Input, Card, Button, Icon } from "react-materialize";
 import Calendar from "../../containers/Calendar/Calendar";
 
-const ExProfile = ({ editToggle, isDisabled, onchange, date }) => {
+const ExProfile = ({ editToggle, isDisabled, onchange, date, logout }) => {
   const bio =
     "That's a son of a gun of a cloud. Isn't it great to do something you can't fail at? Talent is a pursued interest. That is to say, anything you practice you can do. And right there you got an almighty cloud. You can bend rivers. But when I get home, the only thing I have power over is the garbage. Maybe there's a little something happening right here. Working it up and down, back and forth. Here's another little happy bush I get carried away with this brush cleaning. Trees cover up a multitude of sins. We don't have to be concerned about it. We just have to let it fall where it will. Give him a friend, we forget the trees get lonely too. That is when you can experience true joy, when you have no fear. Get tough with it, get strong.";
 
@@ -35,6 +35,7 @@ const ExProfile = ({ editToggle, isDisabled, onchange, date }) => {
             onClick={toggle}
             className="green accent-3 col s12 m1 right"
             type="submit"
+            onClick={logout}
           >
             LOGOUT
           </Button>

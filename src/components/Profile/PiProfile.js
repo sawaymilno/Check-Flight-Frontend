@@ -16,7 +16,7 @@ const PiProfile = props => {
         <Button
           style={{ width: "70%" }}
           onClick={toggle}
-          className="green accent-3 col s12 m1 right"
+          className="green accent-3" 
           type="submit"
         >
           EDIT PROFILE
@@ -26,8 +26,9 @@ const PiProfile = props => {
         <Button
           style={{ width: "70%" }}
           onClick={toggle}
-          className="green accent-3 col s12 m1 right"
+          className="green accent-3"
           type="submit"
+          onClick={props.logout}
         >
           LOGOUT
         </Button>

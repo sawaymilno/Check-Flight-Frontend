@@ -18,7 +18,7 @@ class App extends Component {
   };
 
   /*************************************************************************
-   * login/signup handler
+   * LOGIN/SIGNUP SUBMIT HANDLER. RENDERS EXAMINER OR PILOT PROFILE
    *************************************************************************/
   loginHandler = e => {
     e.preventDefault();
@@ -38,17 +38,35 @@ class App extends Component {
     }
   };
 
+  /**********************************************************
+   * LOGOUT BUTTON CLICK HANDLER. TAKES YOU BACK HOME
+   **********************************************************/
+  logoutHandler = e => {
+    e.preventDefault();
+    console.log(e.target);
+    if (this.state.piLoggedIn) {
+      this.setState({ ...this.state, exLoggedIn: false, piLoggedIn: false });
+    }
+    if (this.state.exLoggedIn) {
+      this.setState({ exLoggedIn: false, piLoggedIn: false });
+    }
+  };
+
   render() {
     return !this.state.exLoggedIn && !this.state.piLoggedIn ? (
       <div className="container">
         <Navigation />
         <Intro />
-        <Login login={this.loginHandler} />
+        <Login login={this.loginHandler} logout={this.logoutHandler} />
         <Foot />
       </div>
     ) : (
       <div className="container">
-        {this.state.exLoggedIn ? <ExPortal /> : <PiPortal />}
+        {this.state.exLoggedIn ? (
+          <ExPortal logout={this.logoutHandler} />
+        ) : (
+          <PiPortal logout={this.logoutHandler} />
+        )}
       </div>
     );
   }
