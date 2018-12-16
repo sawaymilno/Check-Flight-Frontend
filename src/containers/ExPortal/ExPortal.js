@@ -21,8 +21,7 @@ class ExPortal extends Component {
 
   render() {
     return (
-      <div>
-        <Navigation />
+      <>
         <ExProfile
           onChange={this.onChange}
           editToggle={this.editToggle}
@@ -30,8 +29,7 @@ class ExPortal extends Component {
           date={this.state.date}
           logout={this.props.logout}
         />
-        <Foot />
-      </div>
+      </>
     );
   }
 }

@@ -34,6 +34,7 @@ class App extends Component {
         piLoggedIn: false
       });
     }
+    window.scrollTo(0, 0);
   };
 
   /**********************************************************
@@ -51,9 +52,15 @@ class App extends Component {
   };
 
   render() {
+    const exLoggedIn = this.state.exLoggedIn;
+    const piLoggedIn = this.state.piLoggedIn;
     return !this.state.exLoggedIn && !this.state.piLoggedIn ? (
       <div className="container">
-        <Navigation />
+        <Navigation
+          logout={this.logoutHandler}
+          exLoggedIn={exLoggedIn}
+          piLoggedIn={piLoggedIn}
+        />
         <Intro />
         <Login login={this.loginHandler} logout={this.logoutHandler} />
         <Foot />
@@ -61,9 +68,25 @@ class App extends Component {
     ) : (
       <div className="container">
         {this.state.exLoggedIn ? (
-          <ExPortal logout={this.logoutHandler} />
+          <>
+            <Navigation
+              logout={this.logoutHandler}
+              exLoggedIn={exLoggedIn}
+              piLoggedIn={piLoggedIn}
+            />
+            <ExPortal logout={this.logoutHandler} />
+            <Foot />
+          </>
         ) : (
-          <PiPortal logout={this.logoutHandler} />
+          <>
+            <Navigation
+              logout={this.logoutHandler}
+              exLoggedIn={exLoggedIn}
+              piLoggedIn={piLoggedIn}
+            />
+            <PiPortal logout={this.logoutHandler} />
+            <Foot />
+          </>
         )}
       </div>
     );
