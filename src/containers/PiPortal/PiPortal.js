@@ -2,7 +2,8 @@ import React, { Component } from "react";
 
 import Navigation from "../../components/Navbar/Navbar";
 import Foot from "../../components/Footer/Footer";
-import PilotProfile from "../../components/Profile/PilotProfile";
+import PiProfile from "../../components/Profile/PiProfile";
+import PilotSearchForm from "../../components/Profile/PilotSearchForm";
 
 class PiPortal extends Component {
   state = {
@@ -24,7 +25,7 @@ class PiPortal extends Component {
     return (
       <>
         <Navigation />
-        <PilotProfile
+        <PiProfile
           users={this.state.users}
           editToggle={this.editToggle}
           isDisabled={this.state.isDisabled}

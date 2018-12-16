@@ -14,9 +14,12 @@ class PilotSearchForm extends Component {
    ********************************************/
 
   async componentDidMount() {
-    const response = await fetch("http://localhost:3001/airports", {
-      credentials: "include"
-    });
+    const response = await fetch(
+      "https://evening-hamlet-90015.herokuapp.com/airports",
+      {
+        credentials: "include"
+      }
+    );
     const json = await response.json();
     json.forEach((el, i) => {
       el.isChecked = false;
@@ -30,9 +33,12 @@ class PilotSearchForm extends Component {
    ********************************************/
 
   getUsers = async () => {
-    const response = await fetch("http://localhost:3001/users", {
-      credentials: "include"
-    });
+    const response = await fetch(
+      "https://evening-hamlet-90015.herokuapp.com/users",
+      {
+        credentials: "include"
+      }
+    );
     const json = await response.json();
     this.setState({
       ...this.state,
@@ -45,8 +51,8 @@ class PilotSearchForm extends Component {
    **************************************************/
 
   airportCheckboxHandler = e => {
-    console.log(e.target.id.slice(6));
-    const id = parseInt(e.target.id.slice(6)) - 4;
+    console.log(e.target.id.slice(6) - 8);
+    const id = parseInt(e.target.id.slice(6)) - 8;
 
     if (!this.state.airports[id].isChecked) {
       this.setState(prevState => ({
@@ -82,12 +88,14 @@ class PilotSearchForm extends Component {
         checked={this.state.airports[i].isChecked}
       />
     ));
-    const checkedAirports = airports
+    airports
       .filter(el => el.isChecked === true)
       .map((el, i) => <Card>{el.name}</Card>);
     return (
       <>
-        <Row style={{ textAlign: "left" }}>Filter Airports: {checkboxes}</Row>
+        <Row style={{ textAlign: "left" }}>
+          <h5>Filter Airports: {checkboxes}</h5>
+        </Row>
         <hr />
         <br />
         <br />
