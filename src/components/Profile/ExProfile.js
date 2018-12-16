@@ -32,7 +32,6 @@ const ExProfile = ({ editToggle, isDisabled, onchange, date, logout }) => {
         >
           <Button
             style={{ width: "50%" }}
-            onClick={toggle}
             className="green accent-3 col s12 m1 right"
             type="submit"
             onClick={logout}
@@ -49,7 +48,7 @@ const ExProfile = ({ editToggle, isDisabled, onchange, date, logout }) => {
             m={6}
             l={3}
             label="First Name"
-            value="Shawn"
+            defaultValue="Shawn"
             disabled={isDisabled}
           />
 
@@ -58,7 +57,7 @@ const ExProfile = ({ editToggle, isDisabled, onchange, date, logout }) => {
             m={6}
             l={3}
             label="Last Name"
-            value="Milne"
+            defaultValue="Milne"
             disabled={isDisabled}
           />
           <Input
@@ -66,7 +65,7 @@ const ExProfile = ({ editToggle, isDisabled, onchange, date, logout }) => {
             m={6}
             l={3}
             label="Phone"
-            value="978-290-1692"
+            defaultValue="978-290-1692"
             disabled={isDisabled}
           />
 
@@ -75,7 +74,7 @@ const ExProfile = ({ editToggle, isDisabled, onchange, date, logout }) => {
             m={6}
             l={3}
             label="Email"
-            value="Shawn.M.Milne@gmail.com"
+            defaultValue="Shawn.M.Milne@gmail.com"
             disabled={isDisabled}
           />
           <Input
@@ -83,7 +82,7 @@ const ExProfile = ({ editToggle, isDisabled, onchange, date, logout }) => {
             m={6}
             l={3}
             label="Rate"
-            value="$800"
+            defaultValue="$800"
             disabled={isDisabled}
           />
 
@@ -91,7 +90,7 @@ const ExProfile = ({ editToggle, isDisabled, onchange, date, logout }) => {
             s={12}
             label="Bio"
             type="textarea"
-            value={bio}
+            defaultValue={bio}
             disabled={isDisabled}
           />
         </Row>
@@ -109,15 +108,14 @@ const ExProfile = ({ editToggle, isDisabled, onchange, date, logout }) => {
             <Input
               name="group1"
               type="checkbox"
-              value="green"
+              defaultValue="green"
               label="Green"
               className="filled-in"
-              defaultChecked="checked"
             />
             <Input
               name="group1"
               type="checkbox"
-              value="brown"
+              defaultValue="brown"
               label="Brown"
               disabled="disabled"
             />
@@ -125,22 +123,20 @@ const ExProfile = ({ editToggle, isDisabled, onchange, date, logout }) => {
             <Input
               name="group1"
               type="checkbox"
-              value="yellow"
+              defaultValue="yellow"
               label="Yellow"
-              defaultValue="checked"
             />
             <Input
               name="group1"
               type="checkbox"
-              value="green"
+              defaultValue="green"
               label="Green"
               className="filled-in"
-              defaultChecked="checked"
             />
             <Input
               name="group1"
               type="checkbox"
-              value="brown"
+              defaultValue="brown"
               label="Brown"
               disabled="disabled"
             />
@@ -148,22 +144,20 @@ const ExProfile = ({ editToggle, isDisabled, onchange, date, logout }) => {
             <Input
               name="group1"
               type="checkbox"
-              value="yellow"
+              defaultValue="yellow"
               label="Yellow"
-              defaultValue="checked"
             />
             <Input
               name="group1"
               type="checkbox"
-              value="green"
+              defaultValue="green"
               label="Green"
               className="filled-in"
-              defaultChecked="checked"
             />
             <Input
               name="group1"
               type="checkbox"
-              value="brown"
+              defaultValue="brown"
               label="Brown"
               disabled="disabled"
             />
@@ -171,17 +165,15 @@ const ExProfile = ({ editToggle, isDisabled, onchange, date, logout }) => {
             <Input
               name="group1"
               type="checkbox"
-              value="yellow"
+              defaultValue="yellow"
               label="Yellow"
-              defaultValue="checked"
             />
             <Input
               name="group1"
               type="checkbox"
-              value="green"
+              defaultValue="green"
               label="Green"
               className="filled-in"
-              defaultChecked="checked"
             />
           </Row>
         </Card>

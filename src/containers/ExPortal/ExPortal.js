@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 
-import Navigation from "../../components/Navbar/Navbar";
 import ExProfile from "../../components/Profile/ExProfile";
-import Foot from "../../components/Footer/Footer";
 
 class ExPortal extends Component {
   state = {

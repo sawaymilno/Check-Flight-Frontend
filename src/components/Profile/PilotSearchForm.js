@@ -1,4 +1,4 @@
-import { Input, Icon, Button, Row, Card } from "react-materialize";
+import { Input, Row, Card } from "react-materialize";
 
 import React, { Component } from "react";
 import PilotSearchResults from "./PilotSearchResults";

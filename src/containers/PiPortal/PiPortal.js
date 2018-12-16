@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
-import Navigation from "../../components/Navbar/Navbar";
-import Foot from "../../components/Footer/Footer";
 import PiProfile from "../../components/Profile/PiProfile";
-import PilotSearchForm from "../../components/Profile/PilotSearchForm";
 
 class PiPortal extends Component {
   state = {
