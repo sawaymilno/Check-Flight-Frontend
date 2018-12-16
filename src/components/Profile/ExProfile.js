@@ -19,7 +19,7 @@ const ExProfile = ({ editToggle, isDisabled, onchange, date, logout }) => {
           style={{ display: "flex", justifyContent: "center", margin: "1em" }}
         >
           <Button
-            style={{ width: "70%" }}
+            style={{ width: "50%" }}
             onClick={toggle}
             className="green accent-3 col s12 m1 right"
             type="submit"
@@ -31,7 +31,7 @@ const ExProfile = ({ editToggle, isDisabled, onchange, date, logout }) => {
           style={{ display: "flex", justifyContent: "center", margin: "1em" }}
         >
           <Button
-            style={{ width: "70%" }}
+            style={{ width: "50%" }}
             onClick={toggle}
             className="green accent-3 col s12 m1 right"
             type="submit"

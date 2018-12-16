@@ -14,9 +14,9 @@ const PiProfile = props => {
       <h4>Pilot Profile</h4>
       <div style={{ display: "flex", justifyContent: "center", margin: "1em" }}>
         <Button
-          style={{ width: "70%" }}
+          style={{ width: "50%" }}
           onClick={toggle}
-          className="green accent-3" 
+          className="green accent-3"
           type="submit"
         >
           EDIT PROFILE
@@ -24,7 +24,7 @@ const PiProfile = props => {
       </div>
       <div style={{ display: "flex", justifyContent: "center", margin: "1em" }}>
         <Button
-          style={{ width: "70%" }}
+          style={{ width: "50%" }}
           onClick={toggle}
           className="green accent-3"
           type="submit"
