@@ -22,14 +22,12 @@ class PiPortal extends Component {
   render() {
     return (
       <>
-        <Navigation />
         <PiProfile
           users={this.state.users}
           editToggle={this.editToggle}
           isDisabled={this.state.isDisabled}
           logout={this.props.logout}
         />
-        <Foot />
       </>
     );
   }

@@ -5,15 +5,26 @@ import { Navbar, NavItem } from "react-materialize";
 import "./Navbar.css";
 import "../../containers/App/App.css";
 
-const Navigation = () => (
-  <div>
+const Navigation = props => {
+  return props.exLoggedIn === true || props.piLoggedIn === true ? (
     <Navbar className="teal darken-3" brand="Check Ride" right>
-      <NavItem href="/About">About</NavItem>
+      <NavItem href="/" onClick={() => window.scrollBy(0, 500)}>
+        About
+      </NavItem>
+      <NavItem href="/" onClick={props.logout}>
+        Logout
+      </NavItem>
+    </Navbar>
+  ) : (
+    <Navbar className="teal darken-3" brand="Check Ride" right>
+      <NavItem href="/" onClick={() => window.scrollBy(0, 500)}>
+        About
+      </NavItem>
       <NavItem href="/" onClick={() => window.scrollBy(0, 800)}>
         Login
       </NavItem>
     </Navbar>
-  </div>
-);
+  );
+};
 
 export default Navigation;
