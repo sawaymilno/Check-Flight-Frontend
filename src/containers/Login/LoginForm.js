@@ -11,7 +11,8 @@ const LoginForm = ({user, clicked}) => (
         <br />
         {user} Login
       </h4>
-      <Input s={12} label="Username" validate required>
+    <div style={{ textAlign: "left" }}>
+      <Input  s={12} label="Username" validate required>
         <Icon>account_circle</Icon>
       </Input>
       <Input s={12} label="Password" type="password" validate required>
@@ -26,6 +27,7 @@ const LoginForm = ({user, clicked}) => (
       >
         {user} LOGIN
       </Button>
+    </div>
       <br />
       <br />
       <Link onClick={clicked} to="/Register">

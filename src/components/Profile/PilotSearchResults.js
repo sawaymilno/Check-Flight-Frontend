@@ -1,23 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Row, Collection, CollectionItem } from "react-materialize";
+import { Row, Collection, CollectionItem, Card } from "react-materialize";
 
 const examiners = ["bob", "tony", "rick", "jimmy"];
 
 const PilotSearchResults = props => {
-  const ex = examiners.map((el, i) => (
-    <CollectionItem href={el} key={i}>
-      {el}
-    </CollectionItem>
-  ))
-  const airports = props.airports;
-  const airportSearchList = airports.map((el, i) => (
-    <Collection key={i} header={el.name}>
-      {ex}
-    </Collection>
-  ));
-
-  return <Row>{airportSearchList}</Row>;
+  const examiners = props.examiners
+    .filter(el => el.isExaminer)
+    .slice(0, 6)
+    .map((el, i) => (
+      <>
+        <CollectionItem href={el.firstName + el.lastName} key={i}>
+          {el.firstName + " " + el.lastName}
+        </CollectionItem>
+        <hr />
+      </>
+    ));
+  const filteredAirports = props.airports
+    .filter(el => el.isChecked)
+    .map((el, i) => (
+      <Card key={i} title={"Examiners at " + el.name} actions={examiners} />
+    ));
+  return <Row>{filteredAirports}</Row>;
 };
 
 export default PilotSearchResults;
