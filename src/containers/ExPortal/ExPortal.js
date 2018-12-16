@@ -1,37 +1,39 @@
 import React, { Component } from "react";
 
-import Navigation from "../../components/Navbar/Navbar"
-import ExProfile from "../../components/Profile/ExProfile"
-import Foot from "../../components/Footer/Footer"
+import Navigation from "../../components/Navbar/Navbar";
+import ExProfile from "../../components/Profile/ExProfile";
+import Foot from "../../components/Footer/Footer";
 
 class ExPortal extends Component {
-
   state = {
-    isDisabled: true,
+    isDisabled: true
   };
 
-  onChange = date => this.setState({ date })
+  onChange = date => this.setState({ date });
 
   editToggle = () => {
-    let isDisabled
-    this.state.isDisabled ? (isDisabled = false) : (isDisabled = true)
+    let isDisabled;
+    this.state.isDisabled ? (isDisabled = false) : (isDisabled = true);
     this.setState({
-      isDisabled: isDisabled,
+      isDisabled: isDisabled
     });
   };
 
-  render () {
+  render() {
     return (
       <div>
         <Navigation />
         <ExProfile
-          onChange={this.onChange} editToggle={this.editToggle} isDisabled={this.state.isDisabled}
+          onChange={this.onChange}
+          editToggle={this.editToggle}
+          isDisabled={this.state.isDisabled}
           date={this.state.date}
-         />
+          logout={this.props.logout}
+        />
         <Foot />
       </div>
     );
-  };
-};
+  }
+}
 
 export default ExPortal;
