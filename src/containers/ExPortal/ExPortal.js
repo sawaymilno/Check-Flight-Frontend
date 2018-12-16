@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-//import { Button } from "react-materialize";
-
 import Navigation from "../../components/Navbar/Navbar"
 import ExProfile from "../../components/Profile/ExProfile"
 import Foot from "../../components/Footer/Footer"
@@ -10,18 +8,13 @@ class ExPortal extends Component {
 
   state = {
     isDisabled: true,
-
   };
-
-
 
   onChange = date => this.setState({ date })
 
   editToggle = () => {
     let isDisabled
-    console.log(isDisabled);
     this.state.isDisabled ? (isDisabled = false) : (isDisabled = true)
-    console.log(isDisabled);
     this.setState({
       isDisabled: isDisabled,
     });
@@ -29,7 +22,7 @@ class ExPortal extends Component {
 
   render () {
     return (
-      <div className="container">
+      <div>
         <Navigation />
         <ExProfile
           onChange={this.onChange} editToggle={this.editToggle} isDisabled={this.state.isDisabled}
@@ -38,9 +31,7 @@ class ExPortal extends Component {
         <Foot />
       </div>
     );
-
   };
-
 };
 
 export default ExPortal;

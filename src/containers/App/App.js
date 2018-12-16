@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import "./App.css";
-import { Row } from "react-materialize"
+//import { Row } from "react-materialize"
 
 /************ COMPONENT IMPORTS ******************/
-import Navigation from "../../components/Navbar/Navbar";
+//import Navigation from "../../components/Navbar/Navbar";
 // import Login from "../Login/Login";
-import Foot from "../../components/Footer/Footer";
-import Calendar from "../../containers/Calendar/Calendar";
-import Intro from "../../components/Intro/Intro";
+//import Foot from "../../components/Footer/Footer";
+//import Calendar from "../../containers/Calendar/Calendar";
+// import Intro from "../../components/Intro/Intro";
 import ExPortal from "../../containers/ExPortal/ExPortal";
-import PiPortal from "../../containers/PiPortal/PiPortal";
+// import PiPortal from "../../containers/PiPortal/PiPortal";
 
 class App extends Component {
   state = {
@@ -32,11 +32,9 @@ class App extends Component {
     //   </div>
     // );
     return (
-      <Row>
-      <Navigation />
-      <Calendar />
-      <Foot />
-    </Row>
+      <div className="container">
+      <ExPortal />
+    </div>
     )
   }
 }
