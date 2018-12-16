@@ -9,7 +9,9 @@ const Navigation = () => (
   <div>
     <Navbar className="teal darken-3" brand="Check Ride" right>
       <NavItem href="/About">About</NavItem>
-      <NavItem href="/Login">Login</NavItem>
+      <NavItem href="/" onClick={() => window.scrollBy(0, 800)}>
+        Login
+      </NavItem>
     </Navbar>
   </div>
 );
