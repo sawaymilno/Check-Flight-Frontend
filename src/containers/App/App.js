@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./App.css";
 import { Row } from "react-materialize";
 
+
 /************ COMPONENT IMPORTS ******************/
 import Navigation from "../../components/Navbar/Navbar";
 import Login from "../Login/Login";
@@ -22,7 +23,6 @@ class App extends Component {
         <Navigation />
         <Intro />
         <Login />
-        {/* <PiPortal /> */}
         <Foot />
       </div>
     ) : (
