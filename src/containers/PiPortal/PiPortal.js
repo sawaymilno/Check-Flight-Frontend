@@ -7,7 +7,6 @@ import PilotSearchForm from "../../components/Profile/PilotSearchForm";
 
 class PiPortal extends Component {
   state = {
-    // airports: [],
     users: [],
     isDisabled: true
   };
@@ -20,7 +19,6 @@ class PiPortal extends Component {
       isDisabled: isDisabled
     });
   };
-
   render() {
     return (
       <>

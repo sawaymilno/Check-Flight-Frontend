@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import "./App.css";
 import { Row } from "react-materialize";
 
-
 /************ COMPONENT IMPORTS ******************/
 import Navigation from "../../components/Navbar/Navbar";
 import Login from "../Login/Login";
@@ -17,6 +16,7 @@ class App extends Component {
     exLoggedIn: false,
     piLoggedIn: true
   };
+
   render() {
     return !this.state.exLoggedIn && !this.state.piLoggedIn ? (
       <div className="container">
@@ -26,7 +26,9 @@ class App extends Component {
         <Foot />
       </div>
     ) : (
-      <div className="container">{this.state.exLoggedIn ? <ExPortal /> : <PiPortal />}</div>
+      <div className="container">
+        {this.state.exLoggedIn ? <ExPortal /> : <PiPortal />}
+      </div>
     );
   }
 }
