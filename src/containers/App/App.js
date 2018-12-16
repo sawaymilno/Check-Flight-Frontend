@@ -49,6 +49,7 @@ class App extends Component {
     if (this.state.exLoggedIn) {
       this.setState({ exLoggedIn: false, piLoggedIn: false });
     }
+    window.scrollTo(0, 0);
   };
 
   render() {
