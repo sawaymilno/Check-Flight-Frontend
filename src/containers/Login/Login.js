@@ -12,6 +12,8 @@ class Login extends Component {
     isPilot: true,
     isExaminer: true
   };
+
+ 
   /**************************************************************************
    * click handler on pilot button to render pilot registration form *
    **************************************************************************/
@@ -40,17 +42,25 @@ class Login extends Component {
       <Row>
         <div className="col s12 m6 center">
           {!this.state.isPilot ? (
-            <Pilot clicked={this.showPilotFormHandler} />
+            <Pilot login={this.props.login} clicked={this.showPilotFormHandler} />
           ) : (
-            <LoginForm user="Pilot" clicked={this.showPilotFormHandler} />
+            <LoginForm
+              user="Pilot"
+              login={this.props.login}
+              clicked={this.showPilotFormHandler}
+            />
           )}
         </div>
 
         <div className="col s12 m6 center">
           {!this.state.isExaminer ? (
-            <Examiner clicked={this.showExaminerFormHandler} />
+            <Examiner login={this.props.login} clicked={this.showExaminerFormHandler} />
           ) : (
-            <LoginForm user="Examiner" clicked={this.showExaminerFormHandler} />
+            <LoginForm
+              user="Examiner"
+              login={this.props.login}
+              clicked={this.showExaminerFormHandler}
+            />
           )}
         </div>
       </Row>

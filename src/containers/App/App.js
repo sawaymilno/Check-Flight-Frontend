@@ -14,7 +14,28 @@ import PiPortal from "../../containers/PiPortal/PiPortal";
 class App extends Component {
   state = {
     exLoggedIn: false,
-    piLoggedIn: true
+    piLoggedIn: false
+  };
+
+  /*************************************************************************
+   * login/signup handler
+   *************************************************************************/
+  loginHandler = e => {
+    e.preventDefault();
+    console.log(e.target.innerText);
+    if (e.target.innerText === "PILOT LOGIN") {
+      this.setState({
+        ...this.state,
+        exLoggedIn: false,
+        piLoggedIn: true
+      });
+    }
+    if (e.target.innerText === "EXAMINER LOGIN") {
+      this.setState({
+        exLoggedIn: true,
+        piLoggedIn: false
+      });
+    }
   };
 
   render() {
@@ -22,7 +43,7 @@ class App extends Component {
       <div className="container">
         <Navigation />
         <Intro />
-        <Login />
+        <Login login={this.loginHandler} />
         <Foot />
       </div>
     ) : (

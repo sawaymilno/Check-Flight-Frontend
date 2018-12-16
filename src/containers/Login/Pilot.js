@@ -41,6 +41,8 @@ const Pilot = props => {
         type="submit"
         style={{ width: "100%" }}
         waves="light"
+        onClick={props.login}
+        user="Pilot"
       >
         CREATE ACCOUNT
       </Button>
