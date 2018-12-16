@@ -12,14 +12,24 @@ const PiProfile = props => {
     <Card style={{ textAlign: "center" }}>
       <Icon large>account_circle</Icon>
       <h4>Pilot Profile</h4>
-      <div style={{ display: "flex", justifyContent: "center" }}>
+      <div style={{ display: "flex", justifyContent: "center", margin: "1em" }}>
         <Button
           style={{ width: "70%" }}
           onClick={toggle}
           className="green accent-3 col s12 m1 right"
           type="submit"
         >
-          EDIT
+          EDIT PROFILE
+        </Button>
+      </div>
+      <div style={{ display: "flex", justifyContent: "center", margin: "1em" }}>
+        <Button
+          style={{ width: "70%" }}
+          onClick={toggle}
+          className="green accent-3 col s12 m1 right"
+          type="submit"
+        >
+          LOGOUT
         </Button>
         <br />
         <br />

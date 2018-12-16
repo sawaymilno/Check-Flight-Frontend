@@ -49,6 +49,8 @@ const Examiner = props => (
       type="submit"
       style={{ width: "100%" }}
       waves="light"
+      onClick={props.login}
+      user="Examiner"
     >
       CREATE ACCOUNT
     </Button>

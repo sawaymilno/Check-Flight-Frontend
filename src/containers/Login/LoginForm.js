@@ -2,7 +2,7 @@ import React from "react";
 import { Button, Card, Input, Icon } from "react-materialize";
 import { Link } from "react-router-dom";
 
-const LoginForm = ({user, clicked}) => (
+const LoginForm = ({user, clicked, login }) => (
 
     <Card>
       <h4 style={{ textAlign: "center" }}>
@@ -24,6 +24,8 @@ const LoginForm = ({user, clicked}) => (
         type="submit"
         style={{ width: "100%" }}
         waves="light"
+        onClick={login}
+        user={user}
       >
         {user} LOGIN
       </Button>

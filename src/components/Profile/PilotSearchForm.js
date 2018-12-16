@@ -53,7 +53,7 @@ class PilotSearchForm extends Component {
 
   airportCheckboxHandler = e => {
     console.log(e.target.id.slice(6));
-    const id = parseInt(e.target.id.slice(6)) - 4;
+    const id = parseInt(e.target.id.slice(6)) - 8;
 
     if (!this.state.airports[id].isChecked) {
       this.setState(prevState => ({
