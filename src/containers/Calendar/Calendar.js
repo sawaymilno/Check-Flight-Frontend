@@ -121,7 +121,8 @@ class Calendar extends Component {
           <div className="col s12  center-align">
             <Row>
               <div className="col s12 m3">
-                <Button onClick={this.prevMonth} href="#" id="prev-month" className="previous round">&#8249;</Button>
+
+                <Button onClick={this.prevMonth} href="#" id="prev-month" className="previous round" >&#8249;</Button>
               </div>
               <div className="col s12 m6 center-align">
                 <h4 id="currentMonth">{monthName} {this.state.currentYear}</h4>
@@ -132,7 +133,7 @@ class Calendar extends Component {
             </Row>
             <Row>
 
-              <Canvas className="center-align" state={this.state} setAvail={this.setAvail} cTime={this.state.currentTime} cMonth={this.state.currentMonth} monthName={monthName}/>
+              <Canvas className="center-align" state={this.state} setAvail={this.setAvail} cTime={this.state.currentTime} cMonth={this.state.currentMonth} monthName={monthName} isDisabled={this.isDisabled}/>
 
             </Row>
             <Row>

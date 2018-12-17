@@ -2,7 +2,7 @@ import React from 'react'
 import { Col, Row } from 'react-materialize'
 import CalRow from './CalRow'
 
-const Canvas = ({state, setAvail, cTime, cMonth, monthName}) => {
+const Canvas = ({state, setAvail, cTime, cMonth, monthName, isDisabled}) => {
 let buildRows = [0,1,2,3,4,5]
 
   return (
@@ -17,7 +17,7 @@ let buildRows = [0,1,2,3,4,5]
         <Col s={1}>Sa</Col>
       </Row>
       {buildRows.map((row, i) => {
-        return (<CalRow row={row} key={i} state={state} setAvail={setAvail} cTime={cTime} cMonth={cMonth} monthName ={monthName} />)
+        return (<CalRow row={row} key={i} state={state} setAvail={setAvail} cTime={cTime} cMonth={cMonth} monthName ={monthName} isDisabled={isDisabled} />)
       }
     )}
     </div>
