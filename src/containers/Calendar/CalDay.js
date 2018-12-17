@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Button, Modal } from 'react-materialize'
 
-const CalDay = ({row, state, setAvail, date, monthName}) => {
+const CalDay = ({row, state, setAvail, date, monthName, isDisabled}) => {
 
 const availToggle = (e) => {
   let available

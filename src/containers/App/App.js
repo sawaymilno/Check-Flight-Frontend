@@ -10,31 +10,57 @@ import ExPortal from "../../containers/ExPortal/ExPortal";
 import PiPortal from "../../containers/PiPortal/PiPortal";
 
 class App extends Component {
-  state = {
-    exLoggedIn: false,
-    piLoggedIn: false
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDisabled: true,
+      exLoggedIn: false,
+      piLoggedIn: false,
+      users: [],
+    }
   };
+
+  get = async () => {
+    const response = await fetch("http://localhost:3000/users/1")
+    const json = await response.json()
+    this.setState(() => ({users: json}))
+   }
+
+   editToggle = () => {
+     let isDisabled;
+     this.state.isDisabled ? (isDisabled = false) : (isDisabled = true);
+     this.setState({
+       isDisabled: isDisabled
+     });
+     console.log(this.state);
+   };
 
   /*************************************************************************
    * LOGIN/SIGNUP SUBMIT HANDLER. RENDERS EXAMINER OR PILOT PROFILE
    *************************************************************************/
-  loginHandler = e => {
+  loginHandler = async e => {
     e.preventDefault();
     console.log(e.target.innerText);
-    if (e.target.innerText === "PILOT LOGIN") {
+    let value = e.target.innerText
+    await this.get()
+
+    if (value === "PILOT LOGIN") {
       this.setState({
         ...this.state,
         exLoggedIn: false,
         piLoggedIn: true
       });
     }
-    if (e.target.innerText === "EXAMINER LOGIN") {
+    if (value === "EXAMINER LOGIN") {
       this.setState({
         exLoggedIn: true,
         piLoggedIn: false
       });
     }
+
     window.scrollTo(0, 0);
+    console.log(this.state.users);
   };
 
   /**********************************************************
@@ -76,7 +102,7 @@ class App extends Component {
               exLoggedIn={exLoggedIn}
               piLoggedIn={piLoggedIn}
             />
-            <ExPortal logout={this.logoutHandler} />
+            <ExPortal state={this.state} logout={this.logoutHandler} editToggle={this.editToggle}  />
             <Foot />
           </>
         ) : (
