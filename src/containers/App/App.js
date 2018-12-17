@@ -10,32 +10,61 @@ import ExPortal from "../../containers/ExPortal/ExPortal";
 import PiPortal from "../../containers/PiPortal/PiPortal";
 
 class App extends Component {
-  state = {
-    exLoggedIn: false,
-    piLoggedIn: false
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      isDisabled: true,
+      exLoggedIn: false,
+      piLoggedIn: false,
+      users: [],
+    }
   };
+
+  get = async () => {
+    const response = await fetch("http://localhost:3000/users/1")
+    const json = await response.json()
+    this.setState(() => ({users: json}))
+   }
+
+   editToggle = () => {
+     let isDisabled;
+     this.state.isDisabled ? (isDisabled = false) : (isDisabled = true);
+     this.setState({
+       isDisabled: isDisabled
+     });
+     console.log(this.state);
+   };
 
   /*************************************************************************
    * LOGIN SUBMIT HANDLER. RENDERS EXAMINER OR PILOT PROFILE
    *************************************************************************/
-  loginHandler = e => {
-    e.preventDefault(e);
+
+
+  loginHandler = async e => {
+    e.preventDefault();
     console.log(e.target.id);
-    if (e.target.id === "Pilot") {
+    let value = e.target.id
+    await this.get()
+
+    if (value === "Pilot") {
       this.setState({
         ...this.state,
         exLoggedIn: false,
         piLoggedIn: true
       });
     }
-    if (e.target.id === "Examiner") {
+
+    if (value === "Examiner") {
       this.setState({
         ...this.state,
         exLoggedIn: true,
         piLoggedIn: false
       });
     }
+
     window.scrollTo(0, 0);
+    console.log(this.state.users);
   };
 
   /**********************************************************
@@ -54,9 +83,10 @@ class App extends Component {
   };
 
   render() {
+
     const exLoggedIn = this.state.exLoggedIn;
     const piLoggedIn = this.state.piLoggedIn;
-    return !this.state.exLoggedIn && !this.state.piLoggedIn ? (
+    return !exLoggedIn && !piLoggedIn ? (
       <div className="container">
         <Navigation
           logout={this.logoutHandler}
@@ -69,14 +99,14 @@ class App extends Component {
       </div>
     ) : (
       <div className="container">
-        {this.state.exLoggedIn ? (
+        {exLoggedIn ? (
           <>
             <Navigation
               logout={this.logoutHandler}
               exLoggedIn={exLoggedIn}
               piLoggedIn={piLoggedIn}
             />
-            <ExPortal logout={this.logoutHandler} />
+            <ExPortal state={this.state} logout={this.logoutHandler} editToggle={this.editToggle}  />
             <Foot />
           </>
         ) : (
