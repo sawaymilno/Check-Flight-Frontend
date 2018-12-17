@@ -53,9 +53,10 @@ class App extends Component {
   };
 
   render() {
+
     const exLoggedIn = this.state.exLoggedIn;
     const piLoggedIn = this.state.piLoggedIn;
-    return !this.state.exLoggedIn && !this.state.piLoggedIn ? (
+    return !exLoggedIn && !piLoggedIn ? (
       <div className="container">
         <Navigation
           logout={this.logoutHandler}
@@ -68,7 +69,7 @@ class App extends Component {
       </div>
     ) : (
       <div className="container">
-        {this.state.exLoggedIn ? (
+        {exLoggedIn ? (
           <>
             <Navigation
               logout={this.logoutHandler}

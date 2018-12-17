@@ -2,9 +2,9 @@ import React from 'react'
 import { Col, Row } from 'react-materialize'
 import CalRow from './CalRow'
 
-const Canvas = ({state, setAvail, cTime, cMonth}) => {
+const Canvas = ({state, setAvail, cTime, cMonth, monthName}) => {
+let buildRows = [0,1,2,3,4,5]
 
-  let buildRows = [0,1,2,3,4,5]
   return (
     <div className='list-group-item col s12 offset-s2'>
       <Row className="bold">
@@ -17,7 +17,7 @@ const Canvas = ({state, setAvail, cTime, cMonth}) => {
         <Col s={1}>Sa</Col>
       </Row>
       {buildRows.map((row, i) => {
-        return (<CalRow row={row} key={i} state={state} setAvail={setAvail} cTime={cTime} cMonth={cMonth} />)
+        return (<CalRow row={row} key={i} state={state} setAvail={setAvail} cTime={cTime} cMonth={cMonth} monthName ={monthName} />)
       }
     )}
     </div>
