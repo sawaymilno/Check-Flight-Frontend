@@ -4,8 +4,9 @@ import React, { Component } from "react";
 import PilotSearchResults from "./PilotSearchResults";
 
 const initialState = {
-  airports: [], users: []
-}
+  airports: [],
+  users: []
+};
 class PilotSearchForm extends Component {
   state = {
     airports: [],
@@ -17,7 +18,6 @@ class PilotSearchForm extends Component {
    ********************************************/
 
   async componentDidMount() {
-    this.forceUpdate()
     const response = await fetch(
       "http://localhost:3000/users",
       // {
@@ -32,9 +32,9 @@ class PilotSearchForm extends Component {
     this.getUsers();
   }
 
-  log = () => (
-    console.log(this.state.airports)
-  )
+
+  log = () => console.log(this.state.airports);
+
 
   reset() {
     this.setState(initialState);

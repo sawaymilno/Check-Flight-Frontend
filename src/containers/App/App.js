@@ -37,23 +37,27 @@ class App extends Component {
    };
 
   /*************************************************************************
-   * LOGIN/SIGNUP SUBMIT HANDLER. RENDERS EXAMINER OR PILOT PROFILE
+   * LOGIN SUBMIT HANDLER. RENDERS EXAMINER OR PILOT PROFILE
    *************************************************************************/
+
+
   loginHandler = async e => {
     e.preventDefault();
-    console.log(e.target.innerText);
-    let value = e.target.innerText
+    console.log(e.target.id);
+    let value = e.target.id
     await this.get()
 
-    if (value === "PILOT LOGIN") {
+    if (value === "Pilot") {
       this.setState({
         ...this.state,
         exLoggedIn: false,
         piLoggedIn: true
       });
     }
-    if (value === "EXAMINER LOGIN") {
+
+    if (value === "Examiner") {
       this.setState({
+        ...this.state,
         exLoggedIn: true,
         piLoggedIn: false
       });
@@ -75,7 +79,7 @@ class App extends Component {
     if (this.state.exLoggedIn) {
       this.setState({ exLoggedIn: false, piLoggedIn: false });
     }
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   };
 
   render() {
