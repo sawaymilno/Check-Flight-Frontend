@@ -10,42 +10,42 @@ import ExPortal from "../../containers/ExPortal/ExPortal";
 import PiPortal from "../../containers/PiPortal/PiPortal";
 
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
       isDisabled: true,
       exLoggedIn: false,
       piLoggedIn: false,
-      users: [],
-    }
-  };
+      users: []
+    };
+  }
 
   get = async () => {
-    const response = await fetch("http://localhost:3000/users/1")
-    const json = await response.json()
-    this.setState(() => ({users: json}))
-   }
+    const response = await fetch(
+      "https://evening-hamlet-90015.herokuapp.com/users/1"
+    );
+    const json = await response.json();
+    this.setState(() => ({ users: json }));
+  };
 
-   editToggle = () => {
-     let isDisabled;
-     this.state.isDisabled ? (isDisabled = false) : (isDisabled = true);
-     this.setState({
-       isDisabled: isDisabled
-     });
-     console.log(this.state);
-   };
+  editToggle = () => {
+    let isDisabled;
+    this.state.isDisabled ? (isDisabled = false) : (isDisabled = true);
+    this.setState({
+      isDisabled: isDisabled
+    });
+    console.log(this.state);
+  };
 
   /*************************************************************************
    * LOGIN SUBMIT HANDLER. RENDERS EXAMINER OR PILOT PROFILE
    *************************************************************************/
 
-
   loginHandler = async e => {
     e.preventDefault();
     console.log(e.target.id);
-    let value = e.target.id
-    await this.get()
+    let value = e.target.id;
+    await this.get();
 
     if (value === "Pilot") {
       this.setState({
@@ -83,7 +83,6 @@ class App extends Component {
   };
 
   render() {
-
     const exLoggedIn = this.state.exLoggedIn;
     const piLoggedIn = this.state.piLoggedIn;
     return !exLoggedIn && !piLoggedIn ? (
@@ -106,7 +105,11 @@ class App extends Component {
               exLoggedIn={exLoggedIn}
               piLoggedIn={piLoggedIn}
             />
-            <ExPortal state={this.state} logout={this.logoutHandler} editToggle={this.editToggle}  />
+            <ExPortal
+              state={this.state}
+              logout={this.logoutHandler}
+              editToggle={this.editToggle}
+            />
             <Foot />
           </>
         ) : (

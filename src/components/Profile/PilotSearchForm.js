@@ -19,11 +19,11 @@ class PilotSearchForm extends Component {
 
   async componentDidMount() {
     const response = await fetch(
-      "http://localhost:3000/users",
-      // {
-      //   credentials: "include"
-      // }
+      "https://evening-hamlet-90015.herokuapp.com/airports"
     );
+    // {
+    //   credentials: "include"
+    // }
     const json = await response.json();
     json.forEach((el, i) => {
       el.isChecked = false;
@@ -31,10 +31,6 @@ class PilotSearchForm extends Component {
     this.setState({ airports: json });
     this.getUsers();
   }
-
-
-  log = () => console.log(this.state.airports);
-
 
   reset() {
     this.setState(initialState);
@@ -45,11 +41,11 @@ class PilotSearchForm extends Component {
 
   getUsers = async () => {
     const response = await fetch(
-      "http://localhost:3000/users",
-      // {
-      //   credentials: "include"
-      // }
+      "https://evening-hamlet-90015.herokuapp.com/users"
     );
+    // {
+    //   credentials: "include"
+    // }
     const json = await response.json();
     this.setState({
       ...this.state,
