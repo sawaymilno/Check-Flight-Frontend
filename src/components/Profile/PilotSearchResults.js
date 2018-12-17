@@ -2,10 +2,8 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import { Row, CollectionItem, Card } from "react-materialize";
 
-const examiners = ["bob", "tony", "rick", "jimmy"];
-
 const PilotSearchResults = props => {
-  props.examiners
+  const examiners = props.examiners
     .filter(el => el.isExaminer)
     .slice(0, 6)
     .map((el, i) => (
@@ -19,7 +17,11 @@ const PilotSearchResults = props => {
   const filteredAirports = props.airports
     .filter(el => el.isChecked)
     .map((el, i) => (
-      <Card key={i} title={"Examiners at " + el.name} actions={examiners} />
+      <Card
+        key={el.id}
+        title={"Examiners at " + el.name}
+        actions={examiners}
+      />
     ));
   return <Row>{filteredAirports}</Row>;
 };

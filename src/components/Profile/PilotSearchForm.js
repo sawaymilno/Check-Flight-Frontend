@@ -3,6 +3,9 @@ import { Input, Row, Card } from "react-materialize";
 import React, { Component } from "react";
 import PilotSearchResults from "./PilotSearchResults";
 
+const initialState = {
+  airports: [], users: []
+}
 class PilotSearchForm extends Component {
   state = {
     airports: [],
@@ -14,6 +17,7 @@ class PilotSearchForm extends Component {
    ********************************************/
 
   async componentDidMount() {
+    this.forceUpdate()
     const response = await fetch(
       "https://evening-hamlet-90015.herokuapp.com/airports",
       {
@@ -24,10 +28,17 @@ class PilotSearchForm extends Component {
     json.forEach((el, i) => {
       el.isChecked = false;
     });
-    this.setState({ ...this.state, airports: json });
+    this.setState({ airports: json });
     this.getUsers();
   }
 
+  log = () => (
+    console.log(this.state.airports)
+  )
+  
+  reset() {
+    this.setState(initialState);
+  }
   /********************************************
    **** Fetch User Data ********************
    ********************************************/
@@ -44,7 +55,6 @@ class PilotSearchForm extends Component {
       ...this.state,
       users: json
     });
-    console.log(json);
   };
 
   /**************************************************
@@ -52,11 +62,13 @@ class PilotSearchForm extends Component {
    **************************************************/
 
   airportCheckboxHandler = e => {
-    console.log(e.target.id.slice(6));
-    const id = parseInt(e.target.id.slice(6)) - 8;
+    this.log();
+    console.log(e.target.id);
+    let id = +e.target.id - 1;
 
     if (!this.state.airports[id].isChecked) {
       this.setState(prevState => ({
+        prevState,
         ...this.state.airports.map((el, i) => {
           if (i === id) {
             el.isChecked = true;
@@ -66,6 +78,7 @@ class PilotSearchForm extends Component {
       }));
     } else {
       this.setState(prevState => ({
+        prevState, 
         ...this.state.airports.map((el, i) => {
           if (i === id) {
             el.isChecked = false;
@@ -83,6 +96,7 @@ class PilotSearchForm extends Component {
         s={12}
         name={airport.name}
         label={airport.name}
+        id={airport.id.toString()}
         type="checkbox"
         key={i}
         onChange={this.airportCheckboxHandler}
@@ -91,7 +105,7 @@ class PilotSearchForm extends Component {
     ));
     airports
       .filter(el => el.isChecked === true)
-      .map((el, i) => <Card>{el.name}</Card>);
+      .map((el, i) => <Card key={i}>{el.name}</Card>);
     return (
       <>
         <Row style={{ textAlign: "left" }}>
