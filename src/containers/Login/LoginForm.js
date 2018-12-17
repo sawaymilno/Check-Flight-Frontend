@@ -1,6 +1,7 @@
 import React from "react";
 import { Button, Card, Input, Icon } from "react-materialize";
 import { Link } from "react-router-dom";
+import {unregister} from '../../serviceWorker'
 
 const LoginForm = ({ user, clicked, login }) => (
   <Card>
@@ -25,6 +26,8 @@ const LoginForm = ({ user, clicked, login }) => (
         waves="light"
         name={user}
         user={user}
+        // id={user}
+        // onClick={login}
       >
         {user} LOGIN
       </Button>
