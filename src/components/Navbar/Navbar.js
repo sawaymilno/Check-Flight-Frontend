@@ -8,9 +8,9 @@ import "../../containers/App/App.css";
 const Navigation = props => {
   return props.exLoggedIn === true || props.piLoggedIn === true ? (
     <Navbar className="teal darken-3" brand="Check Ride" right>
-      <NavItem href="/" onClick={() => window.scrollBy(0, 500)}>
+      {/* <NavItem href="/" onClick={() => window.scrollBy(0, 500)}>
         About
-      </NavItem>
+      </NavItem> */}
       <NavItem href="/" onClick={props.logout}>
         Logout
       </NavItem>
