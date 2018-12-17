@@ -16,20 +16,21 @@ class App extends Component {
   };
 
   /*************************************************************************
-   * LOGIN/SIGNUP SUBMIT HANDLER. RENDERS EXAMINER OR PILOT PROFILE
+   * LOGIN SUBMIT HANDLER. RENDERS EXAMINER OR PILOT PROFILE
    *************************************************************************/
   loginHandler = e => {
-    e.preventDefault();
-    console.log(e.target.innerText);
-    if (e.target.innerText === "PILOT LOGIN") {
+    e.preventDefault(e);
+    console.log(e.target.id);
+    if (e.target.id === "Pilot") {
       this.setState({
         ...this.state,
         exLoggedIn: false,
         piLoggedIn: true
       });
     }
-    if (e.target.innerText === "EXAMINER LOGIN") {
+    if (e.target.id === "Examiner") {
       this.setState({
+        ...this.state,
         exLoggedIn: true,
         piLoggedIn: false
       });
@@ -49,7 +50,7 @@ class App extends Component {
     if (this.state.exLoggedIn) {
       this.setState({ exLoggedIn: false, piLoggedIn: false });
     }
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   };
 
   render() {
