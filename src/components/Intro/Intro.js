@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardTitle, Icon } from "react-materialize";
+import { Card, CardTitle } from "react-materialize";
 
 import "./Intro.css";
 import "../../containers/App/App.css";
