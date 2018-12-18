@@ -2,7 +2,6 @@ import { Input, Row, Card } from "react-materialize";
 
 import React, { Component } from "react";
 import PilotSearchResults from "./PilotSearchResults";
-
 class PilotSearchForm extends Component {
   state = {
     airports: [],

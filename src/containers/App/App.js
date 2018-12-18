@@ -18,7 +18,7 @@ class App extends Component {
       airports: []
     };
   }
-
+  
   getUser = async id => {
     const response = await fetch(`http://localhost:3000/users/${id}`, {
       headers: { Authorization: localStorage.getItem("jwt") }
@@ -27,21 +27,15 @@ class App extends Component {
     this.setState({ currentUser: json });
   };
 
-  get2params = async (path1, id1, path2, id2) => {
-    if (!id1) {
-      id1 = "";
-    }
-    if (!path2) {
-      path2 = "";
-    }
-    if (!id2) {
-      id2 = "";
-    }
+//this function takes 1 path and an OPTIONAL id
+  get2params = async (path1, id1) => {
+    if (!id1) {id1 = ""}
     const response = await fetch(`http://localhost:3000/${path1}/${id1}`);
+
     const json = await response.json();
     this.setState(() => ({ [path1]: json }));
   };
-
+//this function takes one path, one id, another path and an OPTIONAL second ID
   getMin2Max4 = async (path1, id1, path2, id2) => {
     if (!id2) {
       id2 = "";
@@ -103,6 +97,7 @@ class App extends Component {
   };
 
   render() {
+
     return !this.state.currentUser ? (
       <div className="container">
         <Navigation
