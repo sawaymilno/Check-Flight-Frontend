@@ -9,8 +9,8 @@ import LoginForm from "./LoginForm";
 
 class Login extends Component {
   state = {
-    isPilot: true,
-    isExaminer: true
+    pilotFormOpen: false,
+    examinerFormOpen: false
   };
 
   /**************************************************************************
@@ -18,10 +18,8 @@ class Login extends Component {
    **************************************************************************/
   showPilotFormHandler = e => {
     e.preventDefault();
-    let value;
-    this.state.isPilot ? (value = false) : (value = true);
     this.setState({
-      isPilot: value
+      pilotFormOpen: this.state.pilotFormOpen ? false : true
     });
   };
 
@@ -30,21 +28,19 @@ class Login extends Component {
    **************************************************************************/
   showExaminerFormHandler = e => {
     e.preventDefault();
-    let value;
-    this.state.isExaminer ? (value = false) : (value = true);
     this.setState({
-      isExaminer: value
+      examinerFormOpen: this.state.examinerFormOpen ? false : true
     });
   };
 
   /**************************************************************************
    * submit handler on pilot signup button to post registration *
    **************************************************************************/
-  pilotSignupHandler = e => {
+  pilotSignupHandler = async e => {
     e.preventDefault();
-    console.log(e.target.id);
     const user = {
       email: e.target.email.value,
+      password: e.target.password.value,
       firstName: e.target.firstName.value,
       lastName: e.target.lastName.value,
       phone: e.target.phone.value,
@@ -52,7 +48,7 @@ class Login extends Component {
       rates: "",
       isExaminer: false
     };
-    fetch("http://localhost:3000/users", {
+    let response = await fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -60,16 +56,21 @@ class Login extends Component {
       },
       body: JSON.stringify(user)
     });
-    this.props.login(e);
+    let json = await response.json();
+    let jwt = json.auth_token;
+    localStorage.setItem("jwt", jwt);
+    let user_id = JSON.parse(atob(jwt.split(".")[1])).user_id;
+    await this.props.getUser(user_id);
   };
 
   /**************************************************************************
    * submit handler on examiner signup button to post registration *
    **************************************************************************/
-  examinerSignupHandler = e => {
+  examinerSignupHandler = async e => {
     e.preventDefault();
     const user = {
       email: e.target.email.value,
+      password: e.target.password.value,
       firstName: e.target.firstName.value,
       lastName: e.target.lastName.value,
       phone: e.target.phone.value,
@@ -77,7 +78,8 @@ class Login extends Component {
       rates: e.target.rates.value,
       isExaminer: true
     };
-    fetch("http://localhost:3000/users", {
+
+    let response = await fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -85,30 +87,34 @@ class Login extends Component {
       },
       body: JSON.stringify(user)
     });
-    this.props.login(e);
+    let json = await response.json();
+    let jwt = json.auth_token;
+    localStorage.setItem("jwt", jwt);
+    let user_id = JSON.parse(atob(jwt.split(".")[1])).user_id;
+    await this.props.getUser(user_id);
   };
 
   render() {
     return (
       <Row>
         <div className="col s12 m6 center">
-          {!this.state.isPilot ? (
+          {this.state.pilotFormOpen ? (
             <Pilot
-              login={this.login}
+              login={this.props.login}
               clicked={this.showPilotFormHandler}
               signup={this.pilotSignupHandler}
             />
           ) : (
             <LoginForm
-              user="Pilot"
-              login={this.login}
+              userType="Pilot"
+              login={this.props.login}
               clicked={this.showPilotFormHandler}
             />
           )}
         </div>
 
         <div className="col s12 m6 center">
-          {!this.state.isExaminer ? (
+          {this.state.examinerFormOpen ? (
             <Examiner
               login={this.props.login}
               clicked={this.showExaminerFormHandler}
@@ -116,7 +122,7 @@ class Login extends Component {
             />
           ) : (
             <LoginForm
-              user="Examiner"
+              userType="Examiner"
               login={this.props.login}
               clicked={this.showExaminerFormHandler}
             />

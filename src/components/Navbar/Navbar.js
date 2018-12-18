@@ -5,18 +5,32 @@ import { Navbar, NavItem } from "react-materialize";
 import "./Navbar.css";
 import "../../containers/App/App.css";
 
-const Navigation = props => {
-  return props.exLoggedIn === true || props.piLoggedIn === true ? (
-    <Navbar className="teal darken-3" brand="Check Ride" right>
+const Navigation = ({ logout, currentUser }) => {
+  return currentUser ? (
+    <Navbar
+      className="teal darken-3"
+      brand="Check Ride"
+      onClick={e => {
+        e.preventDefault();
+      }}
+      right
+    >
       {/* <NavItem href="/" onClick={() => window.scrollBy(0, 500)}>
         About
       </NavItem> */}
-      <NavItem href="/" onClick={props.logout}>
+      <NavItem href="/" onClick={logout}>
         Logout
       </NavItem>
     </Navbar>
   ) : (
-    <Navbar className="teal darken-3" brand="Check Ride" right>
+    <Navbar
+      className="teal darken-3"
+      brand="Check Ride"
+      onClick={e => {
+        e.preventDefault();
+      }}
+      right
+    >
       <NavItem href="/" onClick={() => window.scrollBy(0, 500)}>
         About
       </NavItem>

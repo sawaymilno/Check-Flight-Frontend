@@ -2,11 +2,6 @@ import { Input, Row, Card } from "react-materialize";
 
 import React, { Component } from "react";
 import PilotSearchResults from "./PilotSearchResults";
-
-// const initialState = {
-//   airports: [],
-//   users: []
-// };
 class PilotSearchForm extends Component {
   state = {
     airports: [],
@@ -18,12 +13,9 @@ class PilotSearchForm extends Component {
    ********************************************/
 
   async componentDidMount() {
-    const response = await fetch(
-      "http://localhost:3000/airports"
-    );
-    // {
-    //   credentials: "include"
-    // }
+    const response = await fetch("http://localhost:3000/airports", {
+      headers: { Authorization: localStorage.getItem("jwt") }
+    });
     const json = await response.json();
     json.forEach((el, i) => {
       el.isChecked = false;
@@ -37,12 +29,9 @@ class PilotSearchForm extends Component {
    ********************************************/
 
   getUsers = async () => {
-    const response = await fetch(
-      "http://localhost:3000/users"
-    );
-    // {
-    //   credentials: "include"
-    // }
+    const response = await fetch("http://localhost:3000/users", {
+      headers: { Authorization: localStorage.getItem("jwt") }
+    });
     const json = await response.json();
     this.setState({
       ...this.state,
@@ -55,7 +44,7 @@ class PilotSearchForm extends Component {
    **************************************************/
 
   airportCheckboxHandler = e => {
-    this.log();
+    // this.log();
     console.log(e.target.id);
     let id = +e.target.id - 1;
 

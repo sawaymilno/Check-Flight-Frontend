@@ -8,7 +8,7 @@ const Examiner = props => (
       {" "}
       <Icon large>account_circle</Icon>
       <br />
-      EXAMINER SIGN UP
+      Examiner Sign Up
     </h4>
     <form id="Examiner" onSubmit={props.signup}>
       <div style={{ textAlign: "left" }}>
@@ -19,9 +19,6 @@ const Examiner = props => (
         </Input>
         <Input type="email" label="Email" s={12} name="email" validate required>
           <Icon>email</Icon>
-        </Input>
-        <Input s={12} name="username" label="Username" validate required>
-          <Icon>account_circle</Icon>
         </Input>
         <Input
           s={12}
@@ -43,9 +40,6 @@ const Examiner = props => (
         >
           <Icon>lock</Icon>
         </Input>{" "}
-        <Input s={12} type="text" label="City, State" validate>
-          <Icon>location_on</Icon>
-        </Input>
         <Input s={12} name="rates" type="text" label="Rate">
           <Icon>monetization_on</Icon>
         </Input>
@@ -68,7 +62,7 @@ const Examiner = props => (
         user="Examiner"
         name="Examiner"
       >
-        CREATE ACCOUNT
+        Create Account
       </Button>
     </form>
     <br />

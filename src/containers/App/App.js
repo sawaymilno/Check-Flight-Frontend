@@ -14,36 +14,42 @@ class App extends Component {
     super(props);
     this.state = {
       isDisabled: true,
-      exLoggedIn: false,
-      piLoggedIn: false,
-      users: []
+      currentUser: null,
+      airports: []
     };
   }
+  
+  getUser = async id => {
+    const response = await fetch(`http://localhost:3000/users/${id}`, {
+      headers: { Authorization: localStorage.getItem("jwt") }
+    });
+    const json = await response.json();
+    this.setState({ currentUser: json });
+  };
+
 //this function takes 1 path and an OPTIONAL id
   get2params = async (path1, id1) => {
     if (!id1) {id1 = ""}
+    const response = await fetch(`http://localhost:3000/${path1}/${id1}`);
 
-    const response = await fetch(
-      `http://localhost:3000/${path1}/${id1}`
-    );
     const json = await response.json();
-    this.setState(() => ({ [path1] : json }));
+    this.setState(() => ({ [path1]: json }));
   };
 //this function takes one path, one id, another path and an OPTIONAL second ID
   getMin2Max4 = async (path1, id1, path2, id2) => {
-    if (!id2) {id2=""}
+    if (!id2) {
+      id2 = "";
+    }
     const response = await fetch(
       `http://localhost:3000/${path1}/${id1}/${path2}/${id2}`
     );
     const json = await response.json();
-    this.setState(() => ({ [path1[id1]]: {[path2]:json} }));
+    this.setState(() => ({ [path1[id1]]: { [path2]: json } }));
   };
 
   editToggle = () => {
-    let isDisabled;
-    this.state.isDisabled ? (isDisabled = false) : (isDisabled = true);
     this.setState({
-      isDisabled: isDisabled
+      isDisabled: this.state.isDisabled ? false : true
     });
   };
 
@@ -51,73 +57,75 @@ class App extends Component {
    * LOGIN SUBMIT HANDLER. RENDERS EXAMINER OR PILOT PROFILE
    *************************************************************************/
 
-  loginHandler = async e => {
-    e.preventDefault();
-    // console.log("target.id",e.target.id);
-    let value = e.target.id;
-    await this.get2params('users',1);
-    await this.get2params("airports")
+  loginHandler = async user => {
+    let response = await fetch("http://localhost:3000/auth/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    });
+    let json = await response.json();
+    let jwt = json.auth_token;
 
-    if (value === "Pilot") {
-      this.setState({
-        ...this.state,
-        exLoggedIn: false,
-        piLoggedIn: true
-      });
-    }
-    if (value === "Examiner") {
-      this.setState({
-        ...this.state,
-        exLoggedIn: true,
-        piLoggedIn: false
-      });
-    }
+    localStorage.setItem("jwt", jwt);
+
+    let user_id = JSON.parse(atob(jwt.split(".")[1])).user_id;
+
+    await this.getUser(user_id);
+
+    const airportResponse = await fetch("http://localhost:3000/airports", {
+      headers: { Authorization: localStorage.getItem("jwt") }
+    });
+    const airportJson = await airportResponse.json();
+
+    this.setState({ airports: airportJson });
+
     window.scrollTo(0, 0);
-    // console.log("users",this.state.users,"airports",this.state.airports);
   };
 
   /**********************************************************
    * LOGOUT BUTTON CLICK HANDLER. TAKES YOU BACK HOME
    **********************************************************/
   logoutHandler = e => {
-    e.preventDefault();
-    console.log("e.target",e.target);
-    if (this.state.piLoggedIn) {
-      this.setState({ ...this.state, exLoggedIn: false, piLoggedIn: false });
-    }
-    if (this.state.exLoggedIn) {
-      this.setState({ exLoggedIn: false, piLoggedIn: false });
-    }
+    localStorage.removeItem("jwt");
+
+    this.setState({ currentUser: null });
+
     window.scrollTo(0, 0);
   };
 
   render() {
-    const exLoggedIn = this.state.exLoggedIn;
-    const piLoggedIn = this.state.piLoggedIn;
-    return !exLoggedIn && !piLoggedIn ? (
+
+    return !this.state.currentUser ? (
       <div className="container">
         <Navigation
           logout={this.logoutHandler}
-          exLoggedIn={exLoggedIn}
-          piLoggedIn={piLoggedIn}
+          currentUser={this.state.currentUser}
         />
         <Intro />
-        <Login login={this.loginHandler} logout={this.logoutHandler} />
+        <Login
+          login={this.loginHandler}
+          logout={this.logoutHandler}
+          getUser={this.getUser}
+        />
         <Foot />
       </div>
     ) : (
       <div className="container">
-        {exLoggedIn ? (
+        {this.state.currentUser.isExaminer ? (
           <>
             <Navigation
               logout={this.logoutHandler}
-              exLoggedIn={exLoggedIn}
-              piLoggedIn={piLoggedIn}
+              currentUser={this.state.currentUser}
             />
             <ExPortal
-              state={this.state}
+              currentUser={this.state.currentUser}
+              isDisabled={this.state.isDisabled}
               logout={this.logoutHandler}
               editToggle={this.editToggle}
+              airports={this.state.airports}
             />
             <Foot />
           </>
@@ -125,10 +133,12 @@ class App extends Component {
           <>
             <Navigation
               logout={this.logoutHandler}
-              exLoggedIn={exLoggedIn}
-              piLoggedIn={piLoggedIn}
+              currentUser={this.state.currentUser}
             />
-            <PiPortal logout={this.logoutHandler} />
+            <PiPortal
+              logout={this.logoutHandler}
+              currentUser={this.state.currentUser}
+            />
             <Foot />
           </>
         )}
