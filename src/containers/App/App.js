@@ -16,7 +16,7 @@ class App extends Component {
       isDisabled: true,
       currentUser: null,
       airports: [],
-      error: null
+      loginError: null
     };
   }
 
@@ -28,7 +28,7 @@ class App extends Component {
       }
     );
     const json = await response.json();
-    this.setState({ currentUser: json })
+    this.setState({ currentUser: json, loginError: null })
   }
 
   getAirports = async () => {
@@ -100,7 +100,7 @@ class App extends Component {
       }
       // login error
       else {
-        this.setState({ error:
+        this.setState({ loginError:
           {
             status: loginResponse.status,
             message: 'Incorrect username or password',
@@ -133,7 +133,7 @@ class App extends Component {
           login={this.loginHandler}
           logout={this.logoutHandler}
           getUser={this.getUser}
-          error={this.state.error}
+          loginError={this.state.loginError}
         />
         <Foot />
       </div>
