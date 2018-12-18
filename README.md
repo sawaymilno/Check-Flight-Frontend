@@ -12,11 +12,11 @@ The homepage includes a brief about section for Check Ride and forms for logging
 
 ### Navbar
 
-![navbar](screenshots/navbar)
+![navbar](screenshots/navbar.png)
 
 ### Intro
 
-![about](screenshots/intro)
+![about](screenshots/intro/png)
 
 ### Login
 
