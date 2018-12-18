@@ -30,6 +30,7 @@ class App extends Component {
     const json = await response.json();
     let type = json.isExaminer ? 'exLoggedIn' : 'piLoggedIn'
     this.setState(() => ({ currentUser: json, [type]: true }));
+  }
 
   get2params = async (path1, id1, path2, id2) => {
     if (!id1) {id1 = ""}

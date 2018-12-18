@@ -21,7 +21,7 @@ const ExProfile = ({ editToggle, currentUser, isDisabled }) => {
             className="green accent-3 col s12 m1 right"
             type="submit"
           >
-            EDIT PROFILE
+            Edit Profile
           </Button>
         </div>
         <div
@@ -86,10 +86,9 @@ const ExProfile = ({ editToggle, currentUser, isDisabled }) => {
         <Card>
           <h4 className="col s12 m9 ">Airports</h4>
           <Row>
-            {state.airports.map((airport, i) => {
+            {airports.map((airport, i) => {
               return (
                 <Input s={4} m={2} name="group1" type="checkbox" key={i} label={airport.code} checked={false} disabled={isDisabled} />
-
               )
             })}
 
