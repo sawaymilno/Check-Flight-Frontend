@@ -16,16 +16,19 @@ class App extends Component {
       isDisabled: true,
       exLoggedIn: false,
       piLoggedIn: false,
-      users: []
+      currentUser: {}
     };
   }
 
-  get = async () => {
+  getUser = async (id) => {
     const response = await fetch(
-      "https://evening-hamlet-90015.herokuapp.com/users/1"
+      `http://localhost:3000/users/${id}`,
+      {
+        headers: {"Authorization": localStorage.getItem('jwt')}
+      }
     );
     const json = await response.json();
-    this.setState(() => ({ users: json }));
+    this.setState(() => ({ currentUser: json }));
   };
 
   editToggle = () => {
@@ -41,13 +44,26 @@ class App extends Component {
    * LOGIN SUBMIT HANDLER. RENDERS EXAMINER OR PILOT PROFILE
    *************************************************************************/
 
-  loginHandler = async e => {
-    e.preventDefault();
-    console.log(e.target.id);
-    let value = e.target.id;
-    await this.get();
+  loginHandler = async (userType, user) => {
+    let response = await fetch('http://localhost:3000/auth/login',
+      {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+      })
+    let json = await response.json()
+    let jwt = json.auth_token
 
-    if (value === "Pilot") {
+    localStorage.setItem('jwt', jwt)
+
+    let user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
+
+    await this.getUser(user_id)
+
+    if (userType === "Pilot") {
       this.setState({
         ...this.state,
         exLoggedIn: false,
@@ -55,7 +71,7 @@ class App extends Component {
       });
     }
 
-    if (value === "Examiner") {
+    if (userType === "Examiner") {
       this.setState({
         ...this.state,
         exLoggedIn: true,
@@ -64,7 +80,7 @@ class App extends Component {
     }
 
     window.scrollTo(0, 0);
-    console.log(this.state.users);
+    // console.log(this.state.currentUser);
   };
 
   /**********************************************************
@@ -119,7 +135,7 @@ class App extends Component {
               exLoggedIn={exLoggedIn}
               piLoggedIn={piLoggedIn}
             />
-            <PiPortal logout={this.logoutHandler} />
+            <PiPortal logout={this.logoutHandler} currentUser={this.state.currentUser} />
             <Foot />
           </>
         )}

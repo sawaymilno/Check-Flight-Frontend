@@ -9,8 +9,8 @@ import LoginForm from "./LoginForm";
 
 class Login extends Component {
   state = {
-    isPilot: true,
-    isExaminer: true
+    pilotFormOpen: false,
+    examinerFormOpen: false
   };
 
   /**************************************************************************
@@ -18,10 +18,8 @@ class Login extends Component {
    **************************************************************************/
   showPilotFormHandler = e => {
     e.preventDefault();
-    let value;
-    this.state.isPilot ? (value = false) : (value = true);
     this.setState({
-      isPilot: value
+      pilotFormOpen: this.state.pilotFormOpen ? false : true
     });
   };
 
@@ -30,10 +28,8 @@ class Login extends Component {
    **************************************************************************/
   showExaminerFormHandler = e => {
     e.preventDefault();
-    let value;
-    this.state.isExaminer ? (value = false) : (value = true);
     this.setState({
-      isExaminer: value
+      examinerFormOpen: this.state.examinerFormOpen ? false : true
     });
   };
 
@@ -45,6 +41,7 @@ class Login extends Component {
     console.log(e.target.id);
     const user = {
       email: e.target.email.value,
+      password: e.target.password.value,
       firstName: e.target.firstName.value,
       lastName: e.target.lastName.value,
       phone: e.target.phone.value,
@@ -52,10 +49,10 @@ class Login extends Component {
       rates: "",
       isExaminer: false
     };
-    fetch("https://evening-hamlet-90015.herokuapp.com/users", {
+    fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify(user)
@@ -77,10 +74,10 @@ class Login extends Component {
       rates: e.target.rates.value,
       isExaminer: true
     };
-    fetch("https://evening-hamlet-90015.herokuapp.com/users", {
+    fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
-        Accept: "application/json",
+        "Accept": "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify(user)
@@ -92,23 +89,23 @@ class Login extends Component {
     return (
       <Row>
         <div className="col s12 m6 center">
-          {!this.state.isPilot ? (
+          {this.state.pilotFormOpen ? (
             <Pilot
-              login={this.login}
+              login={this.props.login}
               clicked={this.showPilotFormHandler}
               signup={this.pilotSignupHandler}
             />
           ) : (
             <LoginForm
               user="Pilot"
-              login={this.login}
+              login={this.props.login}
               clicked={this.showPilotFormHandler}
             />
           )}
         </div>
 
         <div className="col s12 m6 center">
-          {!this.state.isExaminer ? (
+          {this.state.examinerFormOpen ? (
             <Examiner
               login={this.props.login}
               clicked={this.showExaminerFormHandler}

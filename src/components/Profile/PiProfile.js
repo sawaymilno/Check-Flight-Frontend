@@ -3,9 +3,9 @@ import React from "react";
 import { Card, Icon, Button, Row, Input } from "react-materialize";
 import PilotSearchForm from "./PilotSearchForm";
 
-const PiProfile = props => {
+const PiProfile = ({ currentUser, editToggle, isDisabled, logout }) => {
   const toggle = e => {
-    props.editToggle(e);
+    editToggle(e);
   };
 
   return (
@@ -19,7 +19,7 @@ const PiProfile = props => {
           className="green accent-3"
           type="submit"
         >
-          EDIT PROFILE
+          Edit Profile
         </Button>
       </div>
       <div style={{ display: "flex", justifyContent: "center", margin: "1em" }}>
@@ -27,9 +27,9 @@ const PiProfile = props => {
           style={{ width: "50%" }}
           className="green accent-3"
           type="submit"
-          onClick={props.logout}
+          onClick={logout}
         >
-          LOGOUT
+          Logout
         </Button>
         <br />
         <br />
@@ -41,32 +41,32 @@ const PiProfile = props => {
           m={6}
           l={3}
           label="First Name"
-          defaultValue="Shawn"
-          disabled={props.isDisabled}
+          defaultValue={currentUser.firstName}
+          disabled={isDisabled}
         />
         <Input
           s={12}
           m={6}
           l={3}
           label="Last Name"
-          defaultValue="Milne"
-          disabled={props.isDisabled}
+          defaultValue={currentUser.lastName}
+          disabled={isDisabled}
         />
         <Input
           s={12}
           m={6}
           l={3}
           label="Phone"
-          defaultValue="978-290-1692"
-          disabled={props.isDisabled}
+          defaultValue={currentUser.phone}
+          disabled={isDisabled}
         />
         <Input
           s={12}
           m={6}
           l={3}
           label="Email"
-          defaultValue="Shawn.M.Milne@gmail.com"
-          disabled={props.isDisabled}
+          defaultValue={currentUser.email}
+          disabled={isDisabled}
         />
       </Row>
       <PilotSearchForm />

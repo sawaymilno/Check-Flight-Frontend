@@ -19,11 +19,11 @@ class PilotSearchForm extends Component {
 
   async componentDidMount() {
     const response = await fetch(
-      "https://evening-hamlet-90015.herokuapp.com/airports"
+      "http://localhost:3000/airports",
+      {
+        headers: {"Authorization": localStorage.getItem('jwt')}
+      }
     );
-    // {
-    //   credentials: "include"
-    // }
     const json = await response.json();
     json.forEach((el, i) => {
       el.isChecked = false;
@@ -41,7 +41,10 @@ class PilotSearchForm extends Component {
 
   getUsers = async () => {
     const response = await fetch(
-      "https://evening-hamlet-90015.herokuapp.com/users"
+      "http://localhost:3000/users",
+      {
+        headers: {"Authorization": localStorage.getItem('jwt')}
+      }
     );
     // {
     //   credentials: "include"

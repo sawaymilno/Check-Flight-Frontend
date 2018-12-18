@@ -8,7 +8,7 @@ const Examiner = props => (
       {" "}
       <Icon large>account_circle</Icon>
       <br />
-      EXAMINER SIGN UP
+      Examiner Sign Up
     </h4>
     <form id="Examiner" onSubmit={props.signup}>
       <div style={{ textAlign: "left" }}>
@@ -68,7 +68,7 @@ const Examiner = props => (
         user="Examiner"
         name="Examiner"
       >
-        CREATE ACCOUNT
+        Create Account
       </Button>
     </form>
     <br />
