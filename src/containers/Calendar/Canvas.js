@@ -4,8 +4,6 @@ import CalRow from './CalRow'
 
 const Canvas = ({state, postAvail, putAvail, cTime, cMonth, monthName, isDisabled}) => {
   let buildRows = [0,1,2,3,4,5]
-  console.log("state.available",state.available);
-
   let available=state.available
   let availDate = available.map((available, i) => {
     let sliced = available.date.slice(0,10)
@@ -19,10 +17,6 @@ const Canvas = ({state, postAvail, putAvail, cTime, cMonth, monthName, isDisable
       id: available.id,
     })
   })
-  console.log("availDate",availDate);
-
-
-
   return (
     <div  className='list-group-item col s12 offset-s2'>
       <Row className="bold">

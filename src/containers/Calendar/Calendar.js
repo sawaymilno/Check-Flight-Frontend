@@ -36,9 +36,7 @@ class Calendar extends Component {
     );
     const json = await response.json();
     this.setState({ available: json });
-    await console.log("available[0] after await", this.state.available[0].date)
   }
-
 
   prevMonth = (e) => {
     let months = [
@@ -122,10 +120,8 @@ class Calendar extends Component {
   }
 
   putAvail = async (modAvail) => {
-    console.log("in putAvail");
     let body = JSON.stringify(modAvail)
     let id = modAvail.id
-    console.log("modAvail",modAvail,"id", id);
     await fetch(`http://localhost:3000/users/16/avails/${id}`, {
       method: "PUT",
       headers: {
@@ -134,45 +130,19 @@ class Calendar extends Component {
       },
       body: body
     })
-
-    //const avail = await response.json()
-
-      let newAvail = this.state.available.map(available => {
-        if (available.id === id) {
-          available = modAvail
-        }
-        return available
-      })
-
-      this.setState(() => ({
-      ...this.state,
-        available: newAvail
+    let newAvail = this.state.available.map(available => {
+      if (available.id === id) {
+        available = modAvail
+      }
+      return available
+    })
+    this.setState(() => ({
+    ...this.state,
+      available: newAvail
     }))
-
-
-    // if(dayTime === "morning") {
-    //   this.setState(() => ({
-    //     ...this.state.available,
-    //     available:{
-    //       morning: available,
-    //       afternoon: false,
-    //     },
-    //   }))
-    // }
-
-    // else if (dayTime === "afternoon") {
-    //   this.setState({
-    //     available:{
-    //       morning: this.state.available.morning,
-    //       afternoon: available,
-    //     }
-    //   })
-    // }
-    console.log("made it through a put");
   }
 
   render() {
-
     let monthName = this.state.month[this.state.currentMonth]
     return (
       <Card>

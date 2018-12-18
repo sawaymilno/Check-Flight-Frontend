@@ -46,10 +46,7 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
       ith = "th"
   }
 
-  const afternoonToggle = (e) => {
-    console.log("in afternoonToggle");
-    console.log("state.available[arrId].morning.afternoon", state.available[arrId].morning,state.available[arrId].afternoon);
-      let dayTime = e.target.id
+  const afternoonToggle = () => {
       let available
       let newAvail
       let modAvail
@@ -58,8 +55,6 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
       let day = availDate[i].day
       let month = availDate[i].month
       let year = availDate[i].year
-      console.log("dayTime",dayTime);
-      console.log("day month year matches",day,date,month,cMonth,year,cYear,i);
 
       if (day === date && month === cMonth && year === cYear) {
 
@@ -68,13 +63,9 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
         } else {
           available = false
         }
-    //need to wire up a putAvail function and build the object that will go into this
        modAvail = state.available[i]
        modAvail.afternoon = available
         putAvail(modAvail)
-        console.log("AvailDate.id and i",availDate[i].id,i);
-        console.log("State.available.id and i",state.available[i].id,i);
-        console.log("went the afternoon put route");
         found = true
         break
       }
@@ -88,16 +79,11 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
         morning: false,
         afternoon: available,
         }
-        console.log("available",available);
         postAvail(newAvail)
-        console.log("went the afternoon post route");
       }
     }
 
-  const morningToggle = (e) => {
-    console.log("in morningToggle");
-    console.log("state.available[arrId].morning.afternoon", state.available[arrId].morning,state.available[arrId].afternoon);
-      let dayTime = e.target.id
+  const morningToggle = () => {
       let available
       let newAvail
       let modAvail
@@ -106,8 +92,6 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
         let month = availDate[i].month
         let year = availDate[i].year
         let day = availDate[i].day
-        console.log("dayTime",dayTime);
-        console.log("day month year matches",day,date,month,cMonth,year,cYear,i);
 
         if (day === date && month === cMonth && year === cYear) {
 
@@ -116,13 +100,9 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
           } else {
             available = false
           }
-  //need to wire up a putAvail function and build the object that will go into this
           modAvail = state.available[i]
           modAvail.morning = available
            putAvail(modAvail)
-           console.log("AvailDate.id and i",availDate[i].id,i);
-           console.log("State.available.id and i",state.available[i].id,i);
-           console.log("went the afternoon put route");
            found = true
            break
         }
@@ -136,20 +116,13 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
           morning: available,
           afternoon: false,
         }
-        console.log("available",available);
         postAvail(newAvail)
-        console.log("went the morning post route");
     }
   }
 
-  const canvasWatch = (e) => {
-    console.log("state.available[arrId].morning.afternoon", state.available[arrId].morning,state.available[arrId].afternoon);
-  }
-
-
   return (
     <div>
-      <Modal onClick={canvasWatch}
+      <Modal
         className="center"
         header={`${monthName} ${date}${ith} Booking Availability`}
         trigger={<Col  s={1} className={`list-group-item ${availability}`}>{date}</Col>}>
