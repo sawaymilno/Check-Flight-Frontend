@@ -30,6 +30,25 @@ class App extends Component {
     const json = await response.json();
     let type = json.isExaminer ? 'exLoggedIn' : 'piLoggedIn'
     this.setState(() => ({ currentUser: json, [type]: true }));
+
+  get2params = async (path1, id1, path2, id2) => {
+    if (!id1) {id1 = ""}
+    if (!path2) {path2=""}
+    if (!id2) {id2=""}
+    const response = await fetch(
+      `http://localhost:3000/${path1}/${id1}`
+    );
+    const json = await response.json();
+    this.setState(() => ({ [path1] : json }));
+  };
+
+  getMin2Max4 = async (path1, id1, path2, id2) => {
+    if (!id2) {id2=""}
+    const response = await fetch(
+      `http://localhost:3000/${path1}/${id1}/${path2}/${id2}`
+    );
+    const json = await response.json();
+    this.setState(() => ({ [path1[id1]]: {[path2]:json} }));
   };
 
   editToggle = () => {
@@ -38,7 +57,7 @@ class App extends Component {
     this.setState({
       isDisabled: isDisabled
     });
-    console.log(this.state);
+    console.log("this.state",this.state);
   };
 
   /*************************************************************************
@@ -79,9 +98,7 @@ class App extends Component {
         piLoggedIn: false
       });
     }
-
     window.scrollTo(0, 0);
-    // console.log(this.state.currentUser);
   };
 
   /**********************************************************
@@ -96,6 +113,7 @@ class App extends Component {
   };
 
   render() {
+    // return (<PiPortal />)
     const exLoggedIn = this.state.exLoggedIn;
     const piLoggedIn = this.state.piLoggedIn;
     return !exLoggedIn && !piLoggedIn ? (

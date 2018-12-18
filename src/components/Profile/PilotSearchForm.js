@@ -32,9 +32,6 @@ class PilotSearchForm extends Component {
     this.getUsers();
   }
 
-  reset() {
-    this.setState(initialState);
-  }
   /********************************************
    **** Fetch User Data ********************
    ********************************************/
