@@ -18,7 +18,7 @@ const LoginForm = ({ userType, clicked, login }) => (
           password: e.target.password.value
         }
 
-        login(userType, user)
+        login(user)
     }} id={userType} style={{ textAlign: "left" }}>
       <Input s={12} label="Email" name="email" validate required>
         <Icon>account_circle</Icon>
