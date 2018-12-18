@@ -51,16 +51,16 @@ class Login extends Component {
     let response = await fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify(user)
     });
-    let json = await response.json()
-    let jwt = json.auth_token
-    localStorage.setItem('jwt', jwt)
-    let user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
-    await this.props.getUser(user_id)
+    let json = await response.json();
+    let jwt = json.auth_token;
+    localStorage.setItem("jwt", jwt);
+    let user_id = JSON.parse(atob(jwt.split(".")[1])).user_id;
+    await this.props.getUser(user_id);
   };
 
   /**************************************************************************
@@ -82,16 +82,16 @@ class Login extends Component {
     let response = await fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
-        "Accept": "application/json",
+        Accept: "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify(user)
     });
-    let json = await response.json()
-    let jwt = json.auth_token
-    localStorage.setItem('jwt', jwt)
-    let user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
-    await this.props.getUser(user_id)
+    let json = await response.json();
+    let jwt = json.auth_token;
+    localStorage.setItem("jwt", jwt);
+    let user_id = JSON.parse(atob(jwt.split(".")[1])).user_id;
+    await this.props.getUser(user_id);
   };
 
   render() {

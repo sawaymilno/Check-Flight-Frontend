@@ -14,12 +14,9 @@ class PilotSearchForm extends Component {
    ********************************************/
 
   async componentDidMount() {
-    const response = await fetch(
-      "http://localhost:3000/airports",
-      {
-        headers: {"Authorization": localStorage.getItem('jwt')}
-      }
-    );
+    const response = await fetch("http://localhost:3000/airports", {
+      headers: { Authorization: localStorage.getItem("jwt") }
+    });
     const json = await response.json();
     json.forEach((el, i) => {
       el.isChecked = false;
@@ -33,12 +30,9 @@ class PilotSearchForm extends Component {
    ********************************************/
 
   getUsers = async () => {
-    const response = await fetch(
-      "http://localhost:3000/users",
-      {
-        headers: {"Authorization": localStorage.getItem('jwt')}
-      }
-    );
+    const response = await fetch("http://localhost:3000/users", {
+      headers: { Authorization: localStorage.getItem("jwt") }
+    });
     const json = await response.json();
     this.setState({
       ...this.state,

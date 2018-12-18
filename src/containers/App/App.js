@@ -19,35 +19,38 @@ class App extends Component {
     };
   }
 
-  getUser = async (id) => {
-    const response = await fetch(
-      `http://localhost:3000/users/${id}`,
-      {
-        headers: {"Authorization": localStorage.getItem('jwt')}
-      }
-    );
+  getUser = async id => {
+    const response = await fetch(`http://localhost:3000/users/${id}`, {
+      headers: { Authorization: localStorage.getItem("jwt") }
+    });
     const json = await response.json();
-    this.setState({ currentUser: json })
-  }
+    this.setState({ currentUser: json });
+  };
 
   get2params = async (path1, id1, path2, id2) => {
-    if (!id1) {id1 = ""}
-    if (!path2) {path2=""}
-    if (!id2) {id2=""}
-    const response = await fetch(
-      `http://localhost:3000/${path1}/${id1}`
-    );
+    if (!id1) {
+      id1 = "";
+    }
+    if (!path2) {
+      path2 = "";
+    }
+    if (!id2) {
+      id2 = "";
+    }
+    const response = await fetch(`http://localhost:3000/${path1}/${id1}`);
     const json = await response.json();
-    this.setState(() => ({ [path1] : json }));
+    this.setState(() => ({ [path1]: json }));
   };
 
   getMin2Max4 = async (path1, id1, path2, id2) => {
-    if (!id2) {id2=""}
+    if (!id2) {
+      id2 = "";
+    }
     const response = await fetch(
       `http://localhost:3000/${path1}/${id1}/${path2}/${id2}`
     );
     const json = await response.json();
-    this.setState(() => ({ [path1[id1]]: {[path2]:json} }));
+    this.setState(() => ({ [path1[id1]]: { [path2]: json } }));
   };
 
   editToggle = () => {
@@ -60,34 +63,30 @@ class App extends Component {
    * LOGIN SUBMIT HANDLER. RENDERS EXAMINER OR PILOT PROFILE
    *************************************************************************/
 
-  loginHandler = async (user) => {
-    let response = await fetch('http://localhost:3000/auth/login',
-      {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
-      })
-    let json = await response.json()
-    let jwt = json.auth_token
+  loginHandler = async user => {
+    let response = await fetch("http://localhost:3000/auth/login", {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    });
+    let json = await response.json();
+    let jwt = json.auth_token;
 
-    localStorage.setItem('jwt', jwt)
+    localStorage.setItem("jwt", jwt);
 
-    let user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
+    let user_id = JSON.parse(atob(jwt.split(".")[1])).user_id;
 
-    await this.getUser(user_id)
+    await this.getUser(user_id);
 
-    const airportResponse = await fetch(
-      "http://localhost:3000/airports",
-      {
-        headers: {"Authorization": localStorage.getItem('jwt')}
-      }
-    );
+    const airportResponse = await fetch("http://localhost:3000/airports", {
+      headers: { Authorization: localStorage.getItem("jwt") }
+    });
     const airportJson = await airportResponse.json();
 
-    this.setState({ airports: airportJson })
+    this.setState({ airports: airportJson });
 
     window.scrollTo(0, 0);
   };
@@ -96,9 +95,9 @@ class App extends Component {
    * LOGOUT BUTTON CLICK HANDLER. TAKES YOU BACK HOME
    **********************************************************/
   logoutHandler = e => {
-    localStorage.removeItem('jwt')
+    localStorage.removeItem("jwt");
 
-    this.setState({ currentUser: null })
+    this.setState({ currentUser: null });
 
     window.scrollTo(0, 0);
   };

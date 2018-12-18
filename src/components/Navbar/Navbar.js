@@ -7,7 +7,14 @@ import "../../containers/App/App.css";
 
 const Navigation = ({ logout, currentUser }) => {
   return currentUser ? (
-    <Navbar className="teal darken-3" brand="Check Ride" onClick={e => {e.preventDefault()}} right>
+    <Navbar
+      className="teal darken-3"
+      brand="Check Ride"
+      onClick={e => {
+        e.preventDefault();
+      }}
+      right
+    >
       {/* <NavItem href="/" onClick={() => window.scrollBy(0, 500)}>
         About
       </NavItem> */}
@@ -16,7 +23,14 @@ const Navigation = ({ logout, currentUser }) => {
       </NavItem>
     </Navbar>
   ) : (
-    <Navbar className="teal darken-3" brand="Check Ride" onClick={e => {e.preventDefault()}} right>
+    <Navbar
+      className="teal darken-3"
+      brand="Check Ride"
+      onClick={e => {
+        e.preventDefault();
+      }}
+      right
+    >
       <NavItem href="/" onClick={() => window.scrollBy(0, 500)}>
         About
       </NavItem>
