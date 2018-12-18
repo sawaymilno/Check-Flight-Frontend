@@ -19,11 +19,11 @@ class PilotSearchForm extends Component {
 
   async componentDidMount() {
     const response = await fetch(
-      "http://localhost:3000/airports"
+      "http://localhost:3000/airports",
+      {
+        headers: {"Authorization": localStorage.getItem('jwt')}
+      }
     );
-    // {
-    //   credentials: "include"
-    // }
     const json = await response.json();
     json.forEach((el, i) => {
       el.isChecked = false;
@@ -38,11 +38,11 @@ class PilotSearchForm extends Component {
 
   getUsers = async () => {
     const response = await fetch(
-      "http://localhost:3000/users"
+      "http://localhost:3000/users",
+      {
+        headers: {"Authorization": localStorage.getItem('jwt')}
+      }
     );
-    // {
-    //   credentials: "include"
-    // }
     const json = await response.json();
     this.setState({
       ...this.state,
@@ -55,7 +55,7 @@ class PilotSearchForm extends Component {
    **************************************************/
 
   airportCheckboxHandler = e => {
-    this.log();
+    // this.log();
     console.log(e.target.id);
     let id = +e.target.id - 1;
 

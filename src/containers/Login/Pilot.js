@@ -9,7 +9,7 @@ const Pilot = props => {
         {" "}
         <Icon large>account_circle</Icon>
         <br />
-        PILOT SIGN UP
+        Pilot Sign Up
       </h4>
       <form id="Pilot" onSubmit={props.signup}>
         <div style={{ textAlign: "left" }}>
@@ -27,9 +27,6 @@ const Pilot = props => {
             required
           >
             <Icon>email</Icon>
-          </Input>
-          <Input s={12} label="Username" name="username" validate required>
-            <Icon>account_circle</Icon>
           </Input>
           <Input
             s={12}
@@ -61,7 +58,7 @@ const Pilot = props => {
           user="Pilot"
           // onClick={props.login}
         >
-          CREATE ACCOUNT
+          Create Account
         </Button>
       </form>
       <br />

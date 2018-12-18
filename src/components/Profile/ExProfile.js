@@ -2,10 +2,7 @@ import React from "react";
 import { Row, Input, Card, Button, Icon } from "react-materialize";
 import Calendar from "../../containers/Calendar/Calendar";
 
-const ExProfile = ({ editToggle, state, logout }) => {
-
-  const isDisabled = state.isDisabled
-
+const ExProfile = ({ editToggle, currentUser, isDisabled }) => {
   const toggle = () => {
     editToggle();
   };
@@ -40,7 +37,7 @@ const ExProfile = ({ editToggle, state, logout }) => {
             m={6}
             l={3}
             label="First Name"
-            defaultValue={state.users.firstName}
+            defaultValue={currentUser.firstName}
             disabled={isDisabled}
           />
 
@@ -49,7 +46,7 @@ const ExProfile = ({ editToggle, state, logout }) => {
             m={6}
             l={3}
             label="Last Name"
-            defaultValue={state.users.lastName}
+            defaultValue={currentUser.lastName}
             disabled={isDisabled}
           />
           <Input
@@ -57,7 +54,7 @@ const ExProfile = ({ editToggle, state, logout }) => {
             m={6}
             l={3}
             label="Phone"
-            defaultValue={state.users.phone}
+            defaultValue={currentUser.phone}
             disabled={isDisabled}
           />
 
@@ -66,7 +63,7 @@ const ExProfile = ({ editToggle, state, logout }) => {
             m={6}
             l={3}
             label="Email"
-            defaultValue={state.users.email}
+            defaultValue={currentUser.email}
             disabled={isDisabled}
           />
           <Input
@@ -74,7 +71,7 @@ const ExProfile = ({ editToggle, state, logout }) => {
             m={6}
             l={3}
             label="Rate"
-            defaultValue={state.users.rates}
+            defaultValue={currentUser.rates}
             disabled={isDisabled}
           />
 
@@ -82,7 +79,7 @@ const ExProfile = ({ editToggle, state, logout }) => {
             s={12}
             label="Bio"
             type="textarea"
-            defaultValue={state.users.bio}
+            defaultValue={currentUser.bio}
             disabled={isDisabled}
           />
         </Row>
