@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, CardTitle } from "react-materialize";
 
-import "./Intro.css";
 import "../../containers/App/App.css";
 
 const Intro = () => (
