@@ -107,6 +107,7 @@ const ExProfile = ({ editToggle, currentUser, isDisabled, airports }) => {
           <Row>
             <Button
               onClick={toggle}
+              //add function to post data to server
               className="col s2 m2 offset-m5 offset-s5 green accent-3"
               type="submit"
             >

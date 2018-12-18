@@ -32,7 +32,13 @@ class Calendar extends Component {
 
   componentDidMount = async () => {
     const response = await fetch(
-      "http://localhost:3000/users/16/avails"
+      "http://localhost:3000/users/16/avails", {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          Authorization: localStorage.getItem("jwt")
+        }
+      }
     );
     const json = await response.json();
     this.setState({ available: json });
@@ -106,7 +112,8 @@ class Calendar extends Component {
       body: JSON.stringify(newAvail),
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        Authorization: localStorage.getItem("jwt")
       }
     })
     const avail = await response.json()
@@ -126,7 +133,8 @@ class Calendar extends Component {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        Authorization: localStorage.getItem("jwt")
       },
       body: body
     })
