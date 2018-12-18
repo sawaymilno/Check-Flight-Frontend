@@ -23,12 +23,22 @@ class Calendar extends Component {
     currentTime: new Date(Date.now()),
     currentMonth: new Date(Date.now()).getMonth(),
     currentYear: new Date(Date.now()).getYear()+1900,
-    available: {
-      date: '12 05 2018',
-      am: false,
-      pm: false,
-    },
+    available: [{
+      date: "2018-12-27T00:00:00.000Z",
+      morning: false,
+      afternoon: false,
+    },],
   };
+
+  componentDidMount = async () => {
+    const response = await fetch(
+      "http://localhost:3000/users/1/avails"
+    );
+    const json = await response.json();
+    this.setState({ available: json });
+    await console.log("available[0] after await", this.state.available[0].date)
+  }
+
 
   prevMonth = (e) => {
     let months = [
@@ -94,20 +104,20 @@ class Calendar extends Component {
 
   setAvail = (available, dayTime) => {
 
-    if(dayTime === "am") {
+    if(dayTime === "morning") {
       this.setState({
         available:{
-          am: available,
-          pm: this.state.available.pm,
+          morning: available,
+          afternoon: this.state.available.afternoon,
         },
       })
     }
 
-    else if (dayTime === "pm") {
+    else if (dayTime === "afternoon") {
       this.setState({
         available:{
-          am: this.state.available.am,
-          pm: available,
+          morning: this.state.available.morning,
+          afternoon: available,
         }
       })
     }
@@ -115,6 +125,7 @@ class Calendar extends Component {
   }
 
   render() {
+
     let monthName = this.state.month[this.state.currentMonth]
     return (
       <Card>
@@ -138,11 +149,11 @@ class Calendar extends Component {
             </Row>
             <Row>
               <Col s={7} m={2} className='offset-m1'>Available in AM:</Col>
-              <Col s={3} m={1} className='#fff9c4 yellow lighten-4 yellow-text text-lighten-4'>eas</Col>
+              <Col s={3} m={1} className='#fff59d yellow lighten-3 yellow-text text-lighten-3'>eas</Col>
               <Col s={7} m={2}>Available in PM:</Col>
-              <Col s={3} m={1} className='#ffebee red lighten-5 red-text text-lighten-5'>ter</Col>
+              <Col s={3} m={1} className='#4fc3f7 light-blue lighten-2 light-blue-text text-lighten-2'>ter</Col>
               <Col s={7} m={2}>Available all day</Col>
-              <Col s={3} m={1} className='#ba68c8 purple lighten-2 purple-text text-lighten-2'>egg</Col>
+              <Col s={3} m={1} className='#b2ff59 light-green accent-2 light-green-text text-accent-2'>egg</Col>
             </Row>
           </div>
     </Card>)
