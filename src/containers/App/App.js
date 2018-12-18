@@ -14,9 +14,7 @@ class App extends Component {
     super(props);
     this.state = {
       isDisabled: true,
-      exLoggedIn: false,
-      piLoggedIn: false,
-      currentUser: {},
+      currentUser: null,
       airports: []
     };
   }
@@ -29,8 +27,7 @@ class App extends Component {
       }
     );
     const json = await response.json();
-    let type = json.isExaminer ? 'exLoggedIn' : 'piLoggedIn'
-    this.setState(() => ({ currentUser: json, [type]: true }));
+    this.setState({ currentUser: json })
   }
 
   get2params = async (path1, id1, path2, id2) => {
@@ -54,19 +51,16 @@ class App extends Component {
   };
 
   editToggle = () => {
-    let isDisabled;
-    this.state.isDisabled ? (isDisabled = false) : (isDisabled = true);
     this.setState({
-      isDisabled: isDisabled
+      isDisabled: this.state.isDisabled ? false : true
     });
-    console.log("this.state",this.state);
   };
 
   /*************************************************************************
    * LOGIN SUBMIT HANDLER. RENDERS EXAMINER OR PILOT PROFILE
    *************************************************************************/
 
-  loginHandler = async (userType, user) => {
+  loginHandler = async (user) => {
     let response = await fetch('http://localhost:3000/auth/login',
       {
         method: "POST",
@@ -93,23 +87,8 @@ class App extends Component {
     );
     const airportJson = await airportResponse.json();
 
-    if (userType === "Pilot") {
-      this.setState({
-        ...this.state,
-        exLoggedIn: false,
-        piLoggedIn: true,
-        airports: airportJson
-      });
-    }
+    this.setState({ airports: airportJson })
 
-    if (userType === "Examiner") {
-      this.setState({
-        ...this.state,
-        exLoggedIn: true,
-        piLoggedIn: false,
-        airports: airportJson
-      });
-    }
     window.scrollTo(0, 0);
   };
 
@@ -119,21 +98,17 @@ class App extends Component {
   logoutHandler = e => {
     localStorage.removeItem('jwt')
 
-    this.setState({ exLoggedIn: false, piLoggedIn: false });
+    this.setState({ currentUser: null })
 
     window.scrollTo(0, 0);
   };
 
   render() {
-    // return (<PiPortal />)
-    const exLoggedIn = this.state.exLoggedIn;
-    const piLoggedIn = this.state.piLoggedIn;
-    return !exLoggedIn && !piLoggedIn ? (
+    return !this.state.currentUser ? (
       <div className="container">
         <Navigation
           logout={this.logoutHandler}
-          exLoggedIn={exLoggedIn}
-          piLoggedIn={piLoggedIn}
+          currentUser={this.state.currentUser}
         />
         <Intro />
         <Login
@@ -145,12 +120,11 @@ class App extends Component {
       </div>
     ) : (
       <div className="container">
-        {exLoggedIn ? (
+        {this.state.currentUser.isExaminer ? (
           <>
             <Navigation
               logout={this.logoutHandler}
-              exLoggedIn={exLoggedIn}
-              piLoggedIn={piLoggedIn}
+              currentUser={this.state.currentUser}
             />
             <ExPortal
               currentUser={this.state.currentUser}
@@ -165,8 +139,7 @@ class App extends Component {
           <>
             <Navigation
               logout={this.logoutHandler}
-              exLoggedIn={exLoggedIn}
-              piLoggedIn={piLoggedIn}
+              currentUser={this.state.currentUser}
             />
             <PiPortal
               logout={this.logoutHandler}

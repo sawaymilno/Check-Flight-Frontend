@@ -40,9 +40,6 @@ const Examiner = props => (
         >
           <Icon>lock</Icon>
         </Input>{" "}
-        <Input s={12} type="text" label="City, State" validate>
-          <Icon>location_on</Icon>
-        </Input>
         <Input s={12} name="rates" type="text" label="Rate">
           <Icon>monetization_on</Icon>
         </Input>
