@@ -88,10 +88,18 @@ const ExProfile = ({ editToggle, currentUser, isDisabled, airports }) => {
           <Row>
             {airports.map((airport, i) => {
               return (
-                <Input s={4} m={2} name="group1" type="checkbox" key={i} label={airport.code} checked={false} disabled={isDisabled} />
-              )
+                <Input
+                  s={4}
+                  m={2}
+                  name="group1"
+                  type="checkbox"
+                  key={i}
+                  label={airport.code}
+                  checked={false}
+                  disabled={isDisabled}
+                />
+              );
             })}
-
           </Row>
         </Card>
         <Calendar isDisabled={isDisabled} />

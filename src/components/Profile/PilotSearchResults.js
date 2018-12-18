@@ -17,11 +17,7 @@ const PilotSearchResults = props => {
   const filteredAirports = props.airports
     .filter(el => el.isChecked)
     .map((el, i) => (
-      <Card
-        key={el.id}
-        title={"Examiners at " + el.name}
-        actions={examiners}
-      />
+      <Card key={el.id} title={"Examiners at " + el.name} actions={examiners} />
     ));
   return <Row>{filteredAirports}</Row>;
 };

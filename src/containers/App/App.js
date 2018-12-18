@@ -19,14 +19,11 @@ class App extends Component {
       loginError: null
     };
   }
-
-  getUser = async (id) => {
-    const response = await fetch(
-      `http://localhost:3000/users/${id}`,
-      {
-        headers: {"Authorization": localStorage.getItem('jwt')}
-      }
-    );
+  
+  getUser = async id => {
+    const response = await fetch(`http://localhost:3000/users/${id}`, {
+      headers: { Authorization: localStorage.getItem("jwt") }
+    });
     const json = await response.json();
     this.setState({ currentUser: json, loginError: null })
   }
@@ -42,24 +39,24 @@ class App extends Component {
     this.setState({ airports: json })
   }
 
-  get2params = async (path1, id1, path2, id2) => {
+//this function takes 1 path and an OPTIONAL id
+  get2params = async (path1, id1) => {
     if (!id1) {id1 = ""}
-    if (!path2) {path2=""}
-    if (!id2) {id2=""}
-    const response = await fetch(
-      `http://localhost:3000/${path1}/${id1}`
-    );
-    const json = await response.json();
-    this.setState(() => ({ [path1] : json }));
-  };
+    const response = await fetch(`http://localhost:3000/${path1}/${id1}`);
 
+    const json = await response.json();
+    this.setState(() => ({ [path1]: json }));
+  };
+//this function takes one path, one id, another path and an OPTIONAL second ID
   getMin2Max4 = async (path1, id1, path2, id2) => {
-    if (!id2) {id2=""}
+    if (!id2) {
+      id2 = "";
+    }
     const response = await fetch(
       `http://localhost:3000/${path1}/${id1}/${path2}/${id2}`
     );
     const json = await response.json();
-    this.setState(() => ({ [path1[id1]]: {[path2]:json} }));
+    this.setState(() => ({ [path1[id1]]: { [path2]: json } }));
   };
 
   editToggle = () => {
@@ -114,14 +111,15 @@ class App extends Component {
    * LOGOUT BUTTON CLICK HANDLER. TAKES YOU BACK HOME
    **********************************************************/
   logoutHandler = e => {
-    localStorage.removeItem('jwt')
+    localStorage.removeItem("jwt");
 
-    this.setState({ currentUser: null })
+    this.setState({ currentUser: null });
 
     window.scrollTo(0, 0);
   };
 
   render() {
+
     return !this.state.currentUser ? (
       <div className="container">
         <Navigation

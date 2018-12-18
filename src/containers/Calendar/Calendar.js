@@ -24,7 +24,7 @@ class Calendar extends Component {
     currentMonth: new Date(Date.now()).getMonth(),
     currentYear: new Date(Date.now()).getYear()+1900,
     available: [{
-      date: "2018-12-27T00:00:00.000Z",
+      date: "2017-12-27T00:00:00.000Z",
       morning: false,
       afternoon: false,
     },],
@@ -32,13 +32,11 @@ class Calendar extends Component {
 
   componentDidMount = async () => {
     const response = await fetch(
-      "http://localhost:3000/users/1/avails"
+      "http://localhost:3000/users/16/avails"
     );
     const json = await response.json();
     this.setState({ available: json });
-    await console.log("available[0] after await", this.state.available[0].date)
   }
-
 
   prevMonth = (e) => {
     let months = [
@@ -102,30 +100,49 @@ class Calendar extends Component {
     })
   }
 
-  setAvail = (available, dayTime) => {
+  postAvail = async (newAvail) => {
+    const response = await fetch('http://localhost:3000/users/16/avails', {
+      method: "POST",
+      body: JSON.stringify(newAvail),
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    const avail = await response.json()
 
-    if(dayTime === "morning") {
-      this.setState({
-        available:{
-          morning: available,
-          afternoon: this.state.available.afternoon,
-        },
-      })
-    }
+    this.setState(() => ({
+      available: [
+        ...this.state.available,
+        avail
+      ],
+    }))
+  }
 
-    else if (dayTime === "afternoon") {
-      this.setState({
-        available:{
-          morning: this.state.available.morning,
-          afternoon: available,
-        }
-      })
-    }
-
+  putAvail = async (modAvail) => {
+    let body = JSON.stringify(modAvail)
+    let id = modAvail.id
+    await fetch(`http://localhost:3000/users/16/avails/${id}`, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: body
+    })
+    let newAvail = this.state.available.map(available => {
+      if (available.id === id) {
+        available = modAvail
+      }
+      return available
+    })
+    this.setState(() => ({
+    ...this.state,
+      available: newAvail
+    }))
   }
 
   render() {
-
     let monthName = this.state.month[this.state.currentMonth]
     return (
       <Card>
@@ -144,7 +161,7 @@ class Calendar extends Component {
             </Row>
             <Row>
 
-              <Canvas className="center-align" state={this.state} setAvail={this.setAvail} cTime={this.state.currentTime} cMonth={this.state.currentMonth} monthName={monthName} isDisabled={this.isDisabled}/>
+              <Canvas className="center-align" state={this.state} postAvail={this.postAvail} putAvail={this.putAvail} cTime={this.state.currentTime} cMonth={this.state.currentMonth} monthName={monthName} isDisabled={this.isDisabled}/>
 
             </Row>
             <Row>
