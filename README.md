@@ -6,11 +6,21 @@ Check Ride was built with React on the front-end and Ruby on Rails with PostgreS
 
 ---
 
-# Home/Login
+# Home
 
 The homepage includes a brief about section for Check Ride and forms for logging in or registering. Users will login or regeister as either a pilot or examiner. The examiner registration form includes extra fields such as rate and bio.
 
+### Navbar
+
+![navbar](screenshots/navbar)
+
+### Intro
+
+![about](screenshots/intro)
+
 ### Login
+
+The homepage defaults to the login forms. To switch to registration forms, click the link at the bottom of the form.
 
 ![login](screenshots/login.png)
 
