@@ -46,9 +46,6 @@ class PilotSearchForm extends Component {
         headers: {"Authorization": localStorage.getItem('jwt')}
       }
     );
-    // {
-    //   credentials: "include"
-    // }
     const json = await response.json();
     this.setState({
       ...this.state,
@@ -61,7 +58,7 @@ class PilotSearchForm extends Component {
    **************************************************/
 
   airportCheckboxHandler = e => {
-    this.log();
+    // this.log();
     console.log(e.target.id);
     let id = +e.target.id - 1;
 

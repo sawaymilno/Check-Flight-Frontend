@@ -97,7 +97,7 @@ class Login extends Component {
             />
           ) : (
             <LoginForm
-              user="Pilot"
+              userType="Pilot"
               login={this.props.login}
               clicked={this.showPilotFormHandler}
             />
@@ -113,7 +113,7 @@ class Login extends Component {
             />
           ) : (
             <LoginForm
-              user="Examiner"
+              userType="Examiner"
               login={this.props.login}
               clicked={this.showExaminerFormHandler}
             />

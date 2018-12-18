@@ -17,7 +17,7 @@ const PiProfile = ({ currentUser, editToggle, isDisabled, logout }) => {
           style={{ width: "50%" }}
           onClick={toggle}
           className="green accent-3"
-          type="submit"
+          type="button"
         >
           Edit Profile
         </Button>
@@ -26,7 +26,7 @@ const PiProfile = ({ currentUser, editToggle, isDisabled, logout }) => {
         <Button
           style={{ width: "50%" }}
           className="green accent-3"
-          type="submit"
+          type="button"
           onClick={logout}
         >
           Logout

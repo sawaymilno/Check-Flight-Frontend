@@ -87,14 +87,10 @@ class App extends Component {
    * LOGOUT BUTTON CLICK HANDLER. TAKES YOU BACK HOME
    **********************************************************/
   logoutHandler = e => {
-    e.preventDefault();
-    console.log(e.target);
-    if (this.state.piLoggedIn) {
-      this.setState({ ...this.state, exLoggedIn: false, piLoggedIn: false });
-    }
-    if (this.state.exLoggedIn) {
-      this.setState({ exLoggedIn: false, piLoggedIn: false });
-    }
+    localStorage.removeItem('jwt')
+
+    this.setState({ exLoggedIn: false, piLoggedIn: false });
+
     window.scrollTo(0, 0);
   };
 
@@ -122,7 +118,8 @@ class App extends Component {
               piLoggedIn={piLoggedIn}
             />
             <ExPortal
-              state={this.state}
+              currentUser={this.state.currentUser}
+              isDisabled={this.state.isDisabled}
               logout={this.logoutHandler}
               editToggle={this.editToggle}
             />
@@ -135,7 +132,10 @@ class App extends Component {
               exLoggedIn={exLoggedIn}
               piLoggedIn={piLoggedIn}
             />
-            <PiPortal logout={this.logoutHandler} currentUser={this.state.currentUser} />
+            <PiPortal
+              logout={this.logoutHandler}
+              currentUser={this.state.currentUser}
+            />
             <Foot />
           </>
         )}

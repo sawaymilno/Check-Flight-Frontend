@@ -2,18 +2,16 @@ import React from "react";
 import { Button, Card, Input, Icon } from "react-materialize";
 import { Link } from "react-router-dom";
 
-const LoginForm = ({ user, clicked, login }) => (
+const LoginForm = ({ userType, clicked, login }) => (
   <Card>
     <h4 style={{ textAlign: "center" }}>
       {" "}
       <Icon large>account_circle</Icon>
       <br />
-      {user} Login
+      {userType} Login
     </h4>
     <form onSubmit={e => {
         e.preventDefault()
-
-        let userType = e.target.id
 
         let user = {
           email: e.target.email.value,
@@ -21,7 +19,7 @@ const LoginForm = ({ user, clicked, login }) => (
         }
 
         login(userType, user)
-    }} id={user} style={{ textAlign: "left" }}>
+    }} id={userType} style={{ textAlign: "left" }}>
       <Input s={12} label="Email" name="email" validate required>
         <Icon>account_circle</Icon>
       </Input>
@@ -34,12 +32,9 @@ const LoginForm = ({ user, clicked, login }) => (
         type="submit"
         style={{ width: "100%" }}
         waves="light"
-        name={user}
-        user={user}
-        // id={user}
-        // onClick={login}
+        name={userType}
       >
-        {user} Login
+        {userType} Login
       </Button>
     </form>
     <br />
