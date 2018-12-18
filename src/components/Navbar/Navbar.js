@@ -2,7 +2,6 @@ import React from "react";
 
 import { Navbar, NavItem } from "react-materialize";
 
-import "./Navbar.css";
 import "../../containers/App/App.css";
 
 const Navigation = ({ logout, currentUser }) => {

@@ -1,7 +1,6 @@
 import React from "react";
-import { Card, CardTitle, Icon } from "react-materialize";
+import { Card, CardTitle } from "react-materialize";
 
-import "./Intro.css";
 import "../../containers/App/App.css";
 
 const Intro = () => (
@@ -11,7 +10,6 @@ const Intro = () => (
         image="https://flyefi.com/wp-content/uploads/2017/04/cessna-172-skyhawk-later-models-08.jpg"
         alt="Photo of Airplane"
       >
-        Check Ride
       </CardTitle>
     }
     // actions={[<a href='#'>This is a Link</a>]}
