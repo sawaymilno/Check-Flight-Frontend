@@ -1,21 +1,30 @@
 # Check Ride
 
-Check Ride is an application that connects pilots looking for an examiner to administer their check ride, the final exam in becoming a certified pilot with the Federal Aviation Administration. Examiners can customize their profiles to reflect calendar availability, airports they fly out of, rates, their personal bio and other relevant information that a potential client would be interested in. Pilots, once registerd, can filter their search for an examiner by selecting the airport(s) they want to fly from, which will allow them to see the examiners who are associated with that airport. 
+Check Ride is an application that connects pilots looking for an examiner to administer their check ride, the final exam in becoming a certified pilot with the Federal Aviation Administration. Examiners can customize their profiles to reflect calendar availability, airports they fly out of, rates, their personal bio and other relevant information that a potential client would be interested in. Pilots, once registerd, can filter their search for an examiner by selecting the airport(s) they want to fly from, which will allow them to see the examiners who are associated with that airport.
 
-Check Ride was built with React on the front-end and Ruby on Rails with PostgreSQL for the back-end. 
+Check Ride was built with React on the front-end and Ruby on Rails with PostgreSQL for the back-end.
 
-***
-# Home/Login 
+---
+
+# Home/Login
+
 The homepage includes a brief about section for Check Ride and forms for logging in or registering. Users will login or regeister as either a pilot or examiner. The examiner registration form includes extra fields such as rate and bio.
 
-![example](screenshots/login.png)
+### Login
 
-***
+![login](screenshots/login.png)
+
+### Register
+
+![register](screenshots/Register.png)
+
+---
+
 # Pilot Profile
 
-***
-# Examiner Profile
+---
 
+# Examiner Profile
 
 ## Available Scripts
 
