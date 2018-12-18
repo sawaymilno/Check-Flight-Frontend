@@ -16,7 +16,7 @@ The homepage includes a brief about section for Check Ride and forms for logging
 
 ### Intro
 
-![about](screenshots/intro/png)
+![about](screenshots/intro.png)
 
 ### Login
 
