@@ -1,7 +1,7 @@
 import React from "react";
 import ExProfile from "../../components/Profile/ExProfile";
 
-const ExPortal = ({ logout, editToggle, currentUser, isDisabled }) => {
+const ExPortal = ({ logout, editToggle, currentUser, isDisabled, airports }) => {
 
     return (
       <>
@@ -10,6 +10,7 @@ const ExPortal = ({ logout, editToggle, currentUser, isDisabled }) => {
           isDisabled={isDisabled}
           editToggle={editToggle}
           logout={logout}
+          airports={airports}
         />
       </>
     );

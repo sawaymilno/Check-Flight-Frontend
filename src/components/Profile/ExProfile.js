@@ -86,7 +86,7 @@ const ExProfile = ({ editToggle, currentUser, isDisabled }) => {
         <Card>
           <h4 className="col s12 m9 ">Airports</h4>
           <Row>
-            {airports.map((airport, i) => {
+            {this.props.airports.map((airport, i) => {
               return (
                 <Input s={4} m={2} name="group1" type="checkbox" key={i} label={airport.code} checked={false} disabled={isDisabled} />
               )

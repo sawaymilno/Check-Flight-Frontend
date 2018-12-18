@@ -16,7 +16,8 @@ class App extends Component {
       isDisabled: true,
       exLoggedIn: false,
       piLoggedIn: false,
-      currentUser: {}
+      currentUser: {},
+      airports: []
     };
   }
 
@@ -84,11 +85,20 @@ class App extends Component {
 
     await this.getUser(user_id)
 
+    const airportResponse = await fetch(
+      "http://localhost:3000/airports",
+      {
+        headers: {"Authorization": localStorage.getItem('jwt')}
+      }
+    );
+    const airportJson = await airportResponse.json();
+
     if (userType === "Pilot") {
       this.setState({
         ...this.state,
         exLoggedIn: false,
-        piLoggedIn: true
+        piLoggedIn: true,
+        airports: airportJson
       });
     }
 
@@ -96,7 +106,8 @@ class App extends Component {
       this.setState({
         ...this.state,
         exLoggedIn: true,
-        piLoggedIn: false
+        piLoggedIn: false,
+        airports: airportJson
       });
     }
     window.scrollTo(0, 0);
@@ -146,6 +157,7 @@ class App extends Component {
               isDisabled={this.state.isDisabled}
               logout={this.logoutHandler}
               editToggle={this.editToggle}
+              airports={this.state.airports}
             />
             <Foot />
           </>
