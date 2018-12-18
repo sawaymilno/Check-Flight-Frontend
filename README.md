@@ -5,14 +5,14 @@ Check Ride is an application that connects pilots looking for an examiner to adm
 Check Ride was built with React on the front-end and Ruby on Rails with PostgreSQL for the back-end. 
 
 ***
-#Home/Login 
+# Home/Login 
 The homepage includes a brief about section for Check Ride and forms for logging in or registering. Users will login or regeister as either a pilot or examiner. The examiner registration form includes extra fields such as rate and bio.
 
 ***
-#Pilot Profile
+# Pilot Profile
 
 ***
-#Examiner Profile
+# Examiner Profile
 
 
 ## Available Scripts
