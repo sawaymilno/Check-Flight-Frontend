@@ -1,8 +1,9 @@
-# Check Flight
+# Check Ride
 
-App description here
+Check Ride is an application that connects pilots looking for an examiner to administer their check ride, the final exam in becoming a certified pilot with the Federal Aviation Administration. Examiners can customize their profiles to reflect calendar availability, airports they fly out of, rates, their personal bio and other relevant information that a potential client would be interested in. Pilots, once registerd, can filter their search for an examiner by selecting the airport(s) they want to fly from, which will allow them to see the examiners who are associated with that airport. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Check Ride was built with React on the front-end and Ruby on Rails with PostgreSQL for the back-end. 
+
 
 ## Available Scripts
 
