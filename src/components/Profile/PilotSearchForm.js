@@ -19,7 +19,7 @@ class PilotSearchForm extends Component {
 
   async componentDidMount() {
     const response = await fetch(
-      "https://evening-hamlet-90015.herokuapp.com/airports"
+      "http://localhost:3000/airports"
     );
     // {
     //   credentials: "include"
@@ -32,16 +32,13 @@ class PilotSearchForm extends Component {
     this.getUsers();
   }
 
-  reset() {
-    this.setState(initialState);
-  }
   /********************************************
    **** Fetch User Data ********************
    ********************************************/
 
   getUsers = async () => {
     const response = await fetch(
-      "https://evening-hamlet-90015.herokuapp.com/users"
+      "http://localhost:3000/users"
     );
     // {
     //   credentials: "include"

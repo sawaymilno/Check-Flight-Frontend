@@ -52,7 +52,7 @@ class Login extends Component {
       rates: "",
       isExaminer: false
     };
-    fetch("https://evening-hamlet-90015.herokuapp.com/users", {
+    fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -77,7 +77,7 @@ class Login extends Component {
       rates: e.target.rates.value,
       isExaminer: true
     };
-    fetch("https://evening-hamlet-90015.herokuapp.com/users", {
+    fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
         Accept: "application/json",

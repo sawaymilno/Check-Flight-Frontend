@@ -20,12 +20,24 @@ class App extends Component {
     };
   }
 
-  get = async () => {
+  get2params = async (path1, id1, path2, id2) => {
+    if (!id1) {id1 = ""}
+    if (!path2) {path2=""}
+    if (!id2) {id2=""}
     const response = await fetch(
-      "https://evening-hamlet-90015.herokuapp.com/users/1"
+      `http://localhost:3000/${path1}/${id1}`
     );
     const json = await response.json();
-    this.setState(() => ({ users: json }));
+    this.setState(() => ({ [path1] : json }));
+  };
+
+  getMin2Max4 = async (path1, id1, path2, id2) => {
+    if (!id2) {id2=""}
+    const response = await fetch(
+      `http://localhost:3000/${path1}/${id1}/${path2}/${id2}`
+    );
+    const json = await response.json();
+    this.setState(() => ({ [path1[id1]]: {[path2]:json} }));
   };
 
   editToggle = () => {
@@ -34,7 +46,7 @@ class App extends Component {
     this.setState({
       isDisabled: isDisabled
     });
-    console.log(this.state);
+    console.log("this.state",this.state);
   };
 
   /*************************************************************************
@@ -43,9 +55,10 @@ class App extends Component {
 
   loginHandler = async e => {
     e.preventDefault();
-    console.log(e.target.id);
+    // console.log("target.id",e.target.id);
     let value = e.target.id;
-    await this.get();
+    await this.get2params('users',1);
+    await this.get2params("airports")
 
     if (value === "Pilot") {
       this.setState({
@@ -54,7 +67,6 @@ class App extends Component {
         piLoggedIn: true
       });
     }
-
     if (value === "Examiner") {
       this.setState({
         ...this.state,
@@ -62,9 +74,8 @@ class App extends Component {
         piLoggedIn: false
       });
     }
-
     window.scrollTo(0, 0);
-    console.log(this.state.users);
+    // console.log("users",this.state.users,"airports",this.state.airports);
   };
 
   /**********************************************************
@@ -72,7 +83,7 @@ class App extends Component {
    **********************************************************/
   logoutHandler = e => {
     e.preventDefault();
-    console.log(e.target);
+    console.log("e.target",e.target);
     if (this.state.piLoggedIn) {
       this.setState({ ...this.state, exLoggedIn: false, piLoggedIn: false });
     }
@@ -83,6 +94,7 @@ class App extends Component {
   };
 
   render() {
+    // return (<PiPortal />)
     const exLoggedIn = this.state.exLoggedIn;
     const piLoggedIn = this.state.piLoggedIn;
     return !exLoggedIn && !piLoggedIn ? (
