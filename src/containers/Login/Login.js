@@ -10,7 +10,8 @@ import LoginForm from "./LoginForm";
 class Login extends Component {
   state = {
     pilotFormOpen: false,
-    examinerFormOpen: false
+    examinerFormOpen: false,
+    signupError: null
   };
 
   /**************************************************************************
@@ -56,11 +57,26 @@ class Login extends Component {
       },
       body: JSON.stringify(user)
     });
-    let json = await response.json();
-    let jwt = json.auth_token;
-    localStorage.setItem("jwt", jwt);
-    let user_id = JSON.parse(atob(jwt.split(".")[1])).user_id;
-    await this.props.getUser(user_id);
+
+    // success
+    if (response.status.toString().match(/^20.$/)) {
+      let json = await response.json()
+      let jwt = json.auth_token
+      localStorage.setItem('jwt', jwt)
+      let user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
+      await this.props.getUser(user_id)
+      this.setState({ signupError: null })
+    }
+    // signup error
+    else {
+      this.setState({ signupError:
+        {
+          status: response.status,
+          message: 'Incorrect format or duplicate email',
+          userType: 'Pilot'
+        }
+      })
+    }
   };
 
   /**************************************************************************
@@ -87,11 +103,25 @@ class Login extends Component {
       },
       body: JSON.stringify(user)
     });
-    let json = await response.json();
-    let jwt = json.auth_token;
-    localStorage.setItem("jwt", jwt);
-    let user_id = JSON.parse(atob(jwt.split(".")[1])).user_id;
-    await this.props.getUser(user_id);
+
+    // success
+    if (response.status.toString().match(/^20.$/)) {
+      let json = await response.json()
+      let jwt = json.auth_token
+      localStorage.setItem('jwt', jwt)
+      let user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
+      await this.props.getUser(user_id)
+    }
+    // signup error
+    else {
+      this.setState({ signupError:
+        {
+          status: response.status,
+          message: 'Incorrect format or duplicate email',
+          userType: 'Examiner'
+        }
+      })
+    }
   };
 
   render() {
@@ -103,12 +133,14 @@ class Login extends Component {
               login={this.props.login}
               clicked={this.showPilotFormHandler}
               signup={this.pilotSignupHandler}
+              error={this.state.signupError}
             />
           ) : (
             <LoginForm
               userType="Pilot"
               login={this.props.login}
               clicked={this.showPilotFormHandler}
+              error={this.props.loginError}
             />
           )}
         </div>
@@ -119,12 +151,14 @@ class Login extends Component {
               login={this.props.login}
               clicked={this.showExaminerFormHandler}
               signup={this.examinerSignupHandler}
+              error={this.state.signupError}
             />
           ) : (
             <LoginForm
               userType="Examiner"
               login={this.props.login}
               clicked={this.showExaminerFormHandler}
+              error={this.props.loginError}
             />
           )}
         </div>

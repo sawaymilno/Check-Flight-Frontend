@@ -15,7 +15,8 @@ class App extends Component {
     this.state = {
       isDisabled: true,
       currentUser: null,
-      airports: []
+      airports: [],
+      loginError: null
     };
   }
   
@@ -24,8 +25,19 @@ class App extends Component {
       headers: { Authorization: localStorage.getItem("jwt") }
     });
     const json = await response.json();
-    this.setState({ currentUser: json });
-  };
+    this.setState({ currentUser: json, loginError: null })
+  }
+
+  getAirports = async () => {
+    const response = await fetch(
+      "http://localhost:3000/airports",
+      {
+        headers: {"Authorization": localStorage.getItem('jwt')}
+      }
+    );
+    const json = await response.json();
+    this.setState({ airports: json })
+  }
 
 //this function takes 1 path and an OPTIONAL id
   get2params = async (path1, id1) => {
@@ -57,32 +69,42 @@ class App extends Component {
    * LOGIN SUBMIT HANDLER. RENDERS EXAMINER OR PILOT PROFILE
    *************************************************************************/
 
-  loginHandler = async user => {
-    let response = await fetch("http://localhost:3000/auth/login", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(user)
-    });
-    let json = await response.json();
-    let jwt = json.auth_token;
+  loginHandler = async (userType, user) => {
+    const loginResponse = await fetch('http://localhost:3000/auth/login',
+      {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(user)
+      })
 
-    localStorage.setItem("jwt", jwt);
+      // success
+      if (loginResponse.status.toString().match(/^20.$/)) {
+        let json = await loginResponse.json()
 
-    let user_id = JSON.parse(atob(jwt.split(".")[1])).user_id;
+        let jwt = json.auth_token
 
-    await this.getUser(user_id);
+        localStorage.setItem('jwt', jwt)
 
-    const airportResponse = await fetch("http://localhost:3000/airports", {
-      headers: { Authorization: localStorage.getItem("jwt") }
-    });
-    const airportJson = await airportResponse.json();
+        let user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
 
-    this.setState({ airports: airportJson });
+        await this.getUser(user_id)
+        await this.getAirports()
 
-    window.scrollTo(0, 0);
+        window.scrollTo(0, 0);
+      }
+      // login error
+      else {
+        this.setState({ loginError:
+          {
+            status: loginResponse.status,
+            message: 'Incorrect username or password',
+            userType: userType
+          }
+        })
+      }
   };
 
   /**********************************************************
@@ -109,6 +131,7 @@ class App extends Component {
           login={this.loginHandler}
           logout={this.logoutHandler}
           getUser={this.getUser}
+          loginError={this.state.loginError}
         />
         <Foot />
       </div>
