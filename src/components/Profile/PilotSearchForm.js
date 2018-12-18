@@ -13,31 +13,31 @@ class PilotSearchForm extends Component {
    ********************************************/
 
   async componentDidMount() {
-    const response = await fetch("http://localhost:3000/airports", {
-      headers: { Authorization: localStorage.getItem("jwt") }
-    });
-    const json = await response.json();
-    json.forEach((el, i) => {
+    // const response = await fetch("http://localhost:3000/airports", {
+    //   headers: { Authorization: localStorage.getItem("jwt") }
+    // });
+    // const json = await response.json();
+    this.props.airports.forEach((el, i) => {
       el.isChecked = false;
     });
-    this.setState({ airports: json });
-    this.getUsers();
+    this.setState({ airports: this.props.airports });
+    // this.getUsers();
   }
 
   /********************************************
    **** Fetch User Data ********************
    ********************************************/
 
-  getUsers = async () => {
-    const response = await fetch("http://localhost:3000/users", {
-      headers: { Authorization: localStorage.getItem("jwt") }
-    });
-    const json = await response.json();
-    this.setState({
-      ...this.state,
-      users: json
-    });
-  };
+  // getUsers = async () => {
+  //   const response = await fetch("http://localhost:3000/users", {
+  //     headers: { Authorization: localStorage.getItem("jwt") }
+  //   });
+  //   const json = await response.json();
+  //   this.setState({
+  //     ...this.state,
+  //     users: json
+  //   });
+  // };
 
   /**************************************************
    *****  Check Boxes Click Handler *******************
@@ -102,7 +102,6 @@ class PilotSearchForm extends Component {
         <br />
         <div>
           <PilotSearchResults
-            examiners={this.state.users}
             airports={this.state.airports}
           />
         </div>

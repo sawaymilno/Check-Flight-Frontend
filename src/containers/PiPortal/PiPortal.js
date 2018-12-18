@@ -20,6 +20,7 @@ class PiPortal extends Component {
           editToggle={this.editToggle}
           isDisabled={this.state.isDisabled}
           logout={this.props.logout}
+          airports={this.props.airports}
         />
       </>
     );

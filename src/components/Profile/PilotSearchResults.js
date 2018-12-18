@@ -3,21 +3,21 @@ import React from "react";
 import { Row, CollectionItem, Card } from "react-materialize";
 
 const PilotSearchResults = props => {
-  const examiners = props.examiners
-    .filter(el => el.isExaminer)
-    .slice(0, 6)
-    .map((el, i) => (
-      <>
-        <CollectionItem href={el.firstName + el.lastName} key={i}>
-          {el.firstName + " " + el.lastName}
-        </CollectionItem>
-        <hr />
-      </>
-    ));
+  console.log(props.airports)
+  
   const filteredAirports = props.airports
     .filter(el => el.isChecked)
     .map((el, i) => (
-      <Card key={el.id} title={"Examiners at " + el.name} actions={examiners} />
+      <Card key={el.id} title={"Examiners at " + el.name} actions={
+        el.users.map((ex, i) => (
+          <div key={i}>
+              <CollectionItem href={ex.firstName + ex.lastName}>
+                {ex.firstName + " " + ex.lastName}
+              </CollectionItem>
+              <hr />
+            </div>
+          ))
+      } />
     ));
   return <Row>{filteredAirports}</Row>;
 };
