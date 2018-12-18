@@ -7,12 +7,12 @@ const PilotSearchResults = props => {
     .filter(el => el.isExaminer)
     .slice(0, 6)
     .map((el, i) => (
-      <>
-        <CollectionItem href={el.firstName + el.lastName} key={i}>
+      <div key={i}>
+        <CollectionItem href={el.firstName + el.lastName} key={el.id}>
           {el.firstName + " " + el.lastName}
         </CollectionItem>
         <hr />
-      </>
+      </div>
     ));
   const filteredAirports = props.airports
     .filter(el => el.isChecked)
