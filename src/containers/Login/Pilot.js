@@ -11,6 +11,9 @@ const Pilot = props => {
         <br />
         Pilot Sign Up
       </h4>
+      <div>
+      { props.error && props.error.userType === 'Pilot' ? props.error.message : '' }
+      </div>
       <form id="Pilot" onSubmit={props.signup}>
         <div style={{ textAlign: "left" }}>
           <Input s={12} label="First Name" name="firstName" validate required />

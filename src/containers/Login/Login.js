@@ -103,12 +103,14 @@ class Login extends Component {
               login={this.props.login}
               clicked={this.showPilotFormHandler}
               signup={this.pilotSignupHandler}
+              error={this.props.error}
             />
           ) : (
             <LoginForm
               userType="Pilot"
               login={this.props.login}
               clicked={this.showPilotFormHandler}
+              error={this.props.error}
             />
           )}
         </div>
@@ -119,12 +121,14 @@ class Login extends Component {
               login={this.props.login}
               clicked={this.showExaminerFormHandler}
               signup={this.examinerSignupHandler}
+              error={this.props.error}
             />
           ) : (
             <LoginForm
               userType="Examiner"
               login={this.props.login}
               clicked={this.showExaminerFormHandler}
+              error={this.props.error}
             />
           )}
         </div>

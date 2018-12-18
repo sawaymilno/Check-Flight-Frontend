@@ -10,6 +10,9 @@ const Examiner = props => (
       <br />
       Examiner Sign Up
     </h4>
+    <div>
+    { props.error && props.error.userType === 'Examiner' ? props.error.message : '' }
+    </div>
     <form id="Examiner" onSubmit={props.signup}>
       <div style={{ textAlign: "left" }}>
         <Input s={12} name="firstName" label="First Name" validate required />

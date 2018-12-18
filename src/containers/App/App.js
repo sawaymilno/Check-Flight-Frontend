@@ -15,7 +15,8 @@ class App extends Component {
     this.state = {
       isDisabled: true,
       currentUser: null,
-      airports: []
+      airports: [],
+      error: null
     };
   }
 
@@ -28,6 +29,17 @@ class App extends Component {
     );
     const json = await response.json();
     this.setState({ currentUser: json })
+  }
+
+  getAirports = async () => {
+    const response = await fetch(
+      "http://localhost:3000/airports",
+      {
+        headers: {"Authorization": localStorage.getItem('jwt')}
+      }
+    );
+    const json = await response.json();
+    this.setState({ airports: json })
   }
 
   get2params = async (path1, id1, path2, id2) => {
@@ -60,8 +72,8 @@ class App extends Component {
    * LOGIN SUBMIT HANDLER. RENDERS EXAMINER OR PILOT PROFILE
    *************************************************************************/
 
-  loginHandler = async (user) => {
-    let response = await fetch('http://localhost:3000/auth/login',
+  loginHandler = async (userType, user) => {
+    const loginResponse = await fetch('http://localhost:3000/auth/login',
       {
         method: "POST",
         headers: {
@@ -70,26 +82,32 @@ class App extends Component {
         },
         body: JSON.stringify(user)
       })
-    let json = await response.json()
-    let jwt = json.auth_token
 
-    localStorage.setItem('jwt', jwt)
+      // success
+      if (loginResponse.status.toString().match(/^20.$/)) {
+        let json = await loginResponse.json()
 
-    let user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
+        let jwt = json.auth_token
 
-    await this.getUser(user_id)
+        localStorage.setItem('jwt', jwt)
 
-    const airportResponse = await fetch(
-      "http://localhost:3000/airports",
-      {
-        headers: {"Authorization": localStorage.getItem('jwt')}
+        let user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
+
+        await this.getUser(user_id)
+        await this.getAirports()
+
+        window.scrollTo(0, 0);
       }
-    );
-    const airportJson = await airportResponse.json();
-
-    this.setState({ airports: airportJson })
-
-    window.scrollTo(0, 0);
+      // login error
+      else {
+        this.setState({ error:
+          {
+            status: loginResponse.status,
+            message: 'Incorrect username or password',
+            userType: userType
+          }
+        })
+      }
   };
 
   /**********************************************************
@@ -115,6 +133,7 @@ class App extends Component {
           login={this.loginHandler}
           logout={this.logoutHandler}
           getUser={this.getUser}
+          error={this.state.error}
         />
         <Foot />
       </div>
