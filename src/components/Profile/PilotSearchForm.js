@@ -3,10 +3,10 @@ import { Input, Row, Card } from "react-materialize";
 import React, { Component } from "react";
 import PilotSearchResults from "./PilotSearchResults";
 
-const initialState = {
-  airports: [],
-  users: []
-};
+// const initialState = {
+//   airports: [],
+//   users: []
+// };
 class PilotSearchForm extends Component {
   state = {
     airports: [],
