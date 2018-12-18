@@ -36,7 +36,7 @@ class Login extends Component {
   /**************************************************************************
    * submit handler on pilot signup button to post registration *
    **************************************************************************/
-  pilotSignupHandler = e => {
+  pilotSignupHandler = async e => {
     e.preventDefault();
     console.log(e.target.id);
     const user = {
@@ -49,7 +49,7 @@ class Login extends Component {
       rates: "",
       isExaminer: false
     };
-    fetch("http://localhost:3000/users", {
+    let response = await fetch("http://localhost:3000/users", {
       method: "POST",
       headers: {
         "Accept": "application/json",
@@ -57,7 +57,11 @@ class Login extends Component {
       },
       body: JSON.stringify(user)
     });
-    this.props.login(e);
+    let json = await response.json()
+    let jwt = json.auth_token
+    localStorage.setItem('jwt', jwt)
+    let user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
+    await this.props.getUser(user_id)
   };
 
   /**************************************************************************

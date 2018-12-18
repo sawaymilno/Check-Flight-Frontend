@@ -20,9 +20,6 @@ const Examiner = props => (
         <Input type="email" label="Email" s={12} name="email" validate required>
           <Icon>email</Icon>
         </Input>
-        <Input s={12} name="username" label="Username" validate required>
-          <Icon>account_circle</Icon>
-        </Input>
         <Input
           s={12}
           name="password"

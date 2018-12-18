@@ -28,9 +28,6 @@ const Pilot = props => {
           >
             <Icon>email</Icon>
           </Input>
-          <Input s={12} label="Username" name="username" validate required>
-            <Icon>account_circle</Icon>
-          </Input>
           <Input
             s={12}
             label="Password"

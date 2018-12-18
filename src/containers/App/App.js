@@ -28,7 +28,8 @@ class App extends Component {
       }
     );
     const json = await response.json();
-    this.setState(() => ({ currentUser: json }));
+    let type = json.isExaminer ? 'exLoggedIn' : 'piLoggedIn'
+    this.setState(() => ({ currentUser: json, [type]: true }));
   };
 
   editToggle = () => {
@@ -105,7 +106,11 @@ class App extends Component {
           piLoggedIn={piLoggedIn}
         />
         <Intro />
-        <Login login={this.loginHandler} logout={this.logoutHandler} />
+        <Login
+          login={this.loginHandler}
+          logout={this.logoutHandler}
+          getUser={this.getUser}
+        />
         <Foot />
       </div>
     ) : (
