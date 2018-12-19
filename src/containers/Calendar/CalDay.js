@@ -14,45 +14,9 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
   if (state.available.length===0) {
     state.available = [{date: "2017-12-27T00:00:00.000Z", morning: false, afternoon: false},]
   }
-  console.log('row',row,'date', date);
-  console.log('availDate', availDate);
-  console.log('state available',state.available);
-  //
-  // const availToggle = e => {
-  //   let available;
-  //   let dayTime = e.target.id;
-  //   for (var i = 0; i < availDate.length; i++) {
-  //     if (availDate[i].day === date) {
-  //       switch (dayTime) {
-  //         case "morning":
-  //           if (availDate[i].morning) {
-  //             available = false;
-  //           } else {
-  //             available = true;
-  //           }
-  //           setAvail(available, dayTime);
-  //           break;
-  //         default:
-  //           if (availDate[i].afternoon) {
-  //             available = false;
-  //           } else {
-  //             available = true;
-  //           }
-  //           setAvail(available, dayTime);
-  //       }
-  //     }
-  //   }
-  // };
-
-
-
-
-  // for (let i = 0; i < availDate.length; i++) {
-  //   let day = parseInt(availDate[i].day);
-  //   let month = parseInt(availDate[i].month);
-  //   let year = parseInt(availDate[i].year);
-  //   let morning = availDate[i].morning;
-  //   let afternoon = availDate[i].afternoon;
+  // console.log('row',row,'date', date);
+  // console.log('availDate', availDate);
+  // console.log('state available',state.available);
 
   for (let i = 0; i < availDate.length; i++) {
 
@@ -180,7 +144,7 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
 
   return (
     <div>
-      <Modal 
+      <Modal
         className="center"
         header={`${monthName} ${date}${ith} Booking Availability`}
 

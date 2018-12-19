@@ -2,14 +2,58 @@ import React from "react";
 import { Row, Input, Card, Button, Icon } from "react-materialize";
 import Calendar from "../../containers/Calendar/Calendar";
 
-const ExProfile = ({ editToggle, currentUser, isDisabled, airports,avails }) => {
-  const toggle = () => {
-    editToggle();
-  };
+const ExProfile = ({ editToggle, currentUser, isDisabled, airports,avails, updateExaminer, examAirports }) => {
 
+
+const onSubmit = (e) => {
+  e.preventDefault()
+  let form = e.target
+  let updatedUser = {
+    bio: form.bio.value,
+    email: form.email.value,
+    firstName: form.firstName.value,
+    id: currentUser.id,
+    isExaminer: currentUser.isExaminer,
+    lastName: form.lastName.value,
+    phone: form.phone.value,
+    rates: form.rate.value
+
+    }
+    //console.log("updatedUser", updatedUser);
+
+  let nodesArray = [].slice.call(document.querySelectorAll("input"));
+  let filteredAirports = nodesArray.filter(airport => airport.checked)
+  let selectedAirports = filteredAirports.map(airport => parseInt(airport.id))
+  let updatedAirports = {airports: selectedAirports}
+
+  //selectedAirports = JSON.stringify(selectedAirports)
+  //console.log("selectedAirports",selectedAirports,typeof selectedAirports[0]);
+  //console.log("updatedAirports",updatedAirports);
+  updateExaminer(updatedUser,updatedAirports)
+  editToggle()
+}
+
+let checkedAirports = airports.map(airport => {
+  for (let i = 0; i < examAirports.length; i++) {
+    console.log("in checkedAirports", examAirports[i],airport.id);
+    if (airport.id===examAirports[i]) {
+      airport.checked=true
+    } else {airport.checked=false}
+  }
+     return airport
+  })
+
+  const toggle = () => {
+      editToggle();
+      //checkedAirports = []
+    };
+
+// console.log("THIS IS THE CHECKED AIRPORTS", checkedAirports);
+//console.log("IS CHECKED TRUE[0]",checkedAirports[0].checked);
   return (
     <Card>
       <Card style={{ textAlign: "center" }}>
+        <Card>
         <Icon large>account_circle</Icon>
         <h4>Examiner Profile</h4>
         <div
@@ -18,9 +62,7 @@ const ExProfile = ({ editToggle, currentUser, isDisabled, airports,avails }) => 
           <Button
             style={{ width: "50%" }}
             onClick={toggle}
-            className="green accent-3 col s12 m1 right"
-            type="submit"
-          >
+            className="green accent-3 col s12 m1 right">
             Edit Profile
           </Button>
         </div>
@@ -31,90 +73,61 @@ const ExProfile = ({ editToggle, currentUser, isDisabled, airports,avails }) => 
           <br />
           <br />
         </div>
+        <div onSubmit={onSubmit}>
+        <form>
         <Row>
-          <Input
-            s={12}
-            m={6}
-            l={3}
-            label="First Name"
-            defaultValue={currentUser.firstName}
-            disabled={isDisabled}
-          />
+          <Input s={12} m={6} l={3} label="First Name"  name="firstName"  defaultValue={currentUser.firstName} disabled={isDisabled} />
 
-          <Input
-            s={12}
-            m={6}
-            l={3}
-            label="Last Name"
-            defaultValue={currentUser.lastName}
-            disabled={isDisabled}
-          />
-          <Input
-            s={12}
-            m={6}
-            l={3}
-            label="Phone"
-            defaultValue={currentUser.phone}
-            disabled={isDisabled}
-          />
+          <Input s={12} m={6} l={3} label="Last Name" name="lastName" defaultValue={currentUser.lastName}
+            disabled={isDisabled}/>
+          <Input s={12} m={6} l={3} label="Phone" name="phone" defaultValue={currentUser.phone}
+            disabled={isDisabled}/>
 
-          <Input
-            s={12}
-            m={6}
-            l={3}
-            label="Email"
-            defaultValue={currentUser.email}
-            disabled={isDisabled}
-          />
-          <Input
-            s={12}
-            m={6}
-            l={3}
-            label="Rate"
-            defaultValue={currentUser.rates}
-            disabled={isDisabled}
-          />
+          <Input s={12} m={6} l={3} label="Email" name="email" defaultValue={currentUser.email}
+            disabled={isDisabled}/>
+          <Input s={12} m={6} l={3} label="Rate" name="rate" defaultValue={currentUser.rates}
+            disabled={isDisabled}/>
 
-          <Input
-            s={12}
-            label="Bio"
-            type="textarea"
-            defaultValue={currentUser.bio}
-            disabled={isDisabled}
-          />
+          <Input s={12} label="Bio" type="textarea" name="bio" defaultValue={currentUser.bio}
+            disabled={isDisabled}/>
         </Row>
         <Card>
           <h4 className="col s12 m9 ">Airports</h4>
           <Row>
-            {airports.map((airport, i) => {
+            {checkedAirports.map((airport, i) => {
+              let id = airport.id.toString()
               return (
                 <Input
                   s={4}
                   m={2}
-                  name="group1"
+                  name="airport"
                   type="checkbox"
                   key={i}
+                  id={id}
                   label={airport.code}
-                  checked={false}
+                  checked={airport.checked}
                   disabled={isDisabled}
                 />
               );
             })}
           </Row>
         </Card>
+          {isDisabled ? null : (
+            <Row>
+              <Button
+
+                //add function to post data to server
+                className="col s2 m2 offset-m5 offset-s5 green accent-3"
+                type="submit">
+                Submit
+                Changes
+              </Button>
+            </Row>
+          )}
+        </form>
+      </div>
+      </Card>
         <Calendar isDisabled={isDisabled} avails={avails} currentUser={currentUser} />
-        {isDisabled ? null : (
-          <Row>
-            <Button
-              onClick={toggle}
-              //add function to post data to server
-              className="col s2 m2 offset-m5 offset-s5 green accent-3"
-              type="submit"
-            >
-              Submit Changes
-            </Button>
-          </Row>
-        )}
       </Card>
     </Card>
   );
