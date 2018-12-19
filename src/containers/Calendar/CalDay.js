@@ -44,12 +44,16 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
   switch(date) {
 
     case 1:
+    case 21:
+    case 31:
       ith = "st";
       break;
     case 2:
+    case 22:
       ith = "nd";
       break;
     case 3:
+    case 23:
       ith = "rd";
       break;
     default:
