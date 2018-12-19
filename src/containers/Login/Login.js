@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Row } from "react-materialize";
 
-
 import Pilot from "./Pilot";
 import Examiner from "./Examiner";
 import LoginForm from "./LoginForm";
@@ -63,6 +62,8 @@ class Login extends Component {
       let jwt = json.auth_token
       localStorage.setItem('jwt', jwt)
       let user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
+      await this.props.getAirports()
+      await this.props.getAvails(user_id)
       await this.props.getUser(user_id)
       this.setState({ signupError: null })
     }
@@ -109,7 +110,10 @@ class Login extends Component {
       let jwt = json.auth_token
       localStorage.setItem('jwt', jwt)
       let user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
+      await this.props.getAirports()
+      await this.props.getAvails(user_id)
       await this.props.getUser(user_id)
+      this.setState({ signupError: null })
     }
     // signup error
     else {

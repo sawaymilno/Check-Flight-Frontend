@@ -175,6 +175,8 @@ class App extends Component {
           login={this.loginHandler}
           logout={this.logoutHandler}
           getUser={this.getUser}
+          getAirports={this.getAirports}
+          getAvails={this.getAvails}
           loginError={this.state.loginError}
         />
         <Foot />
