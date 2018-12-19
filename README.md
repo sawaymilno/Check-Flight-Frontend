@@ -32,9 +32,21 @@ The homepage defaults to the login forms. To switch to registration forms, click
 
 # Pilot Profile
 
+![pilottop](screenshots/piProfileTop.png)
+![checkboxes](screenshots/checkboxes.png)
+![checked](screenshots/checkedairports.png)
+![airports](screenshots/airports.png)
+![examinercontact](screenshots/examinercontact.png)
+
 ---
 
 # Examiner Profile
+
+![examinertop](screenshots/exprofiletop.png)
+![examinermid](screenshots/examinercontact.png)
+![exairports](screenshots/exprofileairports.png)
+The calendar allows examiners to set their availability.
+![calendar](screenshots/calendar.png)
 
 ## Available Scripts
 
