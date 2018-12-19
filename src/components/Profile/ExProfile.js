@@ -11,11 +11,14 @@ const ExProfile = ({
   updateExaminer,
   examAirports
 }) => {
-  console.log("BEFORE new state in Exprofile", examAirports);
-  console.log("BEFORE checkedAirports in Exprofile", checked);
-  const toggle = () => {
-    editToggle();
-  };
+  
+//console.log("BEFORE new state in Exprofile",examAirports)
+//console.log("BEFORE airports in Exprofile",airports);
+//console.log("BEFORE checkedAirports in Exprofile",checked);
+const toggle = () => {
+      editToggle();
+      //checkedAirports = []
+    };
 
   const onSubmit = e => {
     e.preventDefault();
@@ -29,13 +32,12 @@ const ExProfile = ({
       lastName: form.lastName.value,
       phone: form.phone.value,
       rates: form.rate.value
+
     };
 
     let nodesArray = [].slice.call(document.querySelectorAll("input"));
     let filteredAirports = nodesArray.filter(airport => airport.checked);
-    let selectedAirports = filteredAirports.map(airport =>
-      parseInt(airport.id)
-    );
+    let selectedAirports = filteredAirports.map(airport => parseInt(airport.id));
     let updatedAirports = { airports: selectedAirports };
 
     updateExaminer(updatedUser, updatedAirports);
@@ -54,9 +56,15 @@ const ExProfile = ({
     return airport;
   });
 
-  let checked = checkedAirports.map(airport => {
-    return airport.checked;
-  });
+// let checked = checkedAirports.map(airport => {
+//   return airport.checked
+// })
+
+//console.log("AFTER checkedAirports in Exprofile",checked);
+  //console.log("AFTER new state in Exprofile ",examAirports)
+  //console.log("AFTER airports in Exprofile",airports);
+// console.log("THIS IS THE CHECKED AIRPORTS", checkedAirports);
+//console.log("IS CHECKED TRUE[0]",checkedAirports[0].checked);
 
   return (
     <Card>
@@ -176,11 +184,20 @@ const ExProfile = ({
             </form>
           </div>
         </Card>
-        <Calendar
-          isDisabled={isDisabled}
-          avails={avails}
-          currentUser={currentUser}
-        />
+          {isDisabled ? null : (
+            <Row>
+              <Button
+                className="col s2 m2 offset-m5 offset-s5 green accent-3"
+                type="submit">
+                Submit
+                Changes
+              </Button>
+            </Row>
+          )}
+        </form>
+      </div>
+      </Card>
+        <Calendar isDisabled={isDisabled} avails={avails} currentUser={currentUser} />
       </Card>
     </Card>
   );

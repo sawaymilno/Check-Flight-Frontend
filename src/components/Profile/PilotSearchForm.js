@@ -13,6 +13,7 @@ class PilotSearchForm extends Component {
    ********************************************/
 
   async componentDidMount() {
+
     this.props.airports.forEach((el, i) => {
       el.isChecked = false;
     });
