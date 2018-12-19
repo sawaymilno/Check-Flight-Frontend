@@ -2,7 +2,7 @@ import React from "react";
 import { Row, Input, Card, Button, Icon } from "react-materialize";
 import Calendar from "../../containers/Calendar/Calendar";
 
-const ExProfile = ({ editToggle, currentUser, isDisabled, airports }) => {
+const ExProfile = ({ editToggle, currentUser, isDisabled, airports,avails }) => {
   const toggle = () => {
     editToggle();
   };
@@ -102,7 +102,7 @@ const ExProfile = ({ editToggle, currentUser, isDisabled, airports }) => {
             })}
           </Row>
         </Card>
-        <Calendar isDisabled={isDisabled} />
+        <Calendar isDisabled={isDisabled} avails={avails} currentUser={currentUser} />
         {isDisabled ? null : (
           <Row>
             <Button

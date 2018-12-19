@@ -6,7 +6,8 @@ const ExPortal = ({
   editToggle,
   currentUser,
   isDisabled,
-  airports
+  airports,
+  avails,
 }) => {
   return (
     <>
@@ -16,6 +17,7 @@ const ExPortal = ({
         editToggle={editToggle}
         logout={logout}
         airports={airports}
+        avails={avails}
       />
     </>
   );
