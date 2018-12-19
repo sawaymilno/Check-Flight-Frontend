@@ -11,7 +11,7 @@ const LoginForm = ({ userType, clicked, login, error }) =>
       <br />
       {userType} Login
     </h4>
-    <div>
+    <div style={{ color: "red" }}>
     { error && error.userType === userType ? error.message : '' }
     </div>
     <form onSubmit={e => {

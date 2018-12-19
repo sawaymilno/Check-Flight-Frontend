@@ -12,40 +12,19 @@ class PilotSearchForm extends Component {
    **** Fetch Airport Data ********************
    ********************************************/
 
-   componentDidMount = async () => {
-    // const response = await fetch("http://localhost:3000/airports", {
-    //   headers: { Authorization: localStorage.getItem("jwt") }
-    // });
-    // const json = await response.json();
+  async componentDidMount() {
+
     this.props.airports.forEach((el, i) => {
       el.isChecked = false;
     });
     this.setState({ airports: this.props.airports });
-    // this.getUsers();
   }
-
-  /********************************************
-   **** Fetch User Data ********************
-   ********************************************/
-
-  // getUsers = async () => {
-  //   const response = await fetch("http://localhost:3000/users", {
-  //     headers: { Authorization: localStorage.getItem("jwt") }
-  //   });
-  //   const json = await response.json();
-  //   this.setState({
-  //     ...this.state,
-  //     users: json
-  //   });
-  // };
 
   /**************************************************
    *****  Check Boxes Click Handler *******************
    **************************************************/
 
   airportCheckboxHandler = e => {
-    // this.log();
-    console.log(e.target.id);
     let id = +e.target.id - 1;
 
     if (!this.state.airports[id].isChecked) {
@@ -101,9 +80,7 @@ class PilotSearchForm extends Component {
         <br />
         <br />
         <div>
-          <PilotSearchResults
-            airports={this.state.airports}
-          />
+          <PilotSearchResults airports={this.state.airports} />
         </div>
       </>
     );

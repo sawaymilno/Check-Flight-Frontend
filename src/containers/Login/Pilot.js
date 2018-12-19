@@ -11,7 +11,7 @@ const Pilot = props => {
         <br />
         Pilot Sign Up
       </h4>
-      <div>
+      <div style={{ color: "red" }}>
       { props.error && props.error.userType === 'Pilot' ? props.error.message : '' }
       </div>
       <form id="Pilot" onSubmit={props.signup}>

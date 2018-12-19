@@ -7,8 +7,6 @@ class PilotSearchResults extends Component {
   };
 
   render() {
-    console.log(this.props.airports);
-
     const filteredAirports = this.props.airports
       .filter(el => el.isChecked)
       .map((el, i) => (
@@ -44,7 +42,7 @@ class PilotSearchResults extends Component {
             </h3>
             <h5>
               <Icon>phone</Icon>&nbsp;
-              {this.state.examinerViewing.phone}
+              {this.state.examinerViewing.phone.replace(/^(\d{3})(\d{3})(\d{4})$/, `(${'$1'}) ${'$2'}-${'$3'}`)}
             </h5>
             <h5>
               <Icon>email</Icon>&nbsp;
