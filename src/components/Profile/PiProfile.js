@@ -3,7 +3,7 @@ import React from "react";
 import { Card, Icon, Button, Row, Input } from "react-materialize";
 import PilotSearchForm from "./PilotSearchForm";
 
-const PiProfile = ({ currentUser, editToggle, isDisabled, logout }) => {
+const PiProfile = ({ currentUser, editToggle, isDisabled, logout, airports }) => {
   const toggle = e => {
     editToggle(e);
   };
@@ -69,7 +69,9 @@ const PiProfile = ({ currentUser, editToggle, isDisabled, logout }) => {
           disabled={isDisabled}
         />
       </Row>
-      <PilotSearchForm />
+      <PilotSearchForm
+        airports={airports}
+      />
     </Card>
   );
 };

@@ -93,9 +93,10 @@ class App extends Component {
 
         let user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
 
-        await this.getUser(user_id)
         await this.getAirports()
         await this.getAvails(user_id)
+        await this.getUser(user_id)
+
 
         window.scrollTo(0, 0);
       }
@@ -166,6 +167,7 @@ class App extends Component {
             <PiPortal
               logout={this.logoutHandler}
               currentUser={this.state.currentUser}
+              airports={this.state.airports}
             />
             <Foot />
           </>
