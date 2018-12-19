@@ -82,6 +82,7 @@ class Login extends Component {
   /**************************************************************************
    * submit handler on examiner signup button to post registration *
    **************************************************************************/
+
   examinerSignupHandler = async e => {
     e.preventDefault();
     const user = {
@@ -126,6 +127,7 @@ class Login extends Component {
       })
     }
   };
+
 
   render() {
     return (
