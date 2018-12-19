@@ -7,8 +7,6 @@ class PilotSearchResults extends Component {
   };
 
   render() {
-    console.log(this.props.airports);
-
     const filteredAirports = this.props.airports
       .filter(el => el.isChecked)
       .map((el, i) => (
