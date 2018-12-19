@@ -51,7 +51,6 @@ class App extends Component {
     this.setState({ available: json });
   };
 
-
   putAirports = async (update) => {
     let airports = update.airports
     console.log("current state",this.state.examAirports)
@@ -209,6 +208,7 @@ class App extends Component {
               logout={this.logoutHandler}
               currentUser={this.state.currentUser}
               airports={this.state.airports}
+              putUser={this.putUser}
             />
             <Foot />
           </>

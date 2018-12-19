@@ -12,7 +12,7 @@ class PilotSearchForm extends Component {
    **** Fetch Airport Data ********************
    ********************************************/
 
-  async componentDidMount() {
+   componentDidMount = async () => {
     // const response = await fetch("http://localhost:3000/airports", {
     //   headers: { Authorization: localStorage.getItem("jwt") }
     // });

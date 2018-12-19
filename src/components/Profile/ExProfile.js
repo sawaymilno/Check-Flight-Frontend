@@ -4,9 +4,9 @@ import Calendar from "../../containers/Calendar/Calendar";
 
 const ExProfile = ({ editToggle, currentUser, isDisabled, airports,avails, updateExaminer, examAirports }) => {
 
-console.log("BEFORE new state in Exprofile",examAirports)
+//console.log("BEFORE new state in Exprofile",examAirports)
 //console.log("BEFORE airports in Exprofile",airports);
-console.log("BEFORE checkedAirports in Exprofile",checked);
+//console.log("BEFORE checkedAirports in Exprofile",checked);
 const toggle = () => {
       editToggle();
       //checkedAirports = []
@@ -51,11 +51,11 @@ let checkedAirports = airports.map(airport => {
      return airport
   })
 
-let checked = checkedAirports.map(airport => {
-  return airport.checked
-})
+// let checked = checkedAirports.map(airport => {
+//   return airport.checked
+// })
 
-console.log("AFTER checkedAirports in Exprofile",checked);
+//console.log("AFTER checkedAirports in Exprofile",checked);
   //console.log("AFTER new state in Exprofile ",examAirports)
   //console.log("AFTER airports in Exprofile",airports);
 // console.log("THIS IS THE CHECKED AIRPORTS", checkedAirports);
@@ -125,8 +125,6 @@ console.log("AFTER checkedAirports in Exprofile",checked);
           {isDisabled ? null : (
             <Row>
               <Button
-
-                //add function to post data to server
                 className="col s2 m2 offset-m5 offset-s5 green accent-3"
                 type="submit">
                 Submit

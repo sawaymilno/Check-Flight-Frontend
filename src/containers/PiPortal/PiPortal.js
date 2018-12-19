@@ -21,6 +21,7 @@ class PiPortal extends Component {
           isDisabled={this.state.isDisabled}
           logout={this.props.logout}
           airports={this.props.airports}
+          putUser={this.props.putUser}
         />
       </>
     );
