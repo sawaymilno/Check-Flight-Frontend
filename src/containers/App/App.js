@@ -22,6 +22,14 @@ class App extends Component {
     };
   }
 
+  componentDidMount = async id => {
+    const jwt = localStorage.getItem('jwt')
+    const user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
+    await this.getAirports()
+    await this.getAvails(user_id)
+    await this.getUser(user_id)
+  }
+
   getUser = async id => {
     const response = await fetch(`http://localhost:3000/users/${id}`, {
       headers: { Authorization: localStorage.getItem("jwt") }
@@ -135,7 +143,6 @@ class App extends Component {
         await this.getAirports()
         await this.getAvails(user_id)
         await this.getUser(user_id)
-
 
         window.scrollTo(0, 0);
       }
