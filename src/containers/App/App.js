@@ -16,6 +16,7 @@ class App extends Component {
       isDisabled: true,
       currentUser: null,
       airports: [],
+      examAirports: [],
       loginError: null,
       available: [],
     };
@@ -40,7 +41,6 @@ class App extends Component {
     this.setState({ airports: json })
   }
 
-
   getAvails = async (id) => {
     const response = await fetch(`http://localhost:3000/users/${id}/avails`,
     {
@@ -50,17 +50,56 @@ class App extends Component {
     const json = await response.json();
     this.setState({ available: json });
   };
-//this function takes one path, one id, another path and an OPTIONAL second ID
-  // getMin2Max4 = async (path1, id1, path2, id2) => {
-  //   if (!id2) {
-  //     id2 = "";
-  //   }
-  //   const response = await fetch(
-  //     `http://localhost:3000/${path1}/${id1}/${path2}/${id2}`
-  //   );
-  //   const json = await response.json();
-  //   this.(() => ({ [path1[id1]]: { [path2]: json } }));
-  // };
+
+
+  putAirports = async (update) => {
+    let airports = update.airports
+    console.log("current state",this.state.examAirports)
+    //console.log("update",update);
+    let body = JSON.stringify(update)
+    console.log("body",body);
+    let user_id = this.state.currentUser.id
+    await fetch(`http://localhost:3000/users/${user_id}/airports`, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        Authorization: localStorage.getItem("jwt")
+      },
+      body: body
+    })
+
+    //console.log("in putAirports update",update);
+    this.setState(() => ({
+    ...this.state,
+      examAirports: airports
+    }))
+    await console.log("new state",this.state.examAirports);
+  }
+
+  putUser = async (update) => {
+    let body = JSON.stringify(update)
+    let user_id = this.state.currentUser.id
+    await fetch(`http://localhost:3000/users/${user_id}`, {
+      method: "PUT",
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        Authorization: localStorage.getItem("jwt")
+      },
+      body: body
+    })
+    this.setState(() => ({
+    ...this.state,
+      currentUser: update
+    }))
+  }
+
+  updateExaminer = async (updatedUser,updatedAirports) => {
+    console.log("im here");
+    this.putUser(updatedUser)
+    this.putAirports(updatedAirports)
+  }
 
   editToggle = () => {
     this.setState({
@@ -155,6 +194,8 @@ class App extends Component {
               editToggle={this.editToggle}
               airports={this.state.airports}
               avails={this.state.available}
+              updateExaminer={this.updateExaminer}
+              examAirports={this.state.examAirports}
             />
             <Foot />
           </>

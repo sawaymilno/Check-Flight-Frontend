@@ -8,6 +8,8 @@ const ExPortal = ({
   isDisabled,
   airports,
   avails,
+  updateExaminer,
+  examAirports,
 }) => {
   return (
     <>
@@ -18,6 +20,8 @@ const ExPortal = ({
         logout={logout}
         airports={airports}
         avails={avails}
+        updateExaminer={updateExaminer}
+        examAirports={examAirports}
       />
     </>
   );
