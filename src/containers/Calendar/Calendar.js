@@ -34,7 +34,7 @@ class Calendar extends Component {
   componentDidMount = async () => {
     let id = this.props.currentUser.id
     const response = await fetch(
-      `http://localhost:3000/users/${id}/avails`, {
+      `https://evening-hamlet-90015.herokuapp.com/users/${id}/avails`, {
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
@@ -110,7 +110,7 @@ class Calendar extends Component {
 
   postAvail = async (newAvail) => {
     let id = this.props.currentUser.id
-    const response = await fetch(`http://localhost:3000/users/${id}/avails`, {
+    const response = await fetch(`https://evening-hamlet-90015.herokuapp.com/users/${id}/avails`, {
       method: "POST",
       body: JSON.stringify(newAvail),
       headers: {
@@ -133,7 +133,7 @@ class Calendar extends Component {
     let body = JSON.stringify(modAvail)
     let id = modAvail.id
     let user_id = this.props.currentUser.id
-    await fetch(`http://localhost:3000/users/${user_id}/avails/${id}`, {
+    await fetch(`https://evening-hamlet-90015.herokuapp.com/users/${user_id}/avails/${id}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',

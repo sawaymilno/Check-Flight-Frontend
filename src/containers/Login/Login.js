@@ -47,7 +47,7 @@ class Login extends Component {
       rates: "",
       isExaminer: false
     };
-    let response = await fetch("http://localhost:3000/users", {
+    let response = await fetch("https://evening-hamlet-90015.herokuapp.com/users", {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -95,7 +95,7 @@ class Login extends Component {
       isExaminer: true
     };
 
-    let response = await fetch("http://localhost:3000/users", {
+    let response = await fetch("https://evening-hamlet-90015.herokuapp.com/users", {
       method: "POST",
       headers: {
         Accept: "application/json",
