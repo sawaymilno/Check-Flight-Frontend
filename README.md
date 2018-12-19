@@ -20,7 +20,7 @@ The homepage includes a brief about section for Check Ride and forms for logging
 
 ### Home - Login
 
-The homepage defaults to the login forms. To switch to registration forms, click the link at the bottom of the form.
+##### The homepage defaults to the login forms. To switch to registration forms, click the link at the bottom of the form.
 
 ![login](screenshots/login.png)
 
@@ -33,9 +33,15 @@ The homepage defaults to the login forms. To switch to registration forms, click
 # Pilot Profile
 
 ![pilottop](screenshots/piProfileTop.png)
+
 ![checkboxes](screenshots/checkboxes.png)
+
 ![checked](screenshots/checkedairports.png)
+
+#### Filtered results with links to examiner contact data for examiners associated with that airport.
 ![airports](screenshots/airports.png)
+
+#### Examiner contact data. 
 ![examinercontact](screenshots/examinercontact.png)
 
 ---
@@ -43,9 +49,12 @@ The homepage defaults to the login forms. To switch to registration forms, click
 # Examiner Profile
 
 ![examinertop](screenshots/exprofiletop.png)
+
 ![examinermid](screenshots/examinercontact.png)
+
 ![exairports](screenshots/exprofileairports.png)
-The calendar allows examiners to set their availability.
+
+##### The calendar allows examiners to set their availability.
 ![calendar](screenshots/calendar.png)
 
 ## Available Scripts
