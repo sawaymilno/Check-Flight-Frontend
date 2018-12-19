@@ -27,12 +27,20 @@ class Calendar extends Component {
       date: "2017-12-27T00:00:00.000Z",
       morning: false,
       afternoon: false,
+      avails: this.avails,
     },],
   };
 
   componentDidMount = async () => {
+    let id = this.props.currentUser.id
     const response = await fetch(
-      "http://localhost:3000/users/16/avails"
+      `http://localhost:3000/users/${id}/avails`, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          Authorization: localStorage.getItem("jwt")
+        }
+      }
     );
     const json = await response.json();
     this.setState({ available: json });
@@ -101,12 +109,14 @@ class Calendar extends Component {
   }
 
   postAvail = async (newAvail) => {
-    const response = await fetch('http://localhost:3000/users/16/avails', {
+    let id = this.props.currentUser.id
+    const response = await fetch(`http://localhost:3000/users/${id}/avails`, {
       method: "POST",
       body: JSON.stringify(newAvail),
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        Authorization: localStorage.getItem("jwt")
       }
     })
     const avail = await response.json()
@@ -122,11 +132,13 @@ class Calendar extends Component {
   putAvail = async (modAvail) => {
     let body = JSON.stringify(modAvail)
     let id = modAvail.id
-    await fetch(`http://localhost:3000/users/16/avails/${id}`, {
+    let user_id = this.props.currentUser.id
+    await fetch(`http://localhost:3000/users/${user_id}/avails/${id}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
-        'Accept': 'application/json'
+        'Accept': 'application/json',
+        Authorization: localStorage.getItem("jwt")
       },
       body: body
     })
@@ -161,7 +173,7 @@ class Calendar extends Component {
             </Row>
             <Row>
 
-              <Canvas className="center-align" state={this.state} postAvail={this.postAvail} putAvail={this.putAvail} cTime={this.state.currentTime} cMonth={this.state.currentMonth} monthName={monthName} isDisabled={this.isDisabled}/>
+              <Canvas className="center-align" state={this.state} postAvail={this.postAvail} putAvail={this.putAvail} cTime={this.state.currentTime} cMonth={this.state.currentMonth} monthName={monthName} isDisabled={this.props.isDisabled} currentUser={this.props.currentUser}/>
 
             </Row>
             <Row>

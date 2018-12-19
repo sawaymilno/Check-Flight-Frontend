@@ -16,7 +16,8 @@ class App extends Component {
       isDisabled: true,
       currentUser: null,
       airports: [],
-      loginError: null
+      loginError: null,
+      available: [],
     };
   }
 
@@ -39,25 +40,27 @@ class App extends Component {
     this.setState({ airports: json })
   }
 
-//this function takes 1 path and an OPTIONAL id
-  get2params = async (path1, id1) => {
-    if (!id1) {id1 = ""}
-    const response = await fetch(`http://localhost:3000/${path1}/${id1}`);
+
+  getAvails = async (id) => {
+    const response = await fetch(`http://localhost:3000/users/${id}/avails`,
+    {
+      headers: {"Authorization": localStorage.getItem('jwt')}
+    });
 
     const json = await response.json();
-    this.setState(() => ({ [path1]: json }));
+    this.setState({ available: json });
   };
 //this function takes one path, one id, another path and an OPTIONAL second ID
-  getMin2Max4 = async (path1, id1, path2, id2) => {
-    if (!id2) {
-      id2 = "";
-    }
-    const response = await fetch(
-      `http://localhost:3000/${path1}/${id1}/${path2}/${id2}`
-    );
-    const json = await response.json();
-    this.setState(() => ({ [path1[id1]]: { [path2]: json } }));
-  };
+  // getMin2Max4 = async (path1, id1, path2, id2) => {
+  //   if (!id2) {
+  //     id2 = "";
+  //   }
+  //   const response = await fetch(
+  //     `http://localhost:3000/${path1}/${id1}/${path2}/${id2}`
+  //   );
+  //   const json = await response.json();
+  //   this.(() => ({ [path1[id1]]: { [path2]: json } }));
+  // };
 
   editToggle = () => {
     this.setState({
@@ -91,7 +94,9 @@ class App extends Component {
         let user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
 
         await this.getAirports()
+        await this.getAvails(user_id)
         await this.getUser(user_id)
+
 
         window.scrollTo(0, 0);
       }
@@ -149,6 +154,7 @@ class App extends Component {
               logout={this.logoutHandler}
               editToggle={this.editToggle}
               airports={this.state.airports}
+              avails={this.state.available}
             />
             <Foot />
           </>

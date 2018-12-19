@@ -6,7 +6,53 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
   let availability
   let cMonth = state.currentMonth+1
   let cYear = state.currentYear
-  let arrId = 0
+  let arrId
+
+  if (availDate.length===0) {
+    availDate = [{year: 2019, month: 12, day: 27, morning: false, afternoon: false},]
+  }
+  if (state.available.length===0) {
+    state.available = [{date: "2017-12-27T00:00:00.000Z", morning: false, afternoon: false},]
+  }
+  console.log('row',row,'date', date);
+  console.log('availDate', availDate);
+  console.log('state available',state.available);
+  //
+  // const availToggle = e => {
+  //   let available;
+  //   let dayTime = e.target.id;
+  //   for (var i = 0; i < availDate.length; i++) {
+  //     if (availDate[i].day === date) {
+  //       switch (dayTime) {
+  //         case "morning":
+  //           if (availDate[i].morning) {
+  //             available = false;
+  //           } else {
+  //             available = true;
+  //           }
+  //           setAvail(available, dayTime);
+  //           break;
+  //         default:
+  //           if (availDate[i].afternoon) {
+  //             available = false;
+  //           } else {
+  //             available = true;
+  //           }
+  //           setAvail(available, dayTime);
+  //       }
+  //     }
+  //   }
+  // };
+
+
+
+
+  // for (let i = 0; i < availDate.length; i++) {
+  //   let day = parseInt(availDate[i].day);
+  //   let month = parseInt(availDate[i].month);
+  //   let year = parseInt(availDate[i].year);
+  //   let morning = availDate[i].morning;
+  //   let afternoon = availDate[i].afternoon;
 
   for (let i = 0; i < availDate.length; i++) {
 
@@ -15,48 +61,6 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
     let year = availDate[i].year
     let morning = availDate[i].morning
     let afternoon = availDate[i].afternoon
-
-//   const availToggle = e => {
-//     let available;
-//     let dayTime = e.target.id;
-//     for (var i = 0; i < availDate.length; i++) {
-//       if (availDate[i].day === date) {
-//         switch (dayTime) {
-//           case "morning":
-//             if (availDate[i].morning) {
-//               available = false;
-//             } else {
-//               available = true;
-//             }
-//             setAvail(available, dayTime);
-//             break;
-//           default:
-//             if (availDate[i].afternoon) {
-//               available = false;
-//             } else {
-//               available = true;
-//             }
-//             setAvail(available, dayTime);
-//         }
-//       }
-//     }
-//   };
-
-//   const onSubmit = e => {
-//     e.preventDefault();
-//   };
-
-//   let availability;
-//   let cMonth = state.currentMonth + 1;
-//   let cYear = state.currentYear;
-//   let arrId;
-//   for (let i = 0; i < availDate.length; i++) {
-//     let day = parseInt(availDate[i].day);
-//     let month = parseInt(availDate[i].month);
-//     let year = parseInt(availDate[i].year);
-//     let morning = availDate[i].morning;
-//     let afternoon = availDate[i].afternoon;
-
 
     if (day === date && month === cMonth && year === cYear) {
       arrId = i;
@@ -161,10 +165,22 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
         postAvail(newAvail)
     }
   }
+  let morning
+  let afternoon
+
+  if (state.available[arrId]) {
+    morning = state.available[arrId].morning
+    afternoon = state.available[arrId].afternoon
+  } else {
+    morning = false
+    afternoon = false
+  }
+
+
 
   return (
     <div>
-      <Modal
+      <Modal 
         className="center"
         header={`${monthName} ${date}${ith} Booking Availability`}
 
@@ -172,15 +188,15 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
           <form className="col s12 form center-align" id="edit-form">
             <Row>
 
-              <Col id="morning" onClick={morningToggle} className={`card-panel ${!state.available[arrId].morning ? "blue-text text-darken-2"  : availability }`} s={6}>AM</Col>
+              <Col id="morning" onClick={morningToggle} className={`card-panel ${!morning ? "blue-text text-darken-2"  : availability }`} s={6}>AM</Col>
 
-<Col id="afternoon" onClick={afternoonToggle} className={`card-panel ${!state.available[arrId].afternoon ? "blue-text text-darken-2"  : availability }`} s={6}>PM</Col>
+<Col id="afternoon" onClick={afternoonToggle} className={`card-panel ${!afternoon ? "blue-text text-darken-2"  : availability }`} s={6}>PM</Col>
 
             </Row>
 
             <Row>
-              <Col s={6}>{!state.available[arrId].morning ? "" : "Available"}</Col>
-              <Col s={6}>{!state.available[arrId].afternoon ? "" : "Available"}</Col>
+              <Col s={6}>{!morning ? "" : "Available"}</Col>
+              <Col s={6}>{!afternoon ? "" : "Available"}</Col>
             </Row>
           </form>
 
