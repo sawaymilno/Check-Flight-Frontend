@@ -50,8 +50,6 @@ The homepage includes a brief about section for Check Ride and forms for logging
 
 ![examinertop](screenshots/exprofiletop.png)
 
-![examinermid](screenshots/examinercontact.png)
-
 ![exairports](screenshots/exprofileairports.png)
 
 ##### The calendar allows examiners to set their availability.
