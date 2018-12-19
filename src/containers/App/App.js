@@ -33,7 +33,7 @@ class App extends Component {
   }
 
   getUser = async id => {
-    const response = await fetch(`http://localhost:3000/users/${id}`, {
+    const response = await fetch(`https://evening-hamlet-90015.herokuapp.com/users/${id}`, {
       headers: { Authorization: localStorage.getItem("jwt") }
     });
     const json = await response.json();
@@ -42,7 +42,7 @@ class App extends Component {
 
   getAirports = async () => {
     const response = await fetch(
-      "http://localhost:3000/airports",
+      "https://evening-hamlet-90015.herokuapp.com/airports",
       {
         headers: {"Authorization": localStorage.getItem('jwt')}
       }
@@ -52,7 +52,7 @@ class App extends Component {
   }
 
   getAvails = async (id) => {
-    const response = await fetch(`http://localhost:3000/users/${id}/avails`,
+    const response = await fetch(`https://evening-hamlet-90015.herokuapp.com/users/${id}/avails`,
     {
       headers: {"Authorization": localStorage.getItem('jwt')}
     });
@@ -68,7 +68,7 @@ class App extends Component {
     let body = JSON.stringify(update)
     console.log("body",body);
     let user_id = this.state.currentUser.id
-    await fetch(`http://localhost:3000/users/${user_id}/airports`, {
+    await fetch(`https://evening-hamlet-90015.herokuapp.com/users/${user_id}/airports`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ class App extends Component {
   putUser = async (update) => {
     let body = JSON.stringify(update)
     let user_id = this.state.currentUser.id
-    await fetch(`http://localhost:3000/users/${user_id}`, {
+    await fetch(`https://evening-hamlet-90015.herokuapp.com/users/${user_id}`, {
       method: "PUT",
       headers: {
         'Content-Type': 'application/json',
@@ -121,7 +121,7 @@ class App extends Component {
    *************************************************************************/
 
   loginHandler = async (userType, user) => {
-    const loginResponse = await fetch('http://localhost:3000/auth/login',
+    const loginResponse = await fetch('https://evening-hamlet-90015.herokuapp.com/auth/login',
       {
         method: "POST",
         headers: {
