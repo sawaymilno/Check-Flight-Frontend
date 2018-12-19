@@ -11,13 +11,12 @@ const ExProfile = ({
   updateExaminer,
   examAirports
 }) => {
-  
+
 //console.log("BEFORE new state in Exprofile",examAirports)
 //console.log("BEFORE airports in Exprofile",airports);
 //console.log("BEFORE checkedAirports in Exprofile",checked);
 const toggle = () => {
       editToggle();
-      //checkedAirports = []
     };
 
   const onSubmit = e => {
@@ -73,23 +72,22 @@ const toggle = () => {
           <Icon large>account_circle</Icon>
           <h4>Examiner Profile</h4>
           <div
-            style={{ display: "flex", justifyContent: "center", margin: "1em" }}
-          >
+            style={{ display: "flex", justifyContent: "center", margin: "1em" }}>
             <Button
               style={{ width: "50%" }}
               onClick={toggle}
-              className="green accent-3 col s12 m1 right"
-            >
+              className="green accent-3 col s12 m1 right">
               Edit Profile
             </Button>
           </div>
           <div
             style={{ display: "flex", justifyContent: "center", margin: "1em" }}
-          >
+             >
             <br />
             <br />
             <br />
           </div>
+        <Card>
           <div onSubmit={onSubmit}>
             <form>
               <Row>
@@ -100,9 +98,7 @@ const toggle = () => {
                   label="First Name"
                   name="firstName"
                   defaultValue={currentUser.firstName}
-                  disabled={isDisabled}
-                />
-
+                  disabled={isDisabled}/>
                 <Input
                   s={12}
                   m={6}
@@ -110,8 +106,7 @@ const toggle = () => {
                   label="Last Name"
                   name="lastName"
                   defaultValue={currentUser.lastName}
-                  disabled={isDisabled}
-                />
+                  disabled={isDisabled}/>
                 <Input
                   s={12}
                   m={6}
@@ -119,9 +114,7 @@ const toggle = () => {
                   label="Phone"
                   name="phone"
                   defaultValue={currentUser.phone}
-                  disabled={isDisabled}
-                />
-
+                  disabled={isDisabled}/>
                 <Input
                   s={12}
                   m={6}
@@ -129,8 +122,7 @@ const toggle = () => {
                   label="Email"
                   name="email"
                   defaultValue={currentUser.email}
-                  disabled={isDisabled}
-                />
+                  disabled={isDisabled}/>
                 <Input
                   s={12}
                   m={6}
@@ -138,17 +130,14 @@ const toggle = () => {
                   label="Rate"
                   name="rate"
                   defaultValue={currentUser.rates}
-                  disabled={isDisabled}
-                />
-
+                  disabled={isDisabled}/>
                 <Input
                   s={12}
                   label="Bio"
                   type="textarea"
                   name="bio"
                   defaultValue={currentUser.bio}
-                  disabled={isDisabled}
-                />
+                  disabled={isDisabled}/>
               </Row>
               <Card>
                 <h4 className="col s12 m9 ">Airports</h4>
@@ -184,18 +173,6 @@ const toggle = () => {
             </form>
           </div>
         </Card>
-          {isDisabled ? null : (
-            <Row>
-              <Button
-                className="col s2 m2 offset-m5 offset-s5 green accent-3"
-                type="submit">
-                Submit
-                Changes
-              </Button>
-            </Row>
-          )}
-        </form>
-      </div>
       </Card>
         <Calendar isDisabled={isDisabled} avails={avails} currentUser={currentUser} />
       </Card>
