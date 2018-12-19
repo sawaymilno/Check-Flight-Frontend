@@ -42,7 +42,7 @@ class PilotSearchResults extends Component {
             </h3>
             <h5>
               <Icon>phone</Icon>&nbsp;
-              {this.state.examinerViewing.phone}
+              {this.state.examinerViewing.phone.replace(/^(\d{3})(\d{3})(\d{4})$/, `(${'$1'}) ${'$2'}-${'$3'}`)}
             </h5>
             <h5>
               <Icon>email</Icon>&nbsp;

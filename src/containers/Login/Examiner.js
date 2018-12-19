@@ -10,7 +10,7 @@ const Examiner = props => (
       <br />
       Examiner Sign Up
     </h4>
-    <div>
+    <div style={{ color: "red" }}>
     { props.error && props.error.userType === 'Examiner' ? props.error.message : '' }
     </div>
     <form id="Examiner" onSubmit={props.signup}>
