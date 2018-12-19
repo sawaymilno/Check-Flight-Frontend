@@ -4,6 +4,13 @@ import Calendar from "../../containers/Calendar/Calendar";
 
 const ExProfile = ({ editToggle, currentUser, isDisabled, airports,avails, updateExaminer, examAirports }) => {
 
+console.log("BEFORE new state in Exprofile",examAirports)
+//console.log("BEFORE airports in Exprofile",airports);
+console.log("BEFORE checkedAirports in Exprofile",checked);
+const toggle = () => {
+      editToggle();
+      //checkedAirports = []
+    };
 
 const onSubmit = (e) => {
   e.preventDefault()
@@ -38,16 +45,19 @@ let checkedAirports = airports.map(airport => {
     console.log("in checkedAirports", examAirports[i],airport.id);
     if (airport.id===examAirports[i]) {
       airport.checked=true
+      break
     } else {airport.checked=false}
   }
      return airport
   })
 
-  const toggle = () => {
-      editToggle();
-      //checkedAirports = []
-    };
+let checked = checkedAirports.map(airport => {
+  return airport.checked
+})
 
+console.log("AFTER checkedAirports in Exprofile",checked);
+  //console.log("AFTER new state in Exprofile ",examAirports)
+  //console.log("AFTER airports in Exprofile",airports);
 // console.log("THIS IS THE CHECKED AIRPORTS", checkedAirports);
 //console.log("IS CHECKED TRUE[0]",checkedAirports[0].checked);
   return (
