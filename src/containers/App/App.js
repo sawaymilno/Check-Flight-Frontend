@@ -74,7 +74,7 @@ class App extends Component {
     ...this.state,
       examAirports: airports
     }))
-    await console.log("new state",this.state.examAirports);
+    //await console.log("new state",this.state.examAirports);
   }
 
   putUser = async (update) => {
