@@ -24,10 +24,12 @@ class App extends Component {
 
   componentDidMount = async id => {
     const jwt = localStorage.getItem('jwt')
-    const user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
-    await this.getAirports()
-    await this.getAvails(user_id)
-    await this.getUser(user_id)
+    if (jwt) {
+      const user_id = JSON.parse(atob(jwt.split('.')[1])).user_id
+      await this.getAirports()
+      await this.getAvails(user_id)
+      await this.getUser(user_id)      
+    }
   }
 
   getUser = async id => {
