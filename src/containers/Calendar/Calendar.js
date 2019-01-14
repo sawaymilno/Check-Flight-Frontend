@@ -47,20 +47,6 @@ class Calendar extends Component {
   }
 
   prevMonth = (e) => {
-    let months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ]
     let month = this.state.currentMonth
     let year = this.state.currentYear
     if ((month - 1) < 0) {
@@ -68,7 +54,7 @@ class Calendar extends Component {
       year -= 1
     }
 
-    let date = new Date(`${months[month]} ${year}`)
+    let date = new Date(year, month - 1)
 
     this.setState({
       currentTime: date,
@@ -78,20 +64,6 @@ class Calendar extends Component {
   }
 
   nextMonth = (e) => {
-    let months = [
-      'January',
-      'February',
-      'March',
-      'April',
-      'May',
-      'June',
-      'July',
-      'August',
-      'September',
-      'October',
-      'November',
-      'December'
-    ]
     let month = this.state.currentMonth
     let year = this.state.currentYear
     if ((month + 1) >= 12) {
@@ -99,7 +71,7 @@ class Calendar extends Component {
       year += 1
     }
 
-    let date = new Date(`${months[month]} ${year}`)
+    let date = new Date(year, month + 1)
 
     this.setState({
       currentTime: date,

@@ -2,7 +2,7 @@ import React from 'react';
 import { Row, Col, Modal } from 'react-materialize'
 
 const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, availDate}) => {
-
+//console.log("in CalDay date", date);
   let availability
   let cMonth = state.currentMonth+1
   let cYear = state.currentYear
@@ -153,8 +153,7 @@ const CalDay = ({row, state, postAvail, putAvail, date, monthName, isDisabled, a
             <Row>
 
               <Col id="morning" onClick={morningToggle} className={`card-panel ${!morning ? "blue-text text-darken-2"  : availability }`} s={6}>AM</Col>
-
-<Col id="afternoon" onClick={afternoonToggle} className={`card-panel ${!afternoon ? "blue-text text-darken-2"  : availability }`} s={6}>PM</Col>
+              <Col id="afternoon" onClick={afternoonToggle} className={`card-panel ${!afternoon ? "blue-text text-darken-2"  : availability }`} s={6}>PM</Col>
 
             </Row>
 
